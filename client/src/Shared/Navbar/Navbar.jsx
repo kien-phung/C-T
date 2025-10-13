@@ -1,0 +1,593 @@
+import { Link } from 'react-router-dom';
+import Logo from '/images/stlLogo.png';
+import Logo2 from '/images/stlLogo.png';
+import './navbar.css';
+import { useEffect, useRef, useState } from 'react';
+import {
+  FaArrowUp,
+  FaChevronDown,
+  FaEnvelope,
+  FaFacebookF,
+  FaInstagram,
+  FaLinkedinIn,
+  FaPinterestP,
+  FaXTwitter,
+} from 'react-icons/fa6';
+import { FaPhoneAlt, FaTimes } from 'react-icons/fa';
+import { MdLocationPin } from 'react-icons/md';
+import { IoMdPaperPlane } from 'react-icons/io';
+import { LuMoveRight } from 'react-icons/lu';
+import { ImFacebook2 } from 'react-icons/im';
+import { HiOutlineMail } from 'react-icons/hi';
+import { GiPhone } from 'react-icons/gi';
+import { LiaTimesSolid } from 'react-icons/lia';
+import { IoSearch } from 'react-icons/io5';
+
+
+const Navbar = () => {
+  // Language toggle state
+  const [currentLanguage, setCurrentLanguage] = useState('VN');
+
+  const toggleLanguage = () => {
+    setCurrentLanguage(prev => prev === 'VN' ? 'EN' : 'VN');
+  };
+
+  //sticky
+
+  useEffect(() => {
+    window.addEventListener('scroll', isSticky);
+    return () => {
+      window.removeEventListener('scroll', isSticky);
+    };
+  });
+
+  /* Method that will fix header after a specific scrollable */
+  const isSticky = () => {
+    const header = document.querySelector('.header-sticky');
+    const scrollTop = window.scrollY;
+    scrollTop >= 250
+      ? header.classList.add('is-sticky')
+      : header.classList.remove('is-sticky');
+  };
+
+  //Menu Sidebar
+
+  const menuSideBarRef = useRef(null);
+  const sidebarContentRef = useRef(null);
+  const bodyOverlay2Ref = useRef(null);
+  const closeBtn2Ref = useRef(null);
+
+  useEffect(() => {
+    const menuSideBar = menuSideBarRef.current;
+    const sidebarContent = sidebarContentRef.current;
+    const bodyOverlay2 = bodyOverlay2Ref.current;
+    const closeBtn2 = closeBtn2Ref.current;
+
+    const addClasses = () => {
+      sidebarContent.classList.add('opened');
+      bodyOverlay2.classList.add('apply');
+    };
+
+    const removeClasses = () => {
+      sidebarContent.classList.remove('opened');
+      bodyOverlay2.classList.remove('apply');
+    };
+
+    if (menuSideBar && sidebarContent && bodyOverlay2 && closeBtn2) {
+      menuSideBar.addEventListener('click', addClasses);
+      closeBtn2.addEventListener('click', removeClasses);
+      bodyOverlay2.addEventListener('click', removeClasses);
+    }
+
+    return () => {
+      if (menuSideBar && sidebarContent && bodyOverlay2 && closeBtn2) {
+        menuSideBar.removeEventListener('click', addClasses);
+        closeBtn2.removeEventListener('click', removeClasses);
+        bodyOverlay2.removeEventListener('click', removeClasses);
+      }
+    };
+  }, []);
+
+  const menuBarRef = useRef(null);
+  const offcanvasRef = useRef(null);
+  const bodyOverlayRef = useRef(null);
+  const closeBtnRef = useRef(null);
+
+  useEffect(() => {
+    const menuBar = menuBarRef.current;
+    const offcanvas = offcanvasRef.current;
+    const bodyOverlay = bodyOverlayRef.current;
+    const closeBtn = closeBtnRef.current;
+
+    const addClasses = () => {
+      offcanvas.classList.add('opened');
+      bodyOverlay.classList.add('apply');
+    };
+
+    const removeClasses = () => {
+      offcanvas.classList.remove('opened');
+      bodyOverlay.classList.remove('apply');
+    };
+
+    if (menuBar && offcanvas && bodyOverlay && closeBtn) {
+      menuBar.addEventListener('click', addClasses);
+      closeBtn.addEventListener('click', removeClasses);
+      bodyOverlay.addEventListener('click', removeClasses);
+    }
+
+    return () => {
+      if (menuBar && offcanvas && bodyOverlay && closeBtn) {
+        menuBar.removeEventListener('click', addClasses);
+        closeBtn.removeEventListener('click', removeClasses);
+        bodyOverlay.removeEventListener('click', removeClasses);
+      }
+    };
+  }, []);
+
+  let headerIcon = `  
+  <span class="header-icon">  
+    <svg fill="currentColor" viewBox="0 0 320 512" height="15px" width="15px" xmlns="http://www.w3.org/2000/svg">
+      <path d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z"></path>
+    </svg>
+  </span>  
+`;
+
+  useEffect(() => {
+    const mainMenuContent = document.querySelector('.main-menu-content');
+    const mainMenuMobile = document.querySelector('.main-menu-mobile');
+
+    if (mainMenuContent && mainMenuMobile) {
+      const navContent = mainMenuContent.outerHTML;
+      mainMenuMobile.innerHTML = navContent;
+
+      const arrows = document.querySelectorAll(
+        '.main-menu-mobile .has-dropdown > a'
+      );
+
+      arrows.forEach((arrow) => {
+        const arrowBtn = document.createElement('BUTTON');
+        arrowBtn.classList.add('dropdown-toggle-btn');
+        arrowBtn.innerHTML = headerIcon;
+
+        arrow.appendChild(arrowBtn);
+
+        arrowBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+          arrowBtn.classList.toggle('dropdown-opened');
+          arrow.parentElement.classList.toggle('expanded');
+          arrow.parentElement.parentElement.classList.add('dropdown-opened');
+          arrow.parentElement.parentElement
+            .querySelectorAll('.submenu')
+            .forEach((submenu) => {
+              submenu.style.display =
+                submenu.style.display === 'block' ? 'none' : 'block';
+            });
+          arrow.parentElement.parentElement
+            .querySelectorAll('.has-dropdown')
+            .forEach((sibling) => {
+              if (sibling !== arrow.parentElement) {
+                sibling.classList.remove('dropdown-opened');
+                sibling.querySelectorAll('.submenu').forEach((submenu) => {
+                  submenu.style.display = 'none';
+                });
+              }
+            });
+        });
+      });
+    }
+  }, [headerIcon]);
+
+  //Menu Search
+  const handleMenuSearchClick = () => {
+    document.body.classList.add('search-active');
+  };
+
+  const handleCloseSearchClick = () => {
+    document.body.classList.remove('search-active');
+  };
+
+  const searchContentRef = useRef(null);
+  const bodyOverlay3Ref = useRef(null);
+  const searchInputRef = useRef(null); // Reference for the search input
+  const [isSubmitting, setIsSubmitting] = useState(false); // State to track form submission
+
+  const handleSubmit = (event) => {
+    event.preventDefault(); // Prevent default form submission
+    setIsSubmitting(true); // Set submitting state
+
+    // Simulate a submission with a timeout (replace with your actual submission logic)
+    setTimeout(() => {
+      setIsSubmitting(false); // Reset submitting state
+      // Optionally clear the input field or close the overlay
+      if (searchInputRef.current) {
+        searchInputRef.current.value = ''; // Clear the input
+      }
+      bodyOverlay3Ref.current.classList.remove('apply'); // Close overlay on submit (optional)
+      searchContentRef.current.classList.remove('opened'); // Close search content (optional)
+    }, 2000); // Simulate a delay of 2 seconds
+  };
+
+  return (
+    <div data-lenis-prevent>
+      <div className='offcanvas-area'>
+        <div
+          ref={offcanvasRef}
+          className='offcanvas'
+        >
+          <div className='offcanvas_close-btn'>
+            <button
+              ref={closeBtnRef}
+              className='close-btn'
+            >
+              <FaTimes />
+            </button>
+          </div>
+          <div className='offcanvas_logo'>
+            <Link to={'/'}>
+              <img
+                src={Logo2}
+                draggable='false'
+              />
+            </Link>
+          </div>
+          <div className='offcanvas_title'>
+            <p>
+              Business consultation provides expert advice to improve
+              performance.
+            </p>
+          </div>
+          <div className='main-menu-mobile lg:none'></div>
+          <div className='offcanvas_contact-info'>
+            <div className='offcanvas_contact-title'>
+              <h5>Contact Us</h5>
+            </div>
+            <ul>
+              <li>
+                <MdLocationPin />
+                <Link to={'/'}>TP Ho Chi Minh</Link>
+              </li>
+              <li>
+                <FaEnvelope />
+                <Link to={'/'}>needhelp@company.com</Link>
+              </li>
+              <li>
+                <FaPhoneAlt />
+                <Link to={'/'}>+48 555 223 224</Link>
+              </li>
+            </ul>
+          </div>
+          <div className='offcanvas_input'>
+            <div className='offcanvas_input-title'>
+              <h4>Get Update</h4>
+            </div>
+            <form
+              action='#'
+              method='post'
+            >
+              <div className='relative'>
+                <input
+                  type='email'
+                  name='email'
+                  placeholder='Enter E-Mail'
+                  required
+                />
+                <button type='submit'>
+                  <IoMdPaperPlane />
+                </button>
+              </div>
+            </form>
+            <div className='status'></div>
+          </div>
+          <div className='offcanvas_social'>
+            <div className='social-icon'>
+              <Link to={'/'}>
+                <FaFacebookF />
+              </Link>
+              <Link to={'/'}>
+                <FaXTwitter />
+              </Link>
+              <Link to={'/'}>
+                <FaPinterestP />
+              </Link>
+              <Link to={'/'}>
+                <FaLinkedinIn />
+              </Link>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        ref={bodyOverlayRef}
+        className='body-overlay'
+      ></div>
+      <header className='bg-BodyBg2-0 relative z-10 before:absolute before:top-0 before:-left-[10%] before:w-3/5 before:h-full before:bg-PrimaryColor-0 before:-skew-x-[30deg] before:-z-10 after:absolute after:top-0 after:left-1/2 after:translate-x-[5px] after:w-1 after:h-full after:bg-PrimaryColor-0 after:-skew-x-[30deg] after:-z-10'>
+        <div className='Container flex items-center justify-between h-[50px]'>
+          <div className='flex items-center gap-8'>
+            <div className=' sm:flex items-center gap-2 hidden'>
+              <h6 className='text-lg text-white'>
+                <HiOutlineMail />
+              </h6>
+  <a
+  href=" https://mail.google.com/mail/u/0/?hl=vi" // Sử dụng mailto: + địa chỉ email
+  className='font-FiraSans text-[15px] text-white transition-all duration-500 hover:text-white'
+>
+  stl.solution.co@gmail.com
+</a>
+            </div>
+            <div className=' md:flex items-center gap-2 hidden'>
+              <h6 className='text-white [transform:rotateX(180deg)]'>
+                <GiPhone />
+              </h6>
+              <a
+                href="https://zalo.me/84912345678" // Sử dụng mailto: + địa chỉ email
+                className='font-FiraSans text-[15px] text-white transition-all duration-500 hover:text-white'
+                >
+                +84 908 229 309
+              </a>
+            </div>
+          </div>
+          <div className='flex items-center gap-5'>
+            <h5 className='font-FiraSans font-medium text-sm uppercase text-white'>
+              Theo Dõi Chúng Tôi :
+            </h5>
+            <ul className='flex gap-5 items-center'>
+              <li>
+                <Link
+                  to={'/'}
+                  className='transition-all duration-500 text-white hover:text-PrimaryColor-0'
+                >
+                  <ImFacebook2 size={'14'} />
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to={'/'}
+                  className='transition-all duration-500 text-white hover:text-PrimaryColor-0'
+                >
+                  <FaXTwitter />
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to={'/'}
+                  className='transition-all duration-500 text-white hover:text-PrimaryColor-0'
+                >
+                  <FaLinkedinIn />
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to={'/'}
+                  className='transition-all duration-500 text-white hover:text-PrimaryColor-0'
+                >
+                  <FaInstagram />
+                </Link>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div
+        id='header-sticky'
+        className='header-area header-sticky style-three'
+      >
+        <div className='Container'>
+          <div className='bg-transparent rounded-md flex items-center justify-between lg:grid lg:grid-cols-12 lg:gap-4'>
+            <div className='col-span-2'>
+              <div className='header-logo pl-4'>
+                <Link to={'/'}>
+                  <img
+                    src={Logo}
+                    draggable='false'
+                  />
+                </Link>
+              </div>
+            </div>
+            <div className='col-span-7 hidden lg:block'>
+              <div className='header-main-menu text-center flex justify-center'>
+                <nav className='main-menu-content'>
+                  <ul>
+                    <li>
+                      <Link to={'/'}>
+                        Trang Chủ
+                      </Link>
+                    </li>
+
+                    <li>
+                      <Link to={'/service_details'}>Sản Phẩm</Link>
+                    </li>
+
+                    <li>
+                      <Link to={'/about'}>Giải Pháp</Link>
+                    </li>
+
+                    <li>
+                      <Link to={'/policy'}>
+                        Chính Sách
+                      </Link>
+                    </li>
+                    <li>
+                      <Link to={'/customer'}>
+                        Khách Hàng
+                      </Link>
+                    </li>
+                    <li className='has-dropdown'>
+                      <Link to={'/blog_grid'}>
+                        Tin Tức
+                        <span>
+                          <FaChevronDown />
+                        </span>
+                      </Link>
+                      <ul className='submenu'>
+                        <li>
+                          <Link to={'/blog_grid'}>Danh sách tin tức</Link>
+                        </li>
+                        <li>
+                          <Link to={'/blog_details'}>Chi tiết tin tức</Link>
+                        </li>
+                      </ul>
+                    </li>
+                    <li>
+                      <Link to={'/contact'}>Liên Hệ</Link>
+                    </li>
+                  </ul>
+                </nav>
+              </div>
+            </div>
+            <div className='col-span-3'>
+              <div className='header-right-box flex items-center gap-5 justify-end'>
+                <div className='hidden lg:block relative before:absolute before:top-1/2 before:-translate-y-1/2 before:-right-[27px] before:h-20 before:w-[1px] before:bg-white before:opacity-20'>
+                  <button
+                    onClick={toggleLanguage}
+                    className='bg-PrimaryColor-0 font-FiraSans text-white capitalize text-[15px] font-medium px-[31px] py-[15px] rounded-md overflow-hidden flex items-center gap-2 border border-PrimaryColor-0 relative z-10 before:absolute before:top-0 before:left-0 before:w-full before:h-full before:bg-BodyBg2-0 before:-z-10 before:scale-0 before:transition-all before:duration-500 hover:before:scale-100'
+                  >
+                    <span className={`transition-all duration-300 ${currentLanguage === 'VN' ? 'text-white' : 'text-gray-300'}`}>
+                      VN
+                    </span>
+                    <span className='text-white'>|</span>
+                    <span className={`transition-all duration-300 ${currentLanguage === 'EN' ? 'text-white' : 'text-gray-300'}`}>
+                      EN
+                    </span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className='sidebar-content'>
+        <div
+          ref={sidebarContentRef}
+          className='sidebar'
+        >
+          <div className='sidebar_close-btn'>
+            <button
+              ref={closeBtn2Ref}
+              className='close-btn2'
+            >
+              <FaTimes />
+            </button>
+          </div>
+          <div className='sidebar_logo'>
+            <Link to={'/'}>
+              <img
+                src={Logo2}
+                draggable='false'
+              />
+            </Link>
+          </div>
+          <div className='sidebar_title'>
+            <p>
+              Business consultation provides expert advice to improve
+              performance.
+            </p>
+          </div>
+          <div className='sidebar_contact-info'>
+            <ul>
+              <li>
+                <MdLocationPin />
+                <Link to={'/'}>24/22 Đường số 23, phường Hiệp Bình Chánh, TP.Thủ Đức</Link>
+              </li>
+              <li>
+                <FaEnvelope />
+                <Link to={'/'}>stl.solution.co@gmail.com</Link>
+              </li>
+              <li>
+                <FaPhoneAlt />
+                <Link to={'/'}>+84 908 229 309</Link>
+              </li>
+            </ul>
+          </div>
+          <div className='sidebar_input'>
+            <div className='offcanvas_input-title'>
+              <h4>Get Update</h4>
+            </div>
+            <form
+              action='#'
+              method='post'
+            >
+              <div className='relative'>
+                <input
+                  type='email'
+                  name='email'
+                  placeholder='Enter E-Mail'
+                  required
+                />
+                <button type='submit'>
+                  <IoMdPaperPlane />
+                </button>
+              </div>
+            </form>
+          </div>
+          <ul className='sidebar-social-icon'>
+            <li>
+              <Link to={'/'}>
+                <FaFacebookF />
+              </Link>
+            </li>
+            <li>
+              <Link to={'/'}>
+                <FaXTwitter />
+              </Link>
+            </li>
+            <li>
+              <Link to={'/'}>
+                <FaPinterestP />
+              </Link>
+            </li>
+            <li>
+              <Link to={'/'}>
+                <FaLinkedinIn />
+              </Link>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div
+        ref={bodyOverlay2Ref}
+        className='body-overlay2'
+      ></div>
+      <div className='search-popup'>
+        <button
+          className='close-search'
+          onClick={handleCloseSearchClick}
+        >
+          <LiaTimesSolid />
+        </button>
+        <button
+          className='close-search2'
+          onClick={handleCloseSearchClick}
+        >
+          <FaArrowUp />
+        </button>
+        <form
+          method='post'
+          onSubmit={handleSubmit}
+        >
+          <div className='form-group'>
+            <input
+              type='search'
+              name='search-field'
+              placeholder='Search Here'
+              required
+              className='font-FiraSans placeholder:font-FiraSans'
+              ref={searchInputRef}
+            />
+            <button
+              type='submit'
+              disabled={isSubmitting} // Disable button if submitting
+            >
+              {isSubmitting ? (
+                <span>Loading...</span> // Show loading text
+              ) : (
+                <IoSearch />
+              )}
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  );
+};
+
+export default Navbar;
