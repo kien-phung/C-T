@@ -114,28 +114,27 @@ const TeamMember = () => {
             />
           </div>
         </div>
-        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-y-10 gap-x-7 mt-[60px]'>
+<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 mt-[100px]">
           {teamData.map(
             ({
               id,
               teamThumb,
               teamTitle,
-              teamShare,
               socialIcon,
               socialIcon2,
               socialIcon3,
+              socialIcon4,
               teamDesc,
-              teamShape,
             }) => {
               return (
-                <div key={id}>
+                <div key={id} className="h-full">
                   <TeamCard
                     teamThumb={teamThumb}
                     teamTitle={teamTitle}
-                    teamShare={teamShare}
                     socialIcon={socialIcon}
                     socialIcon2={socialIcon2}
                     socialIcon3={socialIcon3}
+                    socialIcon4={socialIcon4}
                     teamDesc={teamDesc}
                     teamShape={teamShape}
                   />
