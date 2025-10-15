@@ -6,8 +6,8 @@ import { Pagination } from 'swiper/modules';
 import { MdOutlineStarPurple500 } from 'react-icons/md';
 import TestimonialCard from './TestimonialCard';
 import border from '/images/hero_border.png';
-import testiThumb from '/images/auothor.png';
-import testiThumb2 from '/images/auothor2.png';
+import certificate1 from '/images/certificate1.jpg';
+import certificate2 from '/images/certificate2.jpg';
 import testiQuote from '/images/quote.png';
 import CountUp from 'react-countup';
 import { IoIosCheckmarkCircle } from 'react-icons/io';
@@ -18,39 +18,21 @@ import serviceShape4 from '/images/tir.png';
 const testiData = [
   {
     id: 1,
-    testiThumb: testiThumb,
+    testiThumb: certificate1,
     testiQuote: testiQuote,
-    testiDesc: `“Conveniently transform architectures
-									diness equity invested Appropriately
-									proactives leadership skills without 
-									applications Consultant”`,
+    testiDesc: `Giấy chứng nhận doanh nghiệp khoa học và công nghệ được cấp bởi Sở Khoa học và Công nghệ TP.HCM.`,
     testiRatingIcon: <MdOutlineStarPurple500 />,
-    testiName: 'Jhon D. Alexon',
-    testiDesignation: 'Web Developer',
+    testiName: 'Giấy Chứng Nhận DNCNTT',
+    testiDesignation: 'Số: 45/ĐK-DNKHCN - Năm 2018',
   },
   {
     id: 2,
-    testiThumb: testiThumb2,
+    testiThumb: certificate2,
     testiQuote: testiQuote,
-    testiDesc: `“Conveniently transform architectures
-									diness equity invested Appropriately
-									proactives leadership skills without 
-									applications Consultant”`,
+    testiDesc: `Bằng độc quyền giải pháp hữu ích số 2845 về "Phương pháp thanh toán linh hoạt được thực hiện tại thiết bị thanh toán tự động" được cấp bởi Cục Sở hữu trí tuệ.`,
     testiRatingIcon: <MdOutlineStarPurple500 />,
-    testiName: 'David Miller',
-    testiDesignation: 'UI/UX Designer',
-  },
-  {
-    id: 3,
-    testiThumb: testiThumb,
-    testiQuote: testiQuote,
-    testiDesc: `“Conveniently transform architectures
-									diness equity invested Appropriately
-									proactives leadership skills without 
-									applications Consultant”`,
-    testiRatingIcon: <MdOutlineStarPurple500 />,
-    testiName: 'Anjelina Watson',
-    testiDesignation: 'Web Developer',
+    testiName: 'Bằng Độc Quyền Giải Pháp',
+    testiDesignation: 'Số: 2845 - Năm 2020',
   },
 ];
 
@@ -105,10 +87,10 @@ const Testimonial = () => {
         <div className='grid grid-cols-6 lg:grid-cols-12'>
           <div className='col-span-6 lg:col-span-5'>
             <h5 className='font-FiraSans font-medium text-sm sm:text-base text-PrimaryColor-0 uppercase mb-3'>
-              Testimonial
+              CHỨNG CHỈ & GIẢI THƯỞNG
             </h5>
             <h1 className='font-FiraSans font-semibold text-HeadingColor-0 text-[16px] leading-[26px] sm:text-[25px] sm:leading-[35px] md:text-[30px] md:leading-[40px] lg:text-[34px] lg:leading-[44px] xl:text-[40px] xl:leading-[50px] 2xl:text-[42px] 2xl:leading-[52px] relative pb-4'>
-              Trusted By The Genius <br /> People With advisar
+              Được Công Nhận Bởi <br /> Các Cơ Quan Nhà Nước
               <img
                 src={border}
                 draggable='false'
@@ -116,16 +98,15 @@ const Testimonial = () => {
               />
             </h1>
             <p className='font-FiraSans text-lg text-TextColor2-0 pt-[30px] pb-6'>
-              Media leadership skills before cross-media innovation{' '}
-              <br className='hidden sm:block lg:hidden xl:block' /> develop
-              standardized platforms without
+              Chứng nhận năng lực công nghệ và bảo vệ sở hữu trí tuệ{' '}
+              <br className='hidden sm:block lg:hidden xl:block' />
+              phát triển giải pháp thanh toán tiên tiến
             </p>
             <div className='flex items-center gap-[22px] border-y border-BorderColor-0 py-[26px] relative sm:mr-10'>
               <CountUp
-                start={-11}
-                prefix='4.'
-                end={98}
-                suffix={''}
+                start={0}
+                prefix=''
+                end={2}
                 className='font-FiraSans text-3xl leading-[22px] sm:text-[50px] sm:leading-[42px] xl:text-[56px] xl:leading-[44px] text-PrimaryColor-0 font-medium border-r border-BorderColor-0 pr-[22px]'
               />
               <div>
@@ -147,7 +128,7 @@ const Testimonial = () => {
                   </li>
                 </ul>
                 <p className='font-FiraSans text-lg text-TextColor2-0 pt-1'>
-                  Avg. Clients Ratings
+                  Chứng Nhận Chính Thức
                 </p>
               </div>
               <div className='absolute -z-10 top-11  right-6 hidden 2xl:block animate-dance3'>
@@ -161,14 +142,15 @@ const Testimonial = () => {
               <span className='text-PrimaryColor-0'>
                 <IoIosCheckmarkCircle size={'22'} />
               </span>
-              100% Clients Satisfaction Gaurantee
+              Được Công Nhận Bởi Nhà Nước
             </h6>
           </div>
           <div className='col-span-6 lg:col-span-7 mt-10 lg:mt-0'>
             <Swiper
               {...settings}
-              pagination={pagination}
-              modules={[Pagination]}
+              modules={[]}
+              className='testimonial-swiper'
+              style={{ '--swiper-wrapper-height': 'auto' }}
             >
               <div>
                 {testiData.map(
@@ -183,7 +165,7 @@ const Testimonial = () => {
                   }) => {
                     return (
                       <SwiperSlide key={id}>
-                        <div className='pb-[52px]'>
+                        <div className='pb-[52px] h-full'>
                           <TestimonialCard
                             testiThumb={testiThumb}
                             testiQuote={testiQuote}

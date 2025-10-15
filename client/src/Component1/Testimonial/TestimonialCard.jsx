@@ -8,17 +8,14 @@ const TestimonialCard = ({
   testiDesc,
 }) => {
   return (
-    <div className='testi-box relative text-center bg-white shadow-cases px-3 sm:px-10 lg:px-4 2xl:px-10 pt-10 pb-9 rounded-md rounded-ss-[80px] transition-all duration-500 before:absolute before:right-0 before:bottom-0 before:w-0 before:h-[5px] before:rounded-lg before:z-10 before:bg-PrimaryColor-0 before:transition-all before:duration-500 hover:before:left-0 hover:before:w-full'>
-      <div className='relative flex items-center justify-center'>
+    <div className='testi-box relative text-center bg-white shadow-cases px-3 sm:px-10 lg:px-4 2xl:px-10 pt-10 pb-9 rounded-md rounded-ss-[80px] transition-all duration-500 before:absolute before:right-0 before:bottom-0 before:w-0 before:h-[5px] before:rounded-lg before:z-10 before:bg-PrimaryColor-0 before:transition-all before:duration-500 hover:before:left-0 hover:before:w-full min-h-[650px] flex flex-col'>
+      <div className='relative flex items-center justify-center mb-4'>
         <img
           src={testiThumb}
           draggable='false'
-          className='mx-auto'
-        />
-        <img
-          src={testiQuote}
-          draggable='false'
-          className='absolute bottom-[6px] left-1/2 translate-x-[20px]'
+          className='mx-auto rounded-lg shadow-md hover:scale-105 transition-transform duration-300'
+          alt={testiName}
+          style={{ height: '300px', width: 'auto', maxWidth: '100%', objectFit: 'contain' }}
         />
       </div>
       <h5 className='font-FiraSans font-semibold inline-block text-HeadingColor-0 text-xl pt-5 pb-1'>
@@ -27,7 +24,7 @@ const TestimonialCard = ({
       <p className='font-FiraSans text-TextColor2-0 text-[15px]'>
         {testiDesignation}
       </p>
-      <p className='font-FiraSans text-HeadingColor-0 m-auto pt-6'>
+      <p className='font-FiraSans text-HeadingColor-0 m-auto pt-6 text-sm leading-relaxed flex-grow'>
         {testiDesc}
       </p>
       <ul className='flex gap-[6px] items-center justify-center mt-8'>

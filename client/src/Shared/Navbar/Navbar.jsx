@@ -411,21 +411,10 @@ const Navbar = () => {
                         Khách Hàng
                       </Link>
                     </li>
-                    <li className='has-dropdown'>
+                    <li>
                       <Link to={'/blog_grid'}>
                         Tin Tức
-                        <span>
-                          <FaChevronDown />
-                        </span>
                       </Link>
-                      <ul className='submenu'>
-                        <li>
-                          <Link to={'/blog_grid'}>Danh sách tin tức</Link>
-                        </li>
-                        <li>
-                          <Link to={'/blog_details'}>Chi tiết tin tức</Link>
-                        </li>
-                      </ul>
                     </li>
                     <li>
                       <Link to={'/contact'}>Liên Hệ</Link>

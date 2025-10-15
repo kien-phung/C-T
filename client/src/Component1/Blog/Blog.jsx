@@ -1,50 +1,45 @@
 import { FaCircle } from 'react-icons/fa6';
-import blogThumb from '/images/blog3_1.png';
-import blogThumb2 from '/images/blog3_2.png';
-import blogThumb3 from '/images/blog3_3.png';
+import blogThumb from '/images/blog/blog1.jpg';
+import blogThumb2 from '/images/blog/blog2.jpg';
+import blogThumb3 from '/images/blog/blog3.jpg';
 import border from '/images/hero_border.png';
 import BlogCard from './BlogCard';
-import { CiHeart } from 'react-icons/ci';
+
 
 const blogData = [
   {
     id: 1,
     blogThumb: blogThumb,
-    blogThumbTitle: 'Creative',
+    blogThumbTitle: 'Công nghệ',
     blogDateIcon: <FaCircle />,
-    blogDate: '04 Mar, 2025',
-    blogCommentIcon: <CiHeart />,
-    blogComment: '2 Comments',
+    blogDate: '04 Th3, 2025',
     blogUrl: '/blog_details',
-    blogTitle: 'Globally disintermediate exten services resource',
+    blogTitle: 'Diễn Đàn Đổi Mới Sáng Tạo Năng Lượng',
     blogDesc:
-      'Continually plagiarizes virtual web services action items. Globally build',
+      'Tham dự gặp gỡ các ban lãnh đạo cấp cao, tìm hiểu về quy trình chuyển đổi công nghệ mới vào trong nguồn năng lượng hẳng ngày.',
   },
   {
     id: 2,
     blogThumb: blogThumb2,
-    blogThumbTitle: 'Creative',
+    blogThumbTitle: 'Công nghệ',
     blogDateIcon: <FaCircle />,
-    blogDate: '14 Mar, 2025',
-    blogCommentIcon: <CiHeart />,
-    blogComment: '2 Comments',
+    blogDate: '14 Th3, 2025',
     blogUrl: '/blog_details',
-    blogTitle: 'Consulting Industry changing Business Landscape',
+    blogTitle: 'Giải Pháp Hệ Thống Camera Giám Sát Tích Hợp AI',
     blogDesc:
-      'Continually plagiarizes virtual web services action items. Globally build',
+      'Cung cấp giải pháp thông minh dành cho doanh nghiệp, mang đến giá trị to lớn cho khách hàng',
   },
   {
     id: 3,
     blogThumb: blogThumb3,
-    blogThumbTitle: 'Creative',
+    blogThumbTitle: 'Công nghệ',
     blogDateIcon: <FaCircle />,
-    blogDate: '24 Mar, 2025',
-    blogCommentIcon: <CiHeart />,
-    blogComment: '2 Comments',
+    blogDate: '24 Th3, 2025',
     blogUrl: '/blog_details',
-    blogTitle: 'Sustainability Consulting for Business Planning',
+    blogTitle: 'Giải pháp Tiết Kiệm Năng Lượng Điện Tích Hợp AI',
+
     blogDesc:
-      'Continually plagiarizes virtual web services action items. Globally build',
+      'Giúp doanh nghiệp của bạn giảm chi phí tiền điện hằng tháng lên đến con số 10 - 15% sự lựa chọn thông minh...',
   },
 ];
 
@@ -54,10 +49,10 @@ const Blog = () => {
       <div className='Container'>
         <div className='text-center'>
           <h5 className='font-FiraSans font-medium text-sm sm:text-base text-PrimaryColor-0 uppercase mb-3'>
-            LATEST BLOG
+            TIN TỨC MỚI NHẤT
           </h5>
           <h1 className='font-FiraSans font-semibold text-HeadingColor-0 inline-block text-[16px] leading-[26px] sm:text-[25px] sm:leading-[35px] md:text-[30px] md:leading-[40px] lg:text-[34px] lg:leading-[44px] xl:text-[40px] xl:leading-[50px] 2xl:text-[42px] 2xl:leading-[52px] relative pb-4'>
-            Read Our Latest Insights from the <br /> Latest Blog Articles
+            Cập Nhật Kiến Thức & Xu Hướng <br /> Công Nghệ Phát Triển
             <img
               src={border}
               draggable='false'

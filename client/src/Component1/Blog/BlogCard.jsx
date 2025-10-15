@@ -14,10 +14,10 @@ const BlogCard = ({
 }) => {
   return (
     <div className='group transition-all duration-500 bg-white rounded-xl border border-BorderColor2-0 overflow-hidden'>
-      <div className='relative z-10 rounded-lg overflow-hidden before:absolute before:top-0 before:left-1/2 before:w-0 before:h-full before:bg-PrimaryColor-0 before:transition-all before:duration-500 group-hover:before:w-full group-hover:before:left-0 before:z-10 group-hover:before:opacity-0'>
+      <div className='relative z-10 rounded-lg overflow-hidden before:absolute before:top-0 before:left-1/2 before:w-0 before:h-full before:bg-PrimaryColor-0 before:transition-all before:duration-500 group-hover:before:w-full group-hover:before:left-0 before:z-10 group-hover:before:opacity-0 h-[280px]'>
         <img
           src={blogThumb}
-          className='transition-all duration-500 scale-[1.01] group-hover:scale-110 w-full'
+          className='transition-all duration-500 scale-[1.01] group-hover:scale-110 w-full h-full object-cover'
         />
         <div className="absolute z-10 top-5 right-5">
           <h6 className='relative z-10 overflow-hidden font-FiraSans uppercase rounded text-sm text-white bg-PrimaryColor-0 px-5 py-2 before:absolute before:right-0 before:w-0 before:h-full before:top-0 before:-z-10 before:transition-all before:duration-500 before:bg-PrimaryColor-0 group-hover:before:w-full group-hover:before:left-0'>
