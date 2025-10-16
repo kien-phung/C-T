@@ -9,8 +9,10 @@ import circleShape from '/images/team_rotate.png';
 import border from '/images/hero_border.png';
 import aboutShape from '/images/about_shape_3.png';
 import serviceShape2 from '/images/tir.png';
-import { FaFacebookF, FaLinkedinIn, FaXTwitter } from 'react-icons/fa6';
+import { FaFacebookF, FaLinkedinIn, FaXTwitter,} from 'react-icons/fa6';
 import { GoShareAndroid } from 'react-icons/go';
+import { useLanguage } from '../../contexts/LanguageContext';
+import { getTranslation } from '../../utils/translations';
 
 const teamData = [
   {
@@ -22,7 +24,10 @@ const teamData = [
     socialIcon2: <FaXTwitter />,
     socialIcon3: <FaLinkedinIn />,
     teamDesc: 'CEO',
-    teamShape:teamShape,
+    teamShape: teamShape,
+    facebookUrl: 'https://www.facebook.com/profile.php?id=61571026593304',
+    twitterUrl: 'https://twitter.com',
+    linkedinUrl: 'https://www.linkedin.com',
   },
   {
     id: 2,
@@ -33,7 +38,10 @@ const teamData = [
     socialIcon2: <FaXTwitter />,
     socialIcon3: <FaLinkedinIn />,
     teamDesc: 'Head of Engineering',
-    teamShape:teamShape,
+    teamShape: teamShape,
+    facebookUrl: 'https://www.facebook.com/profile.php?id=61571026593304',
+    twitterUrl: 'https://twitter.com',
+    linkedinUrl: 'https://www.linkedin.com',
   },
   {
     id: 3,
@@ -44,7 +52,10 @@ const teamData = [
     socialIcon2: <FaXTwitter />,
     socialIcon3: <FaLinkedinIn />,
     teamDesc: 'IT Expert',
-    teamShape:teamShape,
+    teamShape: teamShape,
+    facebookUrl: 'https://www.facebook.com/profile.php?id=61571026593304',
+    twitterUrl: 'https://twitter.com',
+    linkedinUrl: 'https://www.linkedin.com',
   },
   {
     id: 4,
@@ -55,23 +66,31 @@ const teamData = [
     socialIcon2: <FaXTwitter />,
     socialIcon3: <FaLinkedinIn />,
     teamDesc: 'Head of Sales',
-    teamShape:teamShape,
+    teamShape: teamShape,
+    facebookUrl: 'https://www.facebook.com/profile.php?id=61571026593304',
+    twitterUrl: 'https://twitter.com',
+    linkedinUrl: 'https://www.linkedin.com',
   },
-
-    {
-  id: 5,
-  teamThumb: teamThumb5,
+  {
+    id: 5,
+    teamThumb: teamThumb5,
     teamTitle: 'NGO DANG KHOA',
     teamShare: <GoShareAndroid />,
     socialIcon: <FaFacebookF />,
     socialIcon2: <FaXTwitter />,
     socialIcon3: <FaLinkedinIn />,
     teamDesc: 'Sales Staff',
-    teamShape:teamShape,
+    teamShape: teamShape,
+    facebookUrl: 'https://www.facebook.com/profile.php?id=61571026593304',
+    twitterUrl: 'https://twitter.com',
+    linkedinUrl: 'https://www.linkedin.com',
   },
 ];
 
 const TeamMember = () => {
+  const { currentLanguage } = useLanguage();
+  const t = (key) => getTranslation(currentLanguage, key);
+
   return (
     <section
       className='py-28 relative z-10'
@@ -91,10 +110,10 @@ const TeamMember = () => {
       <div className='Container'>
         <div className='text-center'>
           <h5 className='font-FiraSans font-medium text-sm sm:text-base text-PrimaryColor-0 uppercase mb-3'>
-            GẶP GỠ ĐỘI NGŨ
+            {t('team.sectionTitle')}
           </h5>
           <h1 className='font-FiraSans font-semibold text-HeadingColor-0 inline-block text-[16px] leading-[26px] sm:text-[25px] sm:leading-[35px] md:text-[30px] md:leading-[40px] lg:text-[34px] lg:leading-[44px] xl:text-[40px] xl:leading-[50px] 2xl:text-[42px] 2xl:leading-[52px] relative pb-4'>
-            Chúng Tôi Có Hơn 5 Thành Viên Tận Tâm
+            {t('team.title')}
             <img
               src={border}
               draggable='false'
@@ -114,29 +133,37 @@ const TeamMember = () => {
             />
           </div>
         </div>
-<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 mt-[100px]">
+<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 mt-16">
           {teamData.map(
             ({
               id,
               teamThumb,
               teamTitle,
+              teamShare,
               socialIcon,
               socialIcon2,
               socialIcon3,
               socialIcon4,
               teamDesc,
+              facebookUrl,
+              twitterUrl,
+              linkedinUrl,
             }) => {
               return (
                 <div key={id} className="h-full">
                   <TeamCard
                     teamThumb={teamThumb}
                     teamTitle={teamTitle}
+                    teamShare={teamShare}
                     socialIcon={socialIcon}
                     socialIcon2={socialIcon2}
                     socialIcon3={socialIcon3}
                     socialIcon4={socialIcon4}
                     teamDesc={teamDesc}
                     teamShape={teamShape}
+                    facebookUrl={facebookUrl}
+                    twitterUrl={twitterUrl}
+                    linkedinUrl={linkedinUrl}
                   />
                 </div>
               );

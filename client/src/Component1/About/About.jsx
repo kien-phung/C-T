@@ -1,9 +1,13 @@
 import aboutThumb from '/images/about1.jpg';
 import aboutShape2 from '/images/about_shape4.png';
 import border from '/images/hero_border.png';
+import { useLanguage } from '../../contexts/LanguageContext';
+import { getTranslation } from '../../utils/translations';
 
 
 const About = () => {
+  const { currentLanguage } = useLanguage();
+  const t = (key) => getTranslation(currentLanguage, key);
   return (
     <section className='pb-[120px] pt-[170px] lg:pt-28 xl:pt-[170px] relative z-10'>
       <div className='Container'>
@@ -51,10 +55,10 @@ const About = () => {
           </div>
           <div className='relative z-10'>
             <h5 className='font-FiraSans font-medium text-sm sm:text-base text-PrimaryColor-0 uppercase mb-3'>
-               GIỚI THIỆU
+               {t('about.subtitle')}
             </h5>
             <h1 className='font-FiraSans font-semibold text-HeadingColor-0 text-[16px] leading-[26px] sm:text-[25px] sm:leading-[35px] md:text-[30px] md:leading-[40px] lg:text-[34px] lg:leading-[44px] xl:text-[40px] xl:leading-[50px] 2xl:text-[42px] 2xl:leading-[52px] relative pb-4'>
-              VỀ CHÚNG TÔI 
+              {t('about.title')}
               <img
                 src={border}
                 draggable='false'
@@ -62,8 +66,8 @@ const About = () => {
               />
             </h1>
             <p className='font-FiraSans text-TextColor2-0 pt-6'>
-              <strong className='text-PrimaryColor-0 block mb-2'>Công Ty TNHH Điện Tử C&amp;T</strong>
-              C&T Electronics Co., Ltd là một doanh nghiệp khoa học công nghệ hoạt động trong lĩnh vực giao dịch thanh toán tự động. Giải pháp số hóa đa năng cho giao dịch tự động của chúng tôi hoàn thành sứ mệnh: "Bạn chỉ cần chạm, việc còn lại chúng tôi lo". Tầm nhìn của chúng tôi là trở thành một trong những công ty hàng đầu tại Việt Nam cung cấp các giải pháp số hóa đa năng linh hoạt.
+              <strong className='text-PrimaryColor-0 block mb-2'>{t('about.companyName')}</strong>
+              {t('about.description')}
             </p>
 
             

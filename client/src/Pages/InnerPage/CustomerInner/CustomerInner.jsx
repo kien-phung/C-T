@@ -1,127 +1,163 @@
 import { FaArrowRightLong } from 'react-icons/fa6';
 import BreadCrumb from '../../../Shared/BreadCrumb/BreadCrumb';
+import { useLanguage } from '../../../contexts/LanguageContext';
+import { getTranslation } from '../../../utils/translations';
+
+const getCustomerData = (language) => {
+  const data = {
+    VN: {
+      pageTitle: 'Khách Hàng Của Chúng Tôi',
+      pageDescription: 'Những đối tác và khách hàng tin tưởng sử dụng sản phẩm, dịch vụ của chúng tôi.',
+      partnersTitle: 'Đối Tác Của Chúng Tôi',
+      statisticsTitle: 'Thống Kê Khách Hàng',
+      stats: {
+        businesses: 'Khách hàng doanh nghiệp',
+        banks: 'Ngân hàng và tổ chức tài chính',
+        government: 'Cơ quan nhà nước',
+        satisfaction: 'Độ hài lòng khách hàng'
+      }
+    },
+    EN: {
+      pageTitle: 'Our Customers',
+      pageDescription: 'Trusted partners and customers using our products and services.',
+      partnersTitle: 'Our Partners',
+      statisticsTitle: 'Customer Statistics',
+      stats: {
+        businesses: 'Business customers',
+        banks: 'Banks and financial institutions',
+        government: 'Government agencies',
+        satisfaction: 'Customer satisfaction'
+      }
+    }
+  };
+  return data[language] || data.VN;
+};
 
 const CustomerInner = () => {
+  const { currentLanguage } = useLanguage();
+  const t = (key) => getTranslation(currentLanguage, key);
+  const customerData = getCustomerData(currentLanguage);
+
   return (
     <>
       <BreadCrumb
-        breadCrumbTitle={'Khách Hàng'}
+        breadCrumbTitle={t('nav.customers')}
         breadCrumbIcon={<FaArrowRightLong />}
-        breadCrumbLink={'Khách Hàng'}
+        breadCrumbLink={t('nav.customers')}
         bgImage={'/images/solutions/customer1.jpg'}
       />
       <section className='py-[120px] bg-BodyBg4-0'>
         <div className='Container'>
           <div className='text-center mb-16'>
             <h1 className='font-FiraSans font-semibold text-4xl sm:text-5xl text-HeadingColor-0 mb-6'>
-              Khách Hàng Của Chúng Tôi
+              {customerData.pageTitle}
             </h1>
             <p className='font-FiraSans text-TextColor2-0 text-lg max-w-3xl mx-auto'>
-              Những đối tác và khách hàng tin tưởng sử dụng sản phẩm, dịch vụ của chúng tôi.
+              {customerData.pageDescription}
             </p>
           </div>
-          
+
           {/* Customer logos section */}
           <div className='bg-white rounded-2xl p-8 shadow-lg mb-16'>
             <h2 className='font-FiraSans font-semibold text-3xl text-HeadingColor-0 mb-8 text-center'>
-              Đối Tác Của Chúng Tôi
+              {customerData.partnersTitle}
             </h2>
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6'>
               <div className='bg-white rounded-lg shadow-shades border border-gray-100 p-8 hover:shadow-xl transition-all duration-500 hover:scale-105'>
                 <div className='flex justify-center items-center h-20'>
-                  <img 
-                    src='/images/partners/thegioididong.png' 
-                    alt='Thế Giới Di Động' 
+                  <img
+                    src='/images/partners/thegioididong.png'
+                    alt='Thế Giới Di Động'
                     className='h-16 w-auto object-contain'
                   />
                 </div>
               </div>
               <div className='bg-white rounded-lg shadow-shades border border-gray-100 p-8 hover:shadow-xl transition-all duration-500 hover:scale-105'>
                 <div className='flex justify-center items-center h-20'>
-                  <img 
-                    src='/images/partners/asim.png' 
-                    alt='ASIM Consulting' 
+                  <img
+                    src='/images/partners/asim.png'
+                    alt='ASIM Consulting'
                     className='h-16 w-auto object-contain'
                   />
                 </div>
               </div>
               <div className='bg-white rounded-lg shadow-shades border border-gray-100 p-8 hover:shadow-xl transition-all duration-500 hover:scale-105'>
                 <div className='flex justify-center items-center h-20'>
-                  <img 
-                    src='/images/partners/sb.jpg' 
-                    alt='SB ISO 9001:2015' 
+                  <img
+                    src='/images/partners/sb.jpg'
+                    alt='SB ISO 9001:2015'
                     className='h-16 w-auto object-contain'
                   />
                 </div>
               </div>
               <div className='bg-white rounded-lg shadow-shades border border-gray-100 p-8 hover:shadow-xl transition-all duration-500 hover:scale-105'>
                 <div className='flex justify-center items-center h-20'>
-                  <img 
-                    src='/images/partners/greenhouse.png' 
-                    alt='Green House' 
+                  <img
+                    src='/images/partners/greenhouse.png'
+                    alt='Green House'
                     className='h-16 w-auto object-contain'
                   />
                 </div>
               </div>
               <div className='bg-white rounded-lg shadow-shades border border-gray-100 p-8 hover:shadow-xl transition-all duration-500 hover:scale-105'>
                 <div className='flex justify-center items-center h-20'>
-                  <img 
-                    src='https://www.i-resort.vn/assets/images/brand/i-resort-logo.svg' 
-                    alt='I-Resort' 
+                  <img
+                    src='https://www.i-resort.vn/assets/images/brand/i-resort-logo.svg'
+                    alt='I-Resort'
                     className='h-16 w-auto object-contain'
                   />
                 </div>
               </div>
               <div className='bg-white rounded-lg shadow-shades border border-gray-100 p-8 hover:shadow-xl transition-all duration-500 hover:scale-105'>
                 <div className='flex justify-center items-center h-20'>
-                  <img 
-                    src='https://www.finviet.com.vn/wp-content/uploads/2024/08/logo.png' 
-                    alt='Finviet' 
+                  <img
+                    src='https://www.finviet.com.vn/wp-content/uploads/2024/08/logo.png'
+                    alt='Finviet'
                     className='h-16 w-auto object-contain'
                   />
                 </div>
               </div>
               <div className='bg-white rounded-lg shadow-shades border border-gray-100 p-8 hover:shadow-xl transition-all duration-500 hover:scale-105'>
                 <div className='flex justify-center items-center h-20'>
-                  <img 
-                    src='/images/partners/phutho.png' 
-                    alt='Phu Tho Tourist' 
+                  <img
+                    src='/images/partners/phutho.png'
+                    alt='Phu Tho Tourist'
                     className='h-16 w-auto object-contain'
                   />
                 </div>
               </div>
               <div className='bg-white rounded-lg shadow-shades border border-gray-100 p-8 hover:shadow-xl transition-all duration-500 hover:scale-105'>
                 <div className='flex justify-center items-center h-20'>
-                  <img 
-                    src='/images/partners/dha.png' 
-                    alt='DHA Corporation' 
+                  <img
+                    src='/images/partners/dha.png'
+                    alt='DHA Corporation'
                     className='h-16 w-auto object-contain'
                   />
                 </div>
               </div>
             </div>
           </div>
-          
+
           <div className='bg-white rounded-2xl p-8 shadow-lg'>
             <h2 className='font-FiraSans font-semibold text-3xl text-HeadingColor-0 mb-6 text-center'>
-              Thống Kê Khách Hàng
+              {customerData.statisticsTitle}
             </h2>
             <div className='grid grid-cols-1 md:grid-cols-4 gap-8 text-center'>
               <div>
                 <div className='text-4xl font-FiraSans font-bold text-PrimaryColor-0 mb-2'>500+</div>
-                <p className='font-FiraSans text-TextColor2-0'>Khách hàng doanh nghiệp</p>
+                <p className='font-FiraSans text-TextColor2-0'>{customerData.stats.businesses}</p>
               </div>
               <div>
                 <div className='text-4xl font-FiraSans font-bold text-PrimaryColor-0 mb-2'>50+</div>
-                <p className='font-FiraSans text-TextColor2-0'>Ngân hàng và tổ chức tài chính</p>
+                <p className='font-FiraSans text-TextColor2-0'>{customerData.stats.banks}</p>
               </div>
               <div>
                 <div className='text-4xl font-FiraSans font-bold text-PrimaryColor-0 mb-2'>100+</div>
-                <p className='font-FiraSans text-TextColor2-0'>Cơ quan nhà nước</p>
+                <p className='font-FiraSans text-TextColor2-0'>{customerData.stats.government}</p>
               </div>
               <div>
                 <div className='text-4xl font-FiraSans font-bold text-PrimaryColor-0 mb-2'>98%</div>
-                <p className='font-FiraSans text-TextColor2-0'>Độ hài lòng khách hàng</p>
+                <p className='font-FiraSans text-TextColor2-0'>{customerData.stats.satisfaction}</p>
               </div>
             </div>
           </div>

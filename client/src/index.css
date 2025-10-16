@@ -14,6 +14,120 @@ body {
   overflow-x: hidden;
 }
 
+/* Smooth transition for theme toggle - ONLY color properties */
+* {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, fill 0.3s ease, stroke 0.3s ease;
+}
+
+/* Disable transition for spacing and layout properties */
+*,
+*::before,
+*::after {
+  transition-property: background-color, color, border-color, fill, stroke !important;
+}
+
+/* Dark Mode Styles - ONLY color changes, NO spacing modifications */
+.dark body {
+  @apply bg-gray-900 text-white;
+}
+
+.dark {
+  @apply bg-gray-900;
+}
+
+/* Override background colors */
+.dark .bg-white {
+  background-color: #1f2937 !important;
+}
+
+.dark section {
+  background-color: #111827 !important;
+}
+
+.dark footer {
+  background-color: #111827 !important;
+}
+
+.dark .bg-BodyBg-0,
+.dark .bg-BodyBg4-0,
+.dark .bg-\[url\(\/images\/breadcrumb_bg\.png\)\] {
+  background-color: #1f2937 !important;
+}
+
+.dark .bg-PrimaryColor-0 {
+  background-color: #047857 !important;
+}
+
+.dark .bg-\[url\(\/images\/blog3_bg\.png\)\],
+.dark .bg-\[url\(\/images\/choose_bg\.jpg\)\],
+.dark .bg-\[url\(\/images\/testi_bg\.png\)\] {
+  background-color: #111827 !important;
+  background-image: none !important;
+}
+
+.dark .bg-\[\#f5f8ed\] {
+  background-color: #1f2937 !important;
+}
+
+/* Text colors */
+.dark .text-HeadingColor-0 {
+  color: #ffffff !important;
+}
+
+.dark .text-TextColor2-0 {
+  color: #d1d5db !important;
+}
+
+
+
+/* Border colors */
+.dark .border-BorderColor2-0 {
+  border-color: #374151 !important;
+}
+
+/* Form elements */
+.dark input,
+.dark textarea {
+  background-color: #1f2937 !important;
+  color: #ffffff !important;
+  border-color: #4b5563 !important;
+}
+
+.dark input::placeholder,
+.dark textarea::placeholder {
+  color: #9ca3af !important;
+}
+
+/* Shadows */
+.dark .shadow-cases,
+.dark .shadow-shades {
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.05) !important;
+}
+
+/* Background overlays for sections with bg images */
+.dark [class*="bg-[url"] {
+  position: relative;
+}
+
+.dark [class*="bg-[url"]::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(17, 24, 39, 0.9);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.dark [class*="bg-[url"] > * {
+  position: relative;
+  z-index: 2;
+}
+
+
+
 /*Common Tailwind CSS Start Here*/
 
 .Container {
@@ -41,7 +155,7 @@ body {
 }
 
 .is-sticky {
-  @apply fixed top-0 left-0 w-full z-[99999] shadow-lg bg-white backdrop-blur-md animate-headerSlideDown;
+  @apply fixed top-0 left-0 w-full z-[99999] shadow-lg bg-white dark:bg-gray-900 backdrop-blur-md animate-headerSlideDown;
 }
 
 .navbar2.is-sticky {
@@ -520,4 +634,16 @@ span.swiper-pagination-bullet.swiper-pagination-bullet-active::before {
 
 .team-member:nth-child(2n + 2) {
   margin-top: 30px;
+}
+
+/* Language Toggle Animation */
+@keyframes slideIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

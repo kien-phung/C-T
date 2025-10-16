@@ -7,8 +7,13 @@ import serviceShape3 from '/images/service_shpe2.png';
 import { Link } from 'react-router-dom';
 import { FaRegEnvelopeOpen } from 'react-icons/fa6';
 import { IoLocationOutline } from 'react-icons/io5';
+import { useLanguage } from '../../../contexts/LanguageContext';
+import { getTranslation } from '../../../utils/translations';
 
 const Contact = () => {
+  const { currentLanguage } = useLanguage();
+  const t = (key) => getTranslation(currentLanguage, key);
+
   return (
     <section className='py-28 relative'>
       <div className='absolute -z-10 right-48 bottom-10 hidden 2xl:block animate-rotate'>
@@ -22,14 +27,13 @@ const Contact = () => {
           <div>
             <div>
               <h5 className='font-FiraSans font-medium text-sm sm:text-base text-PrimaryColor-0 uppercase flex items-center gap-2 mb-3 pt-4'>
-                Liên hệ
+                {t('contact.sectionTitle')}
               </h5>
-              <h1 className='font-FiraSans font-semibold text-HeadingColor-0 text-[16px] leading-[26px] sm:text-[25px] sm:leading-[35px] md:text-[30px] md:leading-[40px] lg:text-[38px] lg:leading-[48px] xl:text-[42px] xl:leading-[52px]'> 
-                Liên hệ với chúng tôi ngay
+              <h1 className='font-FiraSans font-semibold text-HeadingColor-0 text-[16px] leading-[26px] sm:text-[25px] sm:leading-[35px] md:text-[30px] md:leading-[40px] lg:text-[38px] lg:leading-[48px] xl:text-[42px] xl:leading-[52px]'>
+                {t('contact.contactWithUs')}
               </h1>
               <p className='font-FiraSans text-TextColor2-0 pt-4'>
-                Chúng tôi cung cấp các giải pháp công nghệ tiên tiến
-                <br className='hidden md:block' /> đáp ứng mọi nhu cầu của doanh nghiệp
+                {t('contact.contactDescription')}
               </p>
             </div>
             <div className='bg-BodyBg4-0 rounded-xl p-10 mt-11'>
@@ -39,7 +43,7 @@ const Contact = () => {
                 </div>
                 <div>
                   <h6 className='font-FiraSans text-TextColor2-0'>
-                    Gọi cho chúng tôi
+                    {t('contact.callUs')}
                   </h6>
                   <Link to={'/'}>
                     <button className='font-FiraSans text-xl text-HeadingColor-0 font-medium mt-1'>
@@ -53,7 +57,7 @@ const Contact = () => {
                   <FaRegEnvelopeOpen size={'20'} />
                 </div>
                 <div>
-                  <h6 className='font-FiraSans text-TextColor2-0'>Gửi Email</h6>
+                  <h6 className='font-FiraSans text-TextColor2-0'>{t('contact.emailUs')}</h6>
                   <Link to={'/'}>
                     <button className='font-FiraSans text-xl text-HeadingColor-0 font-medium mt-1'>
                       stl.solution.co@gmail.com
@@ -67,7 +71,7 @@ const Contact = () => {
                 </div>
                 <div>
                   <h6 className='font-FiraSans text-TextColor2-0'>
-                    Địa chỉ của chúng tôi
+                    {t('contact.ourAddress')}
                   </h6>
                   <p className='font-FiraSans text-xl text-HeadingColor-0 font-medium mt-1'>
                     24/22 Đường số 23, phường Hiệp Bình Chánh <br /> TP.Thủ Đức, TP.HCM
@@ -85,10 +89,10 @@ const Contact = () => {
             <div className='relative z-20 bg-white shadow-shades pt-16 px-4 sm:px-6 md:px-[50px] lg:px-4 xl:px-10 2xl:px-[50px] rounded-md'>
               <div className='text-center'>
                 <h5 className='font-FiraSans font-medium text-sm sm:text-base text-PrimaryColor-0 uppercase mb-3'>
-                  Liên hệ
+                  {t('contact.sectionTitle')}
                 </h5>
                 <h1 className='font-FiraSans font-semibold text-HeadingColor-0 inline-block text-[16px] leading-[26px] sm:text-[25px] sm:leading-[35px] md:text-[30px] md:leading-[40px] lg:text-[30px] lg:leading-[44px] xl:text-[32px] xl:leading-[44px] 2xl:text-[34px] 2xl:leading-[44px] relative pb-4'>
-                  Hãy điền vào mẫu dưới đây để liên hệ với chúng tôi
+                  {t('contact.formTitle')}
                   <img
                     src={border}
                     draggable='false'
@@ -107,7 +111,7 @@ const Contact = () => {
                       type='text'
                       name='name'
                       id='name'
-                      placeholder='Nhập họ và tên*'
+                      placeholder={t('contact.namePlaceholder')}
                       required
                       className='font-FiraSans text-black placeholder:text-gray-600 text-sm bg-transparent border border-Secondarycolor-0 border-opacity-20 rounded py-2 px-6 h-[54px] w-full focus:outline-PrimaryColor-0'
                     />
@@ -121,7 +125,7 @@ const Contact = () => {
                       type='email'
                       name='email'
                       id='email'
-                      placeholder='Nhập Email*'
+                      placeholder={t('contact.emailPlaceholder')}
                       required
                       className='font-FiraSans text-black placeholder:text-gray-600 text-sm bg-transparent border border-Secondarycolor-0 border-opacity-20 rounded py-2 px-6 h-[54px] w-full focus:outline-PrimaryColor-0'
                     />
@@ -141,25 +145,25 @@ const Contact = () => {
                       value='subject'
                       className='text-TextColor-0'
                     >
-                      Chọn chủ đề
+                      {currentLanguage === 'VN' ? 'Chọn chủ đề' : 'Select subject'}
                     </option>
                     <option
                       value='product'
                       className='text-TextColor-0'
                     >
-                      Hỏi về sản phẩm
+                      {currentLanguage === 'VN' ? 'Hỏi về sản phẩm' : 'Product inquiry'}
                     </option>
                     <option
                       value='solution'
                       className='text-TextColor-0'
                     >
-                      Hỏi về giải pháp
+                      {currentLanguage === 'VN' ? 'Hỏi về giải pháp' : 'Solution inquiry'}
                     </option>
                     <option
                       value='support'
                       className='text-TextColor-0'
                     >
-                      Hỗ trợ kỹ thuật
+                      {currentLanguage === 'VN' ? 'Hỗ trợ kỹ thuật' : 'Technical support'}
                     </option>
                   </select>
                   <div className='relative inline-block'>
@@ -167,7 +171,7 @@ const Contact = () => {
                       type='text'
                       name='number'
                       id='number'
-                      placeholder='Nhập số điện thoại*'
+                      placeholder={t('contact.phonePlaceholder')}
                       required
                       className='font-FiraSans text-black placeholder:text-gray-600 text-sm bg-transparent border border-Secondarycolor-0 border-opacity-20 rounded py-2 px-6 h-[54px] w-full focus:outline-PrimaryColor-0'
                     />
@@ -180,7 +184,7 @@ const Contact = () => {
                 <textarea
                   name='message'
                   id='message'
-                  placeholder='Viết tin nhắn ngắn...'
+                  placeholder={t('contact.messagePlaceholder')}
                   className='font-FiraSans text-black placeholder:text-gray-600 text-sm bg-transparent border border-Secondarycolor-0 border-opacity-20 rounded py-2 px-6 h-[120px] w-full focus:outline-PrimaryColor-0 resize-none'
                 ></textarea>
                 <label
@@ -192,12 +196,12 @@ const Contact = () => {
                     name='terms'
                     id='terms'
                   />
-                  Tôi đồng ý với tất cả điều khoản & điều kiện.
+                  {t('contact.agreeTerms')}
                 </label>
                 <div className='inline-block mt-2'>
                   <button className='primary-btn2 !py-[15px]'>
                     <FaRegThumbsUp />
-                    {`Gửi`}
+                    {t('contact.submitButton')}
                   </button>
                 </div>
               </form>

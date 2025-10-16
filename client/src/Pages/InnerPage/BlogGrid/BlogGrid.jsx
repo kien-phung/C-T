@@ -6,61 +6,118 @@ import blogGridThumb4 from '/images/blog/blog4.jpg';
 import BreadCrumb from '../../../Shared/BreadCrumb/BreadCrumb';
 import BlogGridCard from './BlogGridCard';
 import { BsArrowRight } from 'react-icons/bs';
+import { useLanguage } from '../../../contexts/LanguageContext';
+import { getTranslation } from '../../../utils/translations';
 
-const BlogData = [
-  {
-    id: 1,
-    blogGridThumb: blogGridThumb,
-    blogGridDateIcon: <FaCircle />,
-    blogGridDate: '04 Th3, 2025',
-    blogGridPostBy: 'CÔNG NGHỆ',
-    blogGridUrl: 'https://www.facebook.com/share/p/1FTQYGGXjg/',
-    blogGridTitle: 'Diễn Đàn Đổi Mới Sáng Tạo Năng Lượng',
-    blogGridBtn: 'Xem Thêm',
-    blogGridBtnIcon: <BsArrowRight />,
-  },
-  {
-    id: 2,
-    blogGridThumb: blogGridThumb2,
-    blogGridDateIcon: <FaCircle />,
-    blogGridDate: '14 Th3, 2025',
-    blogGridPostBy: 'Công Nghệ',
-    blogGridUrl: 'https://www.facebook.com/share/p/16ND4mHNLF/',
-    blogGridTitle: 'Giải Pháp Hệ Thống Camera Giám Sát Tích Hợp AI',
-    blogGridBtn: 'Xem Thêm',
-    blogGridBtnIcon: <BsArrowRight />,
-  },
-  {
-    id: 3,
-    blogGridThumb: blogGridThumb3,
-    blogGridDate: '24 Th3, 2025',
-    blogGridDateIcon: <FaCircle />,
-    blogGridPostBy: 'Công Nghệ',
-    blogGridUrl: 'https://www.facebook.com/share/p/17KtKvn3o1/',
-    blogGridTitle: 'Giải pháp Tiết Kiệm Năng Lượng Điện Tích Hợp AI',
-    blogGridBtn: 'Xem Thêm',
-    blogGridBtnIcon: <BsArrowRight />,
-  },
-  {
-    id: 4,
-    blogGridThumb: blogGridThumb4,
-    blogGridDate: '17 Th5, 2025',
-    blogGridDateIcon: <FaCircle />,
-    blogGridPostBy: 'Công Nghệ',
-    blogGridUrl: 'https://www.facebook.com/share/p/1B9ASGzcbE/',
-    blogGridTitle: 'Bảo mật thanh toán trong thời đại số',
-    blogGridBtn: 'Xem Thêm',
-    blogGridBtnIcon: <BsArrowRight />,
-  },
-];
+const getBlogGridData = (language) => {
+  const blogs = {
+    VN: [
+      {
+        id: 1,
+        blogGridThumb: blogGridThumb,
+        blogGridDateIcon: <FaCircle />,
+        blogGridDate: '04 Th3, 2025',
+        blogGridPostBy: 'CÔNG NGHỆ',
+        blogGridUrl: 'https://www.facebook.com/share/p/1FTQYGGXjg/',
+        blogGridTitle: 'Diễn Đàn Đổi Mới Sáng Tạo Năng Lượng',
+        blogGridBtn: 'Xem Thêm',
+        blogGridBtnIcon: <BsArrowRight />,
+      },
+      {
+        id: 2,
+        blogGridThumb: blogGridThumb2,
+        blogGridDateIcon: <FaCircle />,
+        blogGridDate: '14 Th3, 2025',
+        blogGridPostBy: 'Công Nghệ',
+        blogGridUrl: 'https://www.facebook.com/share/p/16ND4mHNLF/',
+        blogGridTitle: 'Giải Pháp Hệ Thống Camera Giám Sát Tích Hợp AI',
+        blogGridBtn: 'Xem Thêm',
+        blogGridBtnIcon: <BsArrowRight />,
+      },
+      {
+        id: 3,
+        blogGridThumb: blogGridThumb3,
+        blogGridDate: '24 Th3, 2025',
+        blogGridDateIcon: <FaCircle />,
+        blogGridPostBy: 'Công Nghệ',
+        blogGridUrl: 'https://www.facebook.com/share/p/17KtKvn3o1/',
+        blogGridTitle: 'Giải pháp Tiết Kiệm Năng Lượng Điện Tích Hợp AI',
+        blogGridBtn: 'Xem Thêm',
+        blogGridBtnIcon: <BsArrowRight />,
+      },
+      {
+        id: 4,
+        blogGridThumb: blogGridThumb4,
+        blogGridDate: '17 Th5, 2025',
+        blogGridDateIcon: <FaCircle />,
+        blogGridPostBy: 'Công Nghệ',
+        blogGridUrl: 'https://www.facebook.com/share/p/1B9ASGzcbE/',
+        blogGridTitle: 'Bảo mật thanh toán trong thời đại số',
+        blogGridBtn: 'Xem Thêm',
+        blogGridBtnIcon: <BsArrowRight />,
+      },
+    ],
+    EN: [
+      {
+        id: 1,
+        blogGridThumb: blogGridThumb,
+        blogGridDateIcon: <FaCircle />,
+        blogGridDate: 'Mar 04, 2025',
+        blogGridPostBy: 'TECHNOLOGY',
+        blogGridUrl: 'https://www.facebook.com/share/p/1FTQYGGXjg/',
+        blogGridTitle: 'Energy Innovation Forum',
+        blogGridBtn: 'View More',
+        blogGridBtnIcon: <BsArrowRight />,
+      },
+      {
+        id: 2,
+        blogGridThumb: blogGridThumb2,
+        blogGridDateIcon: <FaCircle />,
+        blogGridDate: 'Mar 14, 2025',
+        blogGridPostBy: 'Technology',
+        blogGridUrl: 'https://www.facebook.com/share/p/16ND4mHNLF/',
+        blogGridTitle: 'AI-Integrated Camera Surveillance System Solution',
+        blogGridBtn: 'View More',
+        blogGridBtnIcon: <BsArrowRight />,
+      },
+      {
+        id: 3,
+        blogGridThumb: blogGridThumb3,
+        blogGridDate: 'Mar 24, 2025',
+        blogGridDateIcon: <FaCircle />,
+        blogGridPostBy: 'Technology',
+        blogGridUrl: 'https://www.facebook.com/share/p/17KtKvn3o1/',
+        blogGridTitle: 'AI-Integrated Energy Saving Solution',
+        blogGridBtn: 'View More',
+        blogGridBtnIcon: <BsArrowRight />,
+      },
+      {
+        id: 4,
+        blogGridThumb: blogGridThumb4,
+        blogGridDate: 'May 17, 2025',
+        blogGridDateIcon: <FaCircle />,
+        blogGridPostBy: 'Technology',
+        blogGridUrl: 'https://www.facebook.com/share/p/1B9ASGzcbE/',
+        blogGridTitle: 'Payment Security in the Digital Age',
+        blogGridBtn: 'View More',
+        blogGridBtnIcon: <BsArrowRight />,
+      },
+    ],
+  };
+  return blogs[language] || blogs.VN;
+};
 
 const BlogGrid = () => {
+  const { currentLanguage } = useLanguage();
+  const t = (key) => getTranslation(currentLanguage, key);
+  const BlogData = getBlogGridData(currentLanguage);
+
   return (
     <>
       <BreadCrumb
-        breadCrumbTitle={'Tin Tức'}
+        breadCrumbTitle={t('nav.news')}
         breadCrumbIcon={<FaArrowRightLong />}
-        breadCrumbLink={'Tin Tức'}
+        breadCrumbLink={t('nav.news')}
         bgImage={'/images/solutions/blog1.jpg'}
       />
       <section className='pt-28 pb-28'>

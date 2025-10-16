@@ -11,44 +11,80 @@ import serviceShape4 from '/images/tir.png';
 import border from '/images/hero_border.png';
 import ServiceCard from "./ServiceCard";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { useLanguage } from '../../contexts/LanguageContext';
+import { getTranslation } from '../../utils/translations';
 // pagination removed to keep slides fixed
 import "swiper/css";
 
-const ServiceData = [
-  {
-    id: 1,
-    serviceTitle: 'I-Resort Nha Trang',
-    serviceDesc:
-      'Hệ thống thanh toán tự động',
-    serviceThumb: serviceThumb,
-    serviceThumbShape: serviceThumbShape,
-    thumbIcon: thumbIcon,
-    contentShape: contentShape,
-  },
-
-  {
-    id: 2,
-    serviceTitle: 'Green House Cultural JSC',
-    serviceDesc:
-      'Hệ thống căn tin tự động',
-    serviceThumb: serviceThumb2,
-    serviceThumbShape: serviceThumbShape,
-    thumbIcon: thumbIcon,
-    contentShape: contentShape,
-  },
-  {
-    id: 3,
-    serviceTitle: 'Kumho Samco Buslines',
-    serviceDesc:
-      'Hệ thống thanh toán tự động',
-    serviceThumb: serviceThumb3,
-    serviceThumbShape: serviceThumbShape,
-    thumbIcon: thumbIcon,
-    contentShape: contentShape,
-  },
-];
+const getServiceData = (language) => {
+  const services = {
+    VN: [
+      {
+        id: 1,
+        serviceTitle: 'I-Resort Nha Trang',
+        serviceDesc: 'Hệ thống thanh toán tự động',
+        serviceThumb: serviceThumb,
+        serviceThumbShape: serviceThumbShape,
+        thumbIcon: thumbIcon,
+        contentShape: contentShape,
+      },
+      {
+        id: 2,
+        serviceTitle: 'Green House Cultural JSC',
+        serviceDesc: 'Hệ thống căn tin tự động',
+        serviceThumb: serviceThumb2,
+        serviceThumbShape: serviceThumbShape,
+        thumbIcon: thumbIcon,
+        contentShape: contentShape,
+      },
+      {
+        id: 3,
+        serviceTitle: 'Kumho Samco Buslines',
+        serviceDesc: 'Hệ thống thanh toán tự động',
+        serviceThumb: serviceThumb3,
+        serviceThumbShape: serviceThumbShape,
+        thumbIcon: thumbIcon,
+        contentShape: contentShape,
+      },
+    ],
+    EN: [
+      {
+        id: 1,
+        serviceTitle: 'I-Resort Nha Trang',
+        serviceDesc: 'Automatic payment system',
+        serviceThumb: serviceThumb,
+        serviceThumbShape: serviceThumbShape,
+        thumbIcon: thumbIcon,
+        contentShape: contentShape,
+      },
+      {
+        id: 2,
+        serviceTitle: 'Green House Cultural JSC',
+        serviceDesc: 'Automatic canteen system',
+        serviceThumb: serviceThumb2,
+        serviceThumbShape: serviceThumbShape,
+        thumbIcon: thumbIcon,
+        contentShape: contentShape,
+      },
+      {
+        id: 3,
+        serviceTitle: 'Kumho Samco Buslines',
+        serviceDesc: 'Automatic payment system',
+        serviceThumb: serviceThumb3,
+        serviceThumbShape: serviceThumbShape,
+        thumbIcon: thumbIcon,
+        contentShape: contentShape,
+      },
+    ]
+  };
+  return services[language] || services.VN;
+};
 
 const Service = () => {
+  const { currentLanguage } = useLanguage();
+  const t = (key) => getTranslation(currentLanguage, key);
+  const ServiceData = getServiceData(currentLanguage);
+
   const settings = {
     loop: false,
     spaceBetween: 30,
@@ -103,10 +139,10 @@ const Service = () => {
       <div className='Container'>
         <div className='text-center'>
           <h5 className='font-FiraSans font-medium text-sm sm:text-base text-PrimaryColor-0 uppercase mb-3'>
-            Chúng Tôi Mang Đến
+            {t('portfolio.sectionTitle')}
           </h5>
           <h1 className='font-FiraSans font-semibold text-HeadingColor-0 inline-block text-[16px] leading-[26px] sm:text-[25px] sm:leading-[35px] md:text-[30px] md:leading-[40px] lg:text-[34px] lg:leading-[44px] xl:text-[40px] xl:leading-[50px] 2xl:text-[42px] 2xl:leading-[52px] relative pb-4'>
-            Thành Công Của Dự Án 
+            {t('portfolio.title')}
             <img
               src={border}
               draggable='false'

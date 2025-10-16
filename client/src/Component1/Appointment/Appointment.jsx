@@ -8,8 +8,12 @@ import appoinmentThumbShape from '/images/contact_shapes.png';
 import serviceShape3 from '/images/service_shpe2.png';
 import { Link } from 'react-router-dom';
 import { FaHouse } from 'react-icons/fa6';
+import { useLanguage } from '../../contexts/LanguageContext';
+import { getTranslation } from '../../utils/translations';
 
 const Appointment = () => {
+  const { currentLanguage } = useLanguage();
+  const t = (key) => getTranslation(currentLanguage, key);
   return (
     <section className='pt-[120px] pb-28 relative'>
       <div className='absolute -z-10 right-48 bottom-10 hidden 2xl:block animate-rotate'>
@@ -56,10 +60,10 @@ const Appointment = () => {
             <div className='relative z-20 bg-white shadow-shades pt-11 mt-[100px] px-4 sm:px-6 md:px-[50px] lg:px-4 xl:px-10 2xl:px-[50px] rounded-md'>
               <div className='text-center'>
                 <h5 className='font-FiraSans font-medium text-sm sm:text-base text-PrimaryColor-0 uppercase mb-3'>
-                  LIỆN HỆ CHÚNG TÔI
+                  {t('contact.sectionTitle')}
                 </h5>
                 <h1 className='font-FiraSans font-semibold text-HeadingColor-0 inline-block text-[16px] leading-[26px] sm:text-[25px] sm:leading-[35px] md:text-[30px] md:leading-[40px] lg:text-[30px] lg:leading-[44px] xl:text-[32px] xl:leading-[44px] 2xl:text-[34px] 2xl:leading-[44px] relative pb-4'>
-                  Bạn Chỉ Cần Chạm 
+                  {t('contact.title')}
                   <img
                     src={border}
                     draggable='false'
@@ -78,7 +82,7 @@ const Appointment = () => {
                       type='text'
                       name='name'
                       id='name'
-                      placeholder='Họ và Tên*'
+                      placeholder={t('contact.namePlaceholder')}
                       required
                       className='font-FiraSans text-HeadingColor-0 placeholder:text-TextColor-0 text-sm bg-transparent border border-Secondarycolor-0 border-opacity-20 rounded py-2 px-6 h-[54px] w-full focus:outline-PrimaryColor-0'
                     />
@@ -92,7 +96,7 @@ const Appointment = () => {
                       type='email'
                       name='email'
                       id='email'
-                      placeholder='E-Mail*'
+                      placeholder={t('contact.emailPlaceholder')}
                       required
                       className='font-FiraSans text-HeadingColor-0 placeholder:text-TextColor-0 text-sm bg-transparent border border-Secondarycolor-0 border-opacity-20 rounded py-2 px-6 h-[54px] w-full focus:outline-PrimaryColor-0'
                     />
@@ -108,7 +112,7 @@ const Appointment = () => {
                       type='text'
                       name='address'
                       id='address'
-                      placeholder='Địa Chỉ*'
+                      placeholder={t('contact.addressPlaceholder')}
                       required
                       className='font-FiraSans text-HeadingColor-0 placeholder:text-TextColor-0 text-sm bg-transparent border border-Secondarycolor-0 border-opacity-20 rounded py-2 px-6 h-[54px] w-full focus:outline-PrimaryColor-0'
                     />
@@ -122,7 +126,7 @@ const Appointment = () => {
                       type='text'
                       name='number'
                       id='number'
-                      placeholder='Nhập số điện thoại*'
+                      placeholder={t('contact.phonePlaceholder')}
                       required
                       className='font-FiraSans text-HeadingColor-0 placeholder:text-TextColor-0 text-sm bg-transparent border border-Secondarycolor-0 border-opacity-20 rounded py-2 px-6 h-[54px] w-full focus:outline-PrimaryColor-0'
                     />
@@ -135,7 +139,7 @@ const Appointment = () => {
                 <textarea
                   name='message'
                   id='message'
-                  placeholder='Để lại tin nhắn...'
+                  placeholder={t('contact.messagePlaceholder')}
                   className='font-FiraSans text-HeadingColor-0 placeholder:text-TextColor-0 text-sm bg-transparent border border-Secondarycolor-0 border-opacity-20 rounded py-2 px-6 h-[120px] w-full focus:outline-PrimaryColor-0 resize-none'
                 ></textarea>
                 <label
@@ -147,12 +151,12 @@ const Appointment = () => {
                     name='terms'
                     id='terms'
                   />
-                  Tôi chấp nhận tất cả điều khoản trên.
+                  {t('contact.agreeTerms')}
                 </label>
                 <div className='inline-block mt-2'>
                   <button className='primary-btn3'>
                     <FaRegThumbsUp />
-                    {`GỬI YÊU CẦU`}
+                    {t('contact.submitButton')}
                   </button>
                 </div>
               </form>

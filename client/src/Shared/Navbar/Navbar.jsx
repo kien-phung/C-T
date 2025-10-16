@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import Logo from '/images/stlLogo.png';
 import Logo2 from '/images/stlLogo.png';
 import './navbar.css';
@@ -22,15 +22,16 @@ import { HiOutlineMail } from 'react-icons/hi';
 import { GiPhone } from 'react-icons/gi';
 import { LiaTimesSolid } from 'react-icons/lia';
 import { IoSearch } from 'react-icons/io5';
+import ThemeToggle from '../ThemeToggle/ThemeToggle';
+import { useLanguage } from '../../contexts/LanguageContext';
+import { getTranslation } from '../../utils/translations';
 
 
 const Navbar = () => {
-  // Language toggle state
-  const [currentLanguage, setCurrentLanguage] = useState('VN');
-
-  const toggleLanguage = () => {
-    setCurrentLanguage(prev => prev === 'VN' ? 'EN' : 'VN');
-  };
+  // Language context
+  const { currentLanguage, toggleLanguage } = useLanguage();
+  const t = (key) => getTranslation(currentLanguage, key);
+  const location = useLocation();
 
   //sticky
 
@@ -328,7 +329,7 @@ const Navbar = () => {
           </div>
           <div className='flex items-center gap-5'>
             <h5 className='font-FiraSans font-medium text-sm uppercase text-white'>
-              Theo Dõi Chúng Tôi :
+              {t('nav.followUs')}
             </h5>
             <ul className='flex gap-5 items-center'>
               <li>
@@ -388,36 +389,36 @@ const Navbar = () => {
                 <nav className='main-menu-content'>
                   <ul>
                     <li>
-                      <Link to={'/'}>
-                        Trang Chủ
+                      <Link to={'/'} className={location.pathname === '/' ? 'active' : ''}>
+                        {t('nav.home')}
                       </Link>
                     </li>
 
                     <li>
-                      <Link to={'/service_details'}>Sản Phẩm</Link>
+                      <Link to={'/service_details'} className={location.pathname === '/service_details' ? 'active' : ''}>{t('nav.products')}</Link>
                     </li>
 
                     <li>
-                      <Link to={'/about'}>Giải Pháp</Link>
+                      <Link to={'/about'} className={location.pathname === '/about' ? 'active' : ''}>{t('nav.solutions')}</Link>
                     </li>
 
                     <li>
-                      <Link to={'/policy'}>
-                        Chính Sách
+                      <Link to={'/policy'} className={location.pathname === '/policy' ? 'active' : ''}>
+                        {t('nav.policy')}
                       </Link>
                     </li>
                     <li>
-                      <Link to={'/customer'}>
-                        Khách Hàng
+                      <Link to={'/customer'} className={location.pathname === '/customer' ? 'active' : ''}>
+                        {t('nav.customers')}
                       </Link>
                     </li>
                     <li>
-                      <Link to={'/blog_grid'}>
-                        Tin Tức
+                      <Link to={'/blog_grid'} className={location.pathname === '/blog_grid' ? 'active' : ''}>
+                        {t('nav.news')}
                       </Link>
                     </li>
                     <li>
-                      <Link to={'/contact'}>Liên Hệ</Link>
+                      <Link to={'/contact'} className={location.pathname === '/contact' ? 'active' : ''}>{t('nav.contact')}</Link>
                     </li>
                   </ul>
                 </nav>
@@ -425,17 +426,19 @@ const Navbar = () => {
             </div>
             <div className='col-span-3'>
               <div className='header-right-box flex items-center gap-5 justify-end'>
+                <div className='hidden lg:block'>
+                  <ThemeToggle />
+                </div>
                 <div className='hidden lg:block relative before:absolute before:top-1/2 before:-translate-y-1/2 before:-right-[27px] before:h-20 before:w-[1px] before:bg-white before:opacity-20'>
                   <button
                     onClick={toggleLanguage}
-                    className='bg-PrimaryColor-0 font-FiraSans text-white capitalize text-[15px] font-medium px-[31px] py-[15px] rounded-md overflow-hidden flex items-center gap-2 border border-PrimaryColor-0 relative z-10 before:absolute before:top-0 before:left-0 before:w-full before:h-full before:bg-BodyBg2-0 before:-z-10 before:scale-0 before:transition-all before:duration-500 hover:before:scale-100'
+                    className='px-5 py-[20px] bg-PrimaryColor-0 text-white font-FiraSans font-medium text-sm rounded transition-all duration-300 hover:bg-opacity-90 relative overflow-hidden group'
                   >
-                    <span className={`transition-all duration-300 ${currentLanguage === 'VN' ? 'text-white' : 'text-gray-300'}`}>
-                      VN
-                    </span>
-                    <span className='text-white'>|</span>
-                    <span className={`transition-all duration-300 ${currentLanguage === 'EN' ? 'text-white' : 'text-gray-300'}`}>
-                      EN
+                    <span
+                      key={currentLanguage}
+                      className='inline-block animate-[slideIn_0.3s_ease-out]'
+                    >
+                      {currentLanguage === 'VN' ? 'VN' : 'EN'}
                     </span>
                   </button>
                 </div>

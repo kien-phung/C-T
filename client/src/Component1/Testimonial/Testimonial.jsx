@@ -1,8 +1,6 @@
-/* eslint-disable no-unused-vars */
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
-import { Pagination } from 'swiper/modules';
 import { MdOutlineStarPurple500 } from 'react-icons/md';
 import TestimonialCard from './TestimonialCard';
 import border from '/images/hero_border.png';
@@ -14,29 +12,60 @@ import { IoIosCheckmarkCircle } from 'react-icons/io';
 import serviceShape2 from '/images/about_shape_3.png';
 import serviceShape3 from '/images/service_shpe2.png';
 import serviceShape4 from '/images/tir.png';
+import { useLanguage } from '../../contexts/LanguageContext';
+import { getTranslation } from '../../utils/translations';
 
-const testiData = [
-  {
-    id: 1,
-    testiThumb: certificate1,
-    testiQuote: testiQuote,
-    testiDesc: `Giấy chứng nhận doanh nghiệp khoa học và công nghệ được cấp bởi Sở Khoa học và Công nghệ TP.HCM.`,
-    testiRatingIcon: <MdOutlineStarPurple500 />,
-    testiName: 'Giấy Chứng Nhận DNCNTT',
-    testiDesignation: 'Số: 45/ĐK-DNKHCN - Năm 2018',
-  },
-  {
-    id: 2,
-    testiThumb: certificate2,
-    testiQuote: testiQuote,
-    testiDesc: `Bằng độc quyền giải pháp hữu ích số 2845 về "Phương pháp thanh toán linh hoạt được thực hiện tại thiết bị thanh toán tự động" được cấp bởi Cục Sở hữu trí tuệ.`,
-    testiRatingIcon: <MdOutlineStarPurple500 />,
-    testiName: 'Bằng Độc Quyền Giải Pháp',
-    testiDesignation: 'Số: 2845 - Năm 2020',
-  },
-];
+const getCertificateData = (language) => {
+  const certificates = {
+    VN: [
+      {
+        id: 1,
+        testiThumb: certificate1,
+        testiQuote: testiQuote,
+        testiDesc: `Giấy chứng nhận doanh nghiệp khoa học và công nghệ được cấp bởi Sở Khoa học và Công nghệ TP.HCM.`,
+        testiRatingIcon: <MdOutlineStarPurple500 />,
+        testiName: 'Giấy Chứng Nhận DNCNTT',
+        testiDesignation: 'Số: 45/ĐK-DNKHCN - Năm 2018',
+      },
+      {
+        id: 2,
+        testiThumb: certificate2,
+        testiQuote: testiQuote,
+        testiDesc: `Bằng độc quyền giải pháp hữu ích số 2845 về "Phương pháp thanh toán linh hoạt được thực hiện tại thiết bị thanh toán tự động" được cấp bởi Cục Sở hữu trí tuệ.`,
+        testiRatingIcon: <MdOutlineStarPurple500 />,
+        testiName: 'Bằng Độc Quyền Giải Pháp',
+        testiDesignation: 'Số: 2845 - Năm 2020',
+      },
+    ],
+    EN: [
+      {
+        id: 1,
+        testiThumb: certificate1,
+        testiQuote: testiQuote,
+        testiDesc: `Science and technology enterprise certificate issued by the Department of Science and Technology of Ho Chi Minh City.`,
+        testiRatingIcon: <MdOutlineStarPurple500 />,
+        testiName: 'Science & Technology Enterprise Certificate',
+        testiDesignation: 'No: 45/ĐK-DNKHCN - Year 2018',
+      },
+      {
+        id: 2,
+        testiThumb: certificate2,
+        testiQuote: testiQuote,
+        testiDesc: `Utility solution patent No. 2845 for "Flexible payment method implemented at automatic payment device" issued by the Intellectual Property Office.`,
+        testiRatingIcon: <MdOutlineStarPurple500 />,
+        testiName: 'Utility Solution Patent',
+        testiDesignation: 'No: 2845 - Year 2020',
+      },
+    ],
+  };
+  return certificates[language] || certificates.VN;
+};
 
 const Testimonial = () => {
+  const { currentLanguage } = useLanguage();
+  const t = (key) => getTranslation(currentLanguage, key);
+  const testiData = getCertificateData(currentLanguage);
+
   const settings = {
     loop: true,
     spaceBetween: 30,
@@ -57,12 +86,7 @@ const Testimonial = () => {
       },
     },
   };
-  const pagination = {
-    clickable: true,
-    renderBullet: function (index, className) {
-      return '<span class="' + className + ' pagination-bullet"></span>';
-    },
-  };
+
   return (
     <section className='testimonial pt-28 pb-[220px] bg-[url(/images/testi_bg.png)] bg-no-repeat bg-cover bg-center relative z-10 overflow-hidden'>
       <div className='absolute -z-10 top-24 right-[35%] hidden 2xl:block animate-rotate'>
@@ -87,10 +111,10 @@ const Testimonial = () => {
         <div className='grid grid-cols-6 lg:grid-cols-12'>
           <div className='col-span-6 lg:col-span-5'>
             <h5 className='font-FiraSans font-medium text-sm sm:text-base text-PrimaryColor-0 uppercase mb-3'>
-              CHỨNG CHỈ & GIẢI THƯỞNG
+              {t('testimonial.sectionTitle')}
             </h5>
             <h1 className='font-FiraSans font-semibold text-HeadingColor-0 text-[16px] leading-[26px] sm:text-[25px] sm:leading-[35px] md:text-[30px] md:leading-[40px] lg:text-[34px] lg:leading-[44px] xl:text-[40px] xl:leading-[50px] 2xl:text-[42px] 2xl:leading-[52px] relative pb-4'>
-              Được Công Nhận Bởi <br /> Các Cơ Quan Nhà Nước
+              {t('testimonial.title')}
               <img
                 src={border}
                 draggable='false'
@@ -98,9 +122,7 @@ const Testimonial = () => {
               />
             </h1>
             <p className='font-FiraSans text-lg text-TextColor2-0 pt-[30px] pb-6'>
-              Chứng nhận năng lực công nghệ và bảo vệ sở hữu trí tuệ{' '}
-              <br className='hidden sm:block lg:hidden xl:block' />
-              phát triển giải pháp thanh toán tiên tiến
+              {t('testimonial.subtitle')}
             </p>
             <div className='flex items-center gap-[22px] border-y border-BorderColor-0 py-[26px] relative sm:mr-10'>
               <CountUp
@@ -128,7 +150,7 @@ const Testimonial = () => {
                   </li>
                 </ul>
                 <p className='font-FiraSans text-lg text-TextColor2-0 pt-1'>
-                  Chứng Nhận Chính Thức
+                  {t('testimonial.governmentCertified')}
                 </p>
               </div>
               <div className='absolute -z-10 top-11  right-6 hidden 2xl:block animate-dance3'>
@@ -142,7 +164,7 @@ const Testimonial = () => {
               <span className='text-PrimaryColor-0'>
                 <IoIosCheckmarkCircle size={'22'} />
               </span>
-              Được Công Nhận Bởi Nhà Nước
+              {t('testimonial.governmentCertificate')}
             </h6>
           </div>
           <div className='col-span-6 lg:col-span-7 mt-10 lg:mt-0'>

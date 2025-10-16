@@ -5,6 +5,8 @@ import Preloader from './Shared/Preloader/Preloader';
 import './index.css';
 import { RouterProvider } from 'react-router-dom';
 import router from './Router/Router';
+import { ThemeProvider } from './contexts/ThemeContext';
+import { LanguageProvider } from './contexts/LanguageContext';
 
 const helmetContext = {}; // Define helmetContext here
 
@@ -13,9 +15,13 @@ const root = createRoot(container);
 
 root.render(
   <React.StrictMode>
-    <HelmetProvider context={helmetContext}>
-      <Preloader />
-      <RouterProvider router={router} />
-    </HelmetProvider>
+    <LanguageProvider>
+      <ThemeProvider>
+        <HelmetProvider context={helmetContext}>
+          <Preloader />
+          <RouterProvider router={router} />
+        </HelmetProvider>
+      </ThemeProvider>
+    </LanguageProvider>
   </React.StrictMode>
 );

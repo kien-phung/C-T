@@ -1,5 +1,5 @@
 import { FaPhoneAlt } from "react-icons/fa";
-import teamDetailsImg from "/images/team-details.jpg";
+import teamDetailsImg from "/images/team1.jpg";
 import {
   FaFacebookF,
   FaLinkedinIn,
@@ -12,7 +12,7 @@ import ProgressBar from "react-animated-progress-bar";
 
 const TeamDetailsMain = () => {
   return (
-    <section className="bg-[url(/images/team-details-bg.jpg)] bg-no-repeat bg-center bg-cover py-28">
+    <section className="bg-[url(/images/breadcrumb_bg.png)] bg-no-repeat bg-center bg-cover py-28">
       <div className="Container">
         <div className="grid grid-cols-2 items-center gap-10 lg:gap-20 2xl:gap-[140px]">
           <div>

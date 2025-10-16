@@ -11,6 +11,7 @@ const BlogCard = ({
   blogDate,
   blogCommentIcon,
   blogComment,
+  isExternal,
 }) => {
   return (
     <div className='group transition-all duration-500 bg-white rounded-xl border border-BorderColor2-0 overflow-hidden'>
@@ -27,11 +28,19 @@ const BlogCard = ({
       </div>
       <div className='rounded-md px-4 sm:px-5 md:px-9 lg:px-5 xl:px-9 pb-9 pt-[30px] relative z-20 bg-white transition-all duration-500'>
         <div>
-          <Link to={blogUrl}>
-            <button className='font-FiraSans text-left font-medium text-lg sm:text-xl md:text-lg lg:text-base xl:text-xl 2xl:text-[22px] text-HeadingColor-0 transition-all duration-500 group-hover:underline group-hover:text-PrimaryColor-0'>
-              {blogTitle}
-            </button>
-          </Link>
+          {isExternal ? (
+            <a href={blogUrl} target="_blank" rel="noopener noreferrer">
+              <button className='font-FiraSans text-left font-medium text-lg sm:text-xl md:text-lg lg:text-base xl:text-xl 2xl:text-[22px] text-HeadingColor-0 transition-all duration-500 group-hover:underline group-hover:text-PrimaryColor-0'>
+                {blogTitle}
+              </button>
+            </a>
+          ) : (
+            <Link to={blogUrl}>
+              <button className='font-FiraSans text-left font-medium text-lg sm:text-xl md:text-lg lg:text-base xl:text-xl 2xl:text-[22px] text-HeadingColor-0 transition-all duration-500 group-hover:underline group-hover:text-PrimaryColor-0'>
+                {blogTitle}
+              </button>
+            </Link>
+          )}
           <p className='font-FiraSans text-TextColor2-0 pt-3'>{blogDesc}</p>
           <div className='flex justify-between border-t border-BorderColor2-0 mt-4 pt-4'>
             <p className='font-FiraSans text-TextColor2-0 flex gap-2 items-center leading-[15px]'>

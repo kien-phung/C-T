@@ -2,6 +2,8 @@
 import { Link } from "react-router-dom";
 import { IoHome } from "react-icons/io5";
 import line from '/images/line_shape.png';
+import { useLanguage } from '../../contexts/LanguageContext';
+import { getTranslation } from '../../utils/translations';
 
 const BreadCrumb = ({
   breadCrumbTitle,
@@ -13,6 +15,9 @@ const BreadCrumb = ({
   breadCrumbLink,
   breadCrumbLink2,
 }) => {
+  const { currentLanguage } = useLanguage();
+  const t = (key) => getTranslation(currentLanguage, key);
+
   return (
     <div className="relative z-10 before:-z-10 before:absolute before:top-0 before:left-0 before:w-full before:h-[80%] before:bg-BodyBg4-0">
       <div
@@ -38,7 +43,7 @@ const BreadCrumb = ({
                 <Link to={'/'}>
                   <button className='font-FiraSans font-medium text-center text-white flex items-center gap-2 transition-all duration-500 hover:text-PrimaryColor-0'>
                     <IoHome className='text-white' />
-                    Trang Chủ
+                    {t('nav.home')}
                   </button>
                 </Link>
               </li>

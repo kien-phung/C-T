@@ -1,4 +1,4 @@
-/* Offcanvas */
+  /* Offcanvas */
 .body-overlay {
   position: fixed;
   top: 0;
@@ -429,8 +429,9 @@ nav.main-menu-content > ul > li {
 }
 
 nav.main-menu-content > ul > li > a {
-  font-size: 16px;
+  font-size: 18px;
   font-family: 'Fira Sans', sans-serif;
+  font-weight: 500;
   text-transform: capitalize;
   transition: 0.5s;
   padding: 18px 24px 28px;
@@ -440,6 +441,23 @@ nav.main-menu-content > ul > li > a {
   gap: 4px;
   align-items: center;
   white-space: nowrap;
+}
+
+nav.main-menu-content > ul > li > a::after {
+  content: '';
+  position: absolute;
+  bottom: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 3px;
+  background: #0c6e6d;
+  transition: width 0.3s ease;
+}
+
+nav.main-menu-content > ul > li > a:hover::after,
+nav.main-menu-content > ul > li > a.active::after {
+  width: 60%;
 }
 
 @media only screen and (max-width: 991px) {

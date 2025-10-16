@@ -7,6 +7,8 @@ import portfolioThumb4 from '/images/portfolio4-4.jpg';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import PortfolioCard from './PortfolioCard';
+import { useLanguage } from '../../contexts/LanguageContext';
+import { getTranslation } from '../../utils/translations';
 
 const portfolioData = [
   {
@@ -52,6 +54,9 @@ const portfolioData = [
 ];
 
 const Portfolio = () => {
+  const { currentLanguage } = useLanguage();
+  const t = (key) => getTranslation(currentLanguage, key);
+
   const settings = {
     loop: true,
     spaceBetween: 30,
@@ -79,10 +84,10 @@ const Portfolio = () => {
       <div className='Container'>
         <div>
           <h5 className='font-FiraSans text-[19px] font-semibold text-PrimaryColor-0 relative pl-5 before:absolute before:top-1/2 before:-translate-y-1/2 before:left-0 before:h-[10px] before:w-[10px] before:bg-PrimaryColor-0 before:rounded-full'>
-            PORTFOLIO
+            {t('portfolio.portfolioTitle')}
           </h5>
           <h1 className='font-FiraSans font-bold text-xl leading-7 sm:text-[34px] sm:leading-[44px] md:text-[44px] md:leading-[54px] lg:text-[30px] lg:leading-[40px] xl:text-[44px] xl:leading-[46px] 2xl:text-[48px] 2xl:leading-[50px] text-HeadingColor-0 mt-3 mb-4'>
-            Our Completed <span className='text-PrimaryColor-0'>Projects</span>
+            {t('portfolio.completedProjects')} <span className='text-PrimaryColor-0'>{t('portfolio.projectsHighlight')}</span>
           </h1>
         </div>
       </div>

@@ -2,8 +2,8 @@ import { Link } from 'react-router-dom';
 import footerShape2 from '/images/footer_shape.png';
 import footerLogo from '/images/stlLogo.png';
 import footerShape from '/images/choose_rotete.png';
-import footerImg from '/images/footer_1.png';
-import footerImg2 from '/images/footer_2.png';
+import footerImg from '/images/blog/blog1.jpg';
+import footerImg2 from '/images/blog/blog2.jpg';
 import {
   FaAnglesRight,
   FaInstagram,
@@ -14,8 +14,12 @@ import {
 import { IoPaperPlaneSharp } from 'react-icons/io5';
 import { FaCircle } from 'react-icons/fa';
 import { ImFacebook2 } from 'react-icons/im';
+import { useLanguage } from '../../contexts/LanguageContext';
+import { getTranslation } from '../../utils/translations';
 
 const Footer = () => {
+  const { currentLanguage } = useLanguage();
+  const t = (key) => getTranslation(currentLanguage, key);
   return (
     <>
       <div className='bg-PrimaryColor-0 py-3'>
@@ -27,7 +31,7 @@ const Footer = () => {
               </div>
               <div>
                 <h6 className='font-FiraSans text-[15px] text-white'>
-                  Liên Hệ
+                  {t('footer.contact')}
                 </h6>
                 <Link to={'/'}>
                   <button className='font-FiraSans text-xl text-white font-medium'>
@@ -99,10 +103,10 @@ const Footer = () => {
           <div className='grid grid-cols-12 gap-6 lg:gap-0'>
             <div className='col-span-12 md:col-span-6 lg:col-span-4 xl:col-span-4'>
               <h4 className='font-FiraSans text-2xl text-HeadingColor-0 font-medium'>
-                Về Chúng Tôi
+                {t('footer.aboutUs')}
               </h4>
               <p className='font-FiraSans text-TextColor2-0 text-[15px] mt-5 mb-8 max-w-[290px] w-full'>
-                Công ty TNHH Điện Điện Tử C&T là doanh nghiệp khoa học công nghệ về lĩnh vực giao dịch tự động, giám sát, điều khiển và quản lý tập trung.
+                {t('footer.aboutDescription')}
               </p>
               <form
                 action='https://formspree.io/f/xayrekgy'
@@ -117,7 +121,7 @@ const Footer = () => {
                     type='email'
                     name='email'
                     id='email'
-                    placeholder='Nhập E-mail của bạn*'
+                    placeholder={t('footer.enterEmail')}
                     required
                     className='w-full h-[56px] outline-none font-FiraSans border-b border-HeadingColor-0 border-opacity-30 bg-transparent px-4 py-4 text-HeadingColor-0 placeholder:text-HeadingColor-0 mb-4'
                   />
@@ -135,17 +139,17 @@ const Footer = () => {
             <div className='col-span-12 md:col-span-6 lg:col-span-4 xl:col-span-4 flex justify-center'>
               <div>
                 <h4 className='font-FiraSans text-2xl text-HeadingColor-0 font-medium mb-[30px] text-center'>
-                  Liên Kết Nhanh
+                  {t('footer.quickLinks')}
                 </h4>
                 <ul className='overflow-hidden'>
                   <li>
                     <Link
-                      to={'/about'}
+                      to={'/'}
                       className='inline-block'
                     >
                       <button className='flex items-center gap-2 font-FiraSans -ml-5 hover:ml-0 text-[15px] text-HeadingColor-0 transition-all duration-500 hover:text-PrimaryColor-0 hover:gap-1 mb-3'>
                         <FaAnglesRight className='text-xs text-PrimaryColor-0' />
-                        Giới Thiệu
+                        {t('footer.introduction')}
                       </button>
                     </Link>
                   </li>
@@ -156,7 +160,7 @@ const Footer = () => {
                     >
                       <button className='flex items-center gap-2 font-FiraSans -ml-5 hover:ml-0 text-[15px] text-HeadingColor-0 transition-all duration-500 hover:text-PrimaryColor-0 hover:gap-1 mb-3'>
                         <FaAnglesRight className='text-xs text-PrimaryColor-0' />
-                        Đội Ngũ
+                        {t('footer.team')}
                       </button>
                     </Link>
                   </li>
@@ -167,7 +171,7 @@ const Footer = () => {
                     >
                       <button className='flex items-center gap-2 font-FiraSans -ml-5 hover:ml-0 text-[15px] text-HeadingColor-0 transition-all duration-500 hover:text-PrimaryColor-0 hover:gap-1 mb-3'>
                         <FaAnglesRight className='text-xs text-PrimaryColor-0' />
-                        Sản Phẩm
+                        {t('footer.products')}
                       </button>
                     </Link>
                   </li>
@@ -178,7 +182,7 @@ const Footer = () => {
                     >
                       <button className='flex items-center gap-2 font-FiraSans -ml-5 hover:ml-0 text-[15px] text-HeadingColor-0 transition-all duration-500 hover:text-PrimaryColor-0 hover:gap-1 mb-3'>
                         <FaAnglesRight className='text-xs text-PrimaryColor-0' />
-                        Liên Hệ
+                        {t('footer.contactLink')}
                       </button>
                     </Link>
                   </li>
@@ -189,7 +193,7 @@ const Footer = () => {
                     >
                       <button className='flex items-center gap-2 font-FiraSans -ml-5 hover:ml-0 text-[15px] text-HeadingColor-0 transition-all duration-500 hover:text-PrimaryColor-0 hover:gap-1'>
                         <FaAnglesRight className='text-xs text-PrimaryColor-0' />
-                        Tin Tức
+                        {t('footer.news')}
                       </button>
                     </Link>
                   </li>
@@ -199,51 +203,57 @@ const Footer = () => {
             <div className='col-span-12 md:col-span-6 lg:col-span-4 xl:col-span-4 flex justify-end'>
               <div>
                 <h4 className='font-FiraSans text-2xl text-HeadingColor-0 font-medium mb-[36px] text-center'>
-                  Tin Tức Mới Nhất
+                  {t('footer.latestNews')}
                 </h4>
                 <Link
-                  to={'/'}
+                  to={'https://www.facebook.com/share/p/1FTQYGGXjg/'}
                   className='flex items-center gap-[18px] group'
                 >
-                  <div>
+                  <div className='w-[100px] h-[100px] flex-shrink-0'>
                     <img
                       src={footerImg}
-                      className='rounded'
+                      className='rounded w-full h-full object-cover'
                     />
                   </div>
                   <div className='flex-1'>
                     <h6 className='font-FiraSans font-medium text-HeadingColor-0 transition-all duration-500 group-hover:text-PrimaryColor-0'>
-                      Giải Pháp Giao Dịch{' '}
-                      <br className='hidden 2xl:block' /> Tự Động Cho Doanh Nghiệp
+                      {currentLanguage === 'VN' ? (
+                        <>Diễn Đàn Đổi Mới <br className='hidden 2xl:block' /> Sáng Tạo Năng Lượng</>
+                      ) : (
+                        <>Energy <br className='hidden 2xl:block' /> Innovation Forum</>
+                      )}
                     </h6>
                     <p className='font-FiraSans text-sm text-TextColor2-0 flex items-center gap-2 mt-1'>
                       <span className='text-PrimaryColor-0'>
                         <FaCircle size={'8'} />
                       </span>
-                      Nov 16, 2025
+                      {currentLanguage === 'VN' ? '16 th11, 2025' : 'Nov 16, 2025'}
                     </p>
                   </div>
                 </Link>
                 <Link
-                  to={'/'}
+                  to={'https://www.facebook.com/share/p/16ND4mHNLF/'}
                   className='flex items-center gap-[18px] group mt-7'
                 >
-                  <div>
+                  <div className='w-[100px] h-[100px] flex-shrink-0'>
                     <img
                       src={footerImg2}
-                      className='rounded'
+                      className='rounded w-full h-full object-cover'
                     />
                   </div>
                   <div className='flex-1'>
                     <h6 className='font-FiraSans font-medium text-HeadingColor-0 transition-all duration-500 group-hover:text-PrimaryColor-0'>
-                      Công Nghệ Thanh Toán <br className='hidden 2xl:block' />{' '}
-                      Không Tiền Mặt Tương Lai
+                      {currentLanguage === 'VN' ? (
+                        <>Giải Pháp Hệ Thống <br className='hidden 2xl:block' /> Camera Giám Sát Tích Hợp AI</>
+                      ) : (
+                        <>AI-Integrated Camera <br className='hidden 2xl:block' /> Surveillance System</>
+                      )}
                     </h6>
                     <p className='font-FiraSans text-sm text-TextColor2-0 flex items-center gap-2 mt-1'>
                       <span className='text-PrimaryColor-0'>
                         <FaCircle size={'8'} />
                       </span>
-                      Nov 16, 2025
+                      {currentLanguage === 'VN' ? '16 th11, 2025' : 'Nov 16, 2025'}
                     </p>
                   </div>
                 </Link>
@@ -253,35 +263,35 @@ const Footer = () => {
         </div>
         <div className='Container flex flex-col gap-5 md:flex-row md:gap-0 justify-between mt-[120px] py-6 border-t border-HeadingColor-0 border-opacity-20'>
           <p className='font-FiraSans text-HeadingColor-0 text-[15px]'>
-            Copyright © 2025{' '}
+            {t('footer.copyright')}{' '}
             <Link
               to={'/'}
               className='text-PrimaryColor-0'
             >
               STL Solutions
             </Link>{' '}
-            . Thiết kế và Phát triển bởi STL Solutions
+            {t('footer.designedBy')}
           </p>
           <div>
             <ul className='flex gap-7'>
               <li>
                 <Link to={'/'}>
                   <button className='font-FiraSans text-HeadingColor-0 text-[15px] transition-all duration-500 hover:text-PrimaryColor-0'>
-                    Quyền riêng tư và điều khoản
+                    {t('footer.privacyTerms')}
                   </button>
                 </Link>
               </li>
               <li>
                 <Link to={'/'}>
                   <button className='font-FiraSans text-HeadingColor-0 text-[15px] transition-all duration-500 hover:text-PrimaryColor-0'>
-                    Câu hỏi thường gặp
+                    {t('footer.faq')}
                   </button>
                 </Link>
               </li>
               <li>
                 <Link to={'/'}>
                   <button className='font-FiraSans text-HeadingColor-0 text-[15px] transition-all duration-500 hover:text-PrimaryColor-0'>
-                    Liên hệ chúng tôi
+                    {t('footer.contactUsFooter')}
                   </button>
                 </Link>
               </li>

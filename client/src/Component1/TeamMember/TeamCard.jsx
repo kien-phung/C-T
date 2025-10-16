@@ -9,16 +9,19 @@ const TeamCard = ({
   socialIcon3,
   teamTitle,
   teamDesc,
-  teamShape
+  teamShape,
+  facebookUrl,
+  twitterUrl,
+  linkedinUrl,
 }) => {
   return (
-    <div className='group relative bg-white rounded-md  before:absolute before:top-0 before:left-0 before:w-full before:h-0 before:bg-BodyBg4-0 before:-z-10 before:transition-all before:rounded-md before:duration-500 hover:before:h-full'>
-      <div className='relative z-20 overflow-visible rounded before:absolute before:top-0 before:left-0 before:bg-right-top before:bg-PrimaryColor-0 before:bg-opacity-30 before:w-0 before:h-0 before:transition-all before:duration-500 before:z-10 group-hover:before:h-full group-hover:before:w-full'>
-        <div className='flex justify-center -mt-12 sm:-mt-16 lg:-mt-20'>
+    <div className='group relative bg-white rounded-md shadow-lg overflow-hidden before:absolute before:top-0 before:left-0 before:w-full before:h-0 before:bg-BodyBg4-0 before:-z-10 before:transition-all before:rounded-md before:duration-500 hover:before:h-full'>
+      <div className='relative z-20 overflow-hidden rounded before:absolute before:top-0 before:left-0 before:bg-right-top before:bg-PrimaryColor-0 before:bg-opacity-30 before:w-0 before:h-0 before:transition-all before:duration-500 before:z-10 group-hover:before:h-full group-hover:before:w-full'>
+        <div className='flex justify-center pt-8'>
           <img
             src={teamThumb}
             alt={teamTitle}
-            className='w-32 h-32 sm:w-36 sm:h-36 md:w-44 md:h-44 rounded-full object-cover border-4 border-white shadow-md'
+            className='w-32 h-32 sm:w-36 sm:h-36 md:w-44 md:h-44 rounded-xl object-cover shadow-md'
           />
         </div>
         <div className='absolute z-30 top-5 right-5'>
@@ -30,29 +33,29 @@ const TeamCard = ({
         </div>
         <ul>
           <li className='absolute z-20 top-5 right-[24px] transition-all duration-300 group-hover:top-[72px]'>
-            <Link to={'/'}>
+            <a href={facebookUrl} target="_blank" rel="noopener noreferrer">
               <button className='size-9 text-sm flex justify-center items-center rounded-full overflow-hidden relative bg-white transition-all duration-500 hover:text-white text-HeadingColor-0 z-10 before:absolute before:top-0 before:left-0 before:w-full before:h-full before:bg-Secondarycolor-0 before:-z-10 before:transition-all before:duration-500 before:scale-0 hover:before:scale-100'>
                 {socialIcon}
               </button>
-            </Link>
+            </a>
           </li>
           <li className='absolute z-20 top-5 right-[24px] transition-all duration-500 group-hover:top-[119px]'>
-            <Link to={'/'}>
+            <a href={twitterUrl} target="_blank" rel="noopener noreferrer">
               <button className='size-9 text-sm flex justify-center items-center rounded-full overflow-hidden relative bg-white transition-all duration-500 hover:text-white text-HeadingColor-0 z-10 before:absolute before:top-0 before:left-0 before:w-full before:h-full before:bg-Secondarycolor-0 before:-z-10 before:transition-all before:duration-500 before:scale-0 hover:before:scale-100'>
                 {socialIcon2}
               </button>
-            </Link>
+            </a>
           </li>
           <li className='absolute z-20 top-5 right-[24px] transition-all duration-700 group-hover:top-[166px]'>
-            <Link to={'/'}>
+            <a href={linkedinUrl} target="_blank" rel="noopener noreferrer">
               <button className='size-9 text-sm flex justify-center items-center rounded-full overflow-hidden relative bg-white transition-all duration-500 hover:text-white text-HeadingColor-0 z-10 before:absolute before:top-0 before:left-0 before:w-full before:h-full before:bg-Secondarycolor-0 before:-z-10 before:transition-all before:duration-500 before:scale-0 hover:before:scale-100'>
                 {socialIcon3}
               </button>
-            </Link>
+            </a>
           </li>
         </ul>
       </div>
-  <div className='relative shadow-shades transition-all duration-500 group-hover:border-Secondarycolor-0 text-center pt-28 pb-10 z-10'>
+  <div className='relative transition-all duration-500 group-hover:border-Secondarycolor-0 text-center pt-6 pb-8 z-10'>
         <h5 className='font-FiraSans font-medium text-[22px] text-HeadingColor-0 pb-[2px]'>
           {teamTitle}
         </h5>
