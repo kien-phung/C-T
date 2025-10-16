@@ -19,7 +19,7 @@ const getBlogGridData = (language) => {
         blogGridDate: '04 Th3, 2025',
         blogGridPostBy: 'CÔNG NGHỆ',
         blogGridUrl: 'https://www.facebook.com/share/p/1FTQYGGXjg/',
-        blogGridTitle: 'Diễn Đàn Đổi Mới Sáng Tạo Năng Lượng',
+        blogGridTitle: 'Mở Ra Kỷ Nguyên Mới Trong Lĩnh Vực Năng Lượng',
         blogGridBtn: 'Xem Thêm',
         blogGridBtnIcon: <BsArrowRight />,
       },
@@ -65,7 +65,7 @@ const getBlogGridData = (language) => {
         blogGridDate: 'Mar 04, 2025',
         blogGridPostBy: 'TECHNOLOGY',
         blogGridUrl: 'https://www.facebook.com/share/p/1FTQYGGXjg/',
-        blogGridTitle: 'Energy Innovation Forum',
+        blogGridTitle: 'Open a New Era In The Energy Sector',
         blogGridBtn: 'View More',
         blogGridBtnIcon: <BsArrowRight />,
       },
@@ -120,7 +120,7 @@ const BlogGrid = () => {
         breadCrumbLink={t('nav.news')}
         bgImage={'/images/solutions/blog1.jpg'}
       />
-      <section className='pt-28 pb-28'>
+      <section className='pt-28 pb-28 bg-BodyBg4-0'>
         <div className='Container'>
           <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7'>
             {BlogData.slice(0, 3).map(

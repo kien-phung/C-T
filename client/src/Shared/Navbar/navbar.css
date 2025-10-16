@@ -338,10 +338,26 @@
   width: 100%;
 }
 
+/* Dark mode header */
+.dark .header-area {
+  background: #1f2937;
+}
+
 @media only screen and (max-width: 991px) {
   /* keep mobile navbar matching the requested light sea-blue */
   .header-area {
     background: #cfeff2;
+    padding: 8px 0 !important;
+  }
+
+  .dark .header-area {
+    background: #1f2937;
+  }
+
+  /* Compact mobile header */
+  .header-area .Container {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
   }
 }
 
@@ -360,6 +376,12 @@
   animation: headerSlideDown 500ms ease-in-out 0s 1 normal both;
   /* override background color for sticky header to the requested light sea-blue */
   background-color: #cfeff2 !important;
+}
+
+/* Dark mode sticky header */
+.dark .is-sticky {
+  background-color: #1f2937 !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
 
 .header-creative.is-sticky {
@@ -412,6 +434,18 @@
   object-fit: contain;
 }
 
+/* Mobile logo optimization */
+@media (max-width: 991px) {
+  .header-logo {
+    margin: 12px 0 !important;
+    padding-left: 0 !important;
+  }
+
+  .header-logo img {
+    max-height: 35px !important;
+  }
+}
+
 nav.main-menu-content > ul {
   display: flex;
   justify-content: center;
@@ -441,6 +475,15 @@ nav.main-menu-content > ul > li > a {
   gap: 4px;
   align-items: center;
   white-space: nowrap;
+}
+
+/* Dark mode styles for nav links */
+.dark nav.main-menu-content > ul > li > a {
+  color: #ffffff;
+}
+
+.dark nav.main-menu-content > ul > li:hover > a {
+  color: #22c55e;
 }
 
 nav.main-menu-content > ul > li > a::after {
@@ -768,12 +811,14 @@ li.has-dropdown a button span {
 
 .main-menu-mobile ul li > a {
   display: block;
-  font-size: 16px;
+  font-size: 18px;
   color: #ffffff;
   position: relative;
-  padding: 10px 0;
+  padding: 16px 0;
   padding-right: 20px;
   font-family: 'Fira Sans', sans-serif;
+  font-weight: 500;
+  transition: all 0.3s ease;
 }
 
 .main-menu-mobile ul li > a svg {

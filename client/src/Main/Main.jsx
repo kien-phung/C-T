@@ -13,7 +13,11 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 const Main = () => {
   useEffect(() => {
-    AOS.init();
+    AOS.init({
+      duration: 1000,
+      once: false,
+      mirror: true,
+    });
     AOS.refresh();
   }, []);
 

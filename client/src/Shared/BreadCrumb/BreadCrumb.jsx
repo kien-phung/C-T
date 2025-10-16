@@ -19,13 +19,13 @@ const BreadCrumb = ({
   const t = (key) => getTranslation(currentLanguage, key);
 
   return (
-    <div className="relative z-10 before:-z-10 before:absolute before:top-0 before:left-0 before:w-full before:h-[80%] before:bg-BodyBg4-0">
+    <div className="relative z-10 before:-z-10 before:absolute before:top-0 before:left-0 before:w-full before:h-[80%] before:bg-BodyBg4-0 dark:before:bg-gray-900">
       <div
         className="relative bg-no-repeat bg-cover bg-center flex items-center justify-start h-[400px] sm:h-[500px] text-center mx-3 md:mx-10 lg:mx-[66px] rounded-2xl md:rounded-[30px]"
         style={{ backgroundImage: `url(${bgImage || '/images/breadcrumb_bg.png'})` }}
       >
         {/* overlay for better text readability */}
-        <div className="absolute inset-0 bg-black/35 rounded-2xl z-0" aria-hidden="true" />
+        <div className="absolute inset-0 bg-black/35 dark:bg-black/60 rounded-2xl z-0" aria-hidden="true" />
 
         <div className='Container relative z-10'>
           <h1 className='font-FiraSans font-semibold text-4xl md:text-[48px] text-white capitalize relative z-10'>

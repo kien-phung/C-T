@@ -46,118 +46,118 @@ const CustomerInner = () => {
         breadCrumbLink={t('nav.customers')}
         bgImage={'/images/solutions/customer1.jpg'}
       />
-      <section className='py-[120px] bg-BodyBg4-0'>
+      <section className='py-[120px] bg-BodyBg4-0 dark:bg-gray-900'>
         <div className='Container'>
           <div className='text-center mb-16'>
-            <h1 className='font-FiraSans font-semibold text-4xl sm:text-5xl text-HeadingColor-0 mb-6'>
+            <h1 className='font-FiraSans font-semibold text-4xl sm:text-5xl text-HeadingColor-0 dark:text-white mb-6'>
               {customerData.pageTitle}
             </h1>
-            <p className='font-FiraSans text-TextColor2-0 text-lg max-w-3xl mx-auto'>
+            <p className='font-FiraSans text-TextColor2-0 dark:text-gray-300 text-lg max-w-3xl mx-auto'>
               {customerData.pageDescription}
             </p>
           </div>
 
           {/* Customer logos section */}
-          <div className='bg-white rounded-2xl p-8 shadow-lg mb-16'>
-            <h2 className='font-FiraSans font-semibold text-3xl text-HeadingColor-0 mb-8 text-center'>
+          <div className='bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg mb-16'>
+            <h2 className='font-FiraSans font-semibold text-3xl text-HeadingColor-0 dark:text-white mb-8 text-center'>
               {customerData.partnersTitle}
             </h2>
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6'>
-              <div className='bg-white rounded-lg shadow-shades border border-gray-100 p-8 hover:shadow-xl transition-all duration-500 hover:scale-105'>
+              <div className='bg-white dark:bg-gray-700 rounded-lg shadow-lg border border-gray-100 dark:border-gray-600 p-8 hover:shadow-xl transition-all duration-300 group'>
                 <div className='flex justify-center items-center h-20'>
                   <img
                     src='/images/partners/thegioididong.png'
                     alt='Thế Giới Di Động'
-                    className='h-16 w-auto object-contain'
+                    className='h-16 w-auto object-contain transition-transform duration-300 group-hover:scale-105'
                   />
                 </div>
               </div>
-              <div className='bg-white rounded-lg shadow-shades border border-gray-100 p-8 hover:shadow-xl transition-all duration-500 hover:scale-105'>
+              <div className='bg-white dark:bg-gray-700 rounded-lg shadow-lg border border-gray-100 dark:border-gray-600 p-8 hover:shadow-xl transition-all duration-300 group'>
                 <div className='flex justify-center items-center h-20'>
                   <img
                     src='/images/partners/asim.png'
                     alt='ASIM Consulting'
-                    className='h-16 w-auto object-contain'
+                    className='h-16 w-auto object-contain transition-transform duration-300 group-hover:scale-105'
                   />
                 </div>
               </div>
-              <div className='bg-white rounded-lg shadow-shades border border-gray-100 p-8 hover:shadow-xl transition-all duration-500 hover:scale-105'>
+              <div className='bg-white dark:bg-gray-700 rounded-lg shadow-lg border border-gray-100 dark:border-gray-600 p-8 hover:shadow-xl transition-all duration-300 group'>
                 <div className='flex justify-center items-center h-20'>
                   <img
                     src='/images/partners/sb.jpg'
                     alt='SB ISO 9001:2015'
-                    className='h-16 w-auto object-contain'
+                    className='h-16 w-auto object-contain transition-transform duration-300 group-hover:scale-105'
                   />
                 </div>
               </div>
-              <div className='bg-white rounded-lg shadow-shades border border-gray-100 p-8 hover:shadow-xl transition-all duration-500 hover:scale-105'>
+              <div className='bg-white dark:bg-gray-700 rounded-lg shadow-lg border border-gray-100 dark:border-gray-600 p-8 hover:shadow-xl transition-all duration-300 group'>
                 <div className='flex justify-center items-center h-20'>
                   <img
                     src='/images/partners/greenhouse.png'
                     alt='Green House'
-                    className='h-16 w-auto object-contain'
+                    className='h-16 w-auto object-contain transition-transform duration-300 group-hover:scale-105'
                   />
                 </div>
               </div>
-              <div className='bg-white rounded-lg shadow-shades border border-gray-100 p-8 hover:shadow-xl transition-all duration-500 hover:scale-105'>
+              <div className='bg-white dark:bg-gray-700 rounded-lg shadow-lg border border-gray-100 dark:border-gray-600 p-8 hover:shadow-xl transition-all duration-300 group'>
                 <div className='flex justify-center items-center h-20'>
                   <img
                     src='https://www.i-resort.vn/assets/images/brand/i-resort-logo.svg'
                     alt='I-Resort'
-                    className='h-16 w-auto object-contain'
+                    className='h-16 w-auto object-contain transition-transform duration-300 group-hover:scale-105'
                   />
                 </div>
               </div>
-              <div className='bg-white rounded-lg shadow-shades border border-gray-100 p-8 hover:shadow-xl transition-all duration-500 hover:scale-105'>
+              <div className='bg-white dark:bg-gray-700 rounded-lg shadow-lg border border-gray-100 dark:border-gray-600 p-8 hover:shadow-xl transition-all duration-300 group'>
                 <div className='flex justify-center items-center h-20'>
                   <img
                     src='https://www.finviet.com.vn/wp-content/uploads/2024/08/logo.png'
                     alt='Finviet'
-                    className='h-16 w-auto object-contain'
+                    className='h-16 w-auto object-contain transition-transform duration-300 group-hover:scale-105'
                   />
                 </div>
               </div>
-              <div className='bg-white rounded-lg shadow-shades border border-gray-100 p-8 hover:shadow-xl transition-all duration-500 hover:scale-105'>
+              <div className='bg-white dark:bg-gray-700 rounded-lg shadow-lg border border-gray-100 dark:border-gray-600 p-8 hover:shadow-xl transition-all duration-300 group'>
                 <div className='flex justify-center items-center h-20'>
                   <img
                     src='/images/partners/phutho.png'
                     alt='Phu Tho Tourist'
-                    className='h-16 w-auto object-contain'
+                    className='h-16 w-auto object-contain transition-transform duration-300 group-hover:scale-105'
                   />
                 </div>
               </div>
-              <div className='bg-white rounded-lg shadow-shades border border-gray-100 p-8 hover:shadow-xl transition-all duration-500 hover:scale-105'>
+              <div className='bg-white dark:bg-gray-700 rounded-lg shadow-lg border border-gray-100 dark:border-gray-600 p-8 hover:shadow-xl transition-all duration-300 group'>
                 <div className='flex justify-center items-center h-20'>
                   <img
                     src='/images/partners/dha.png'
                     alt='DHA Corporation'
-                    className='h-16 w-auto object-contain'
+                    className='h-16 w-auto object-contain transition-transform duration-300 group-hover:scale-105'
                   />
                 </div>
               </div>
             </div>
           </div>
 
-          <div className='bg-white rounded-2xl p-8 shadow-lg'>
-            <h2 className='font-FiraSans font-semibold text-3xl text-HeadingColor-0 mb-6 text-center'>
+          <div className='bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg'>
+            <h2 className='font-FiraSans font-semibold text-3xl text-HeadingColor-0 dark:text-white mb-6 text-center'>
               {customerData.statisticsTitle}
             </h2>
             <div className='grid grid-cols-1 md:grid-cols-4 gap-8 text-center'>
               <div>
-                <div className='text-4xl font-FiraSans font-bold text-PrimaryColor-0 mb-2'>500+</div>
-                <p className='font-FiraSans text-TextColor2-0'>{customerData.stats.businesses}</p>
+                <div className='text-4xl font-FiraSans font-bold text-PrimaryColor-0 dark:text-green-400 mb-2'>500+</div>
+                <p className='font-FiraSans text-TextColor2-0 dark:text-gray-300'>{customerData.stats.businesses}</p>
               </div>
               <div>
-                <div className='text-4xl font-FiraSans font-bold text-PrimaryColor-0 mb-2'>50+</div>
-                <p className='font-FiraSans text-TextColor2-0'>{customerData.stats.banks}</p>
+                <div className='text-4xl font-FiraSans font-bold text-PrimaryColor-0 dark:text-green-400 mb-2'>50+</div>
+                <p className='font-FiraSans text-TextColor2-0 dark:text-gray-300'>{customerData.stats.banks}</p>
               </div>
               <div>
-                <div className='text-4xl font-FiraSans font-bold text-PrimaryColor-0 mb-2'>100+</div>
-                <p className='font-FiraSans text-TextColor2-0'>{customerData.stats.government}</p>
+                <div className='text-4xl font-FiraSans font-bold text-PrimaryColor-0 dark:text-green-400 mb-2'>100+</div>
+                <p className='font-FiraSans text-TextColor2-0 dark:text-gray-300'>{customerData.stats.government}</p>
               </div>
               <div>
-                <div className='text-4xl font-FiraSans font-bold text-PrimaryColor-0 mb-2'>98%</div>
-                <p className='font-FiraSans text-TextColor2-0'>{customerData.stats.satisfaction}</p>
+                <div className='text-4xl font-FiraSans font-bold text-PrimaryColor-0 dark:text-green-400 mb-2'>98%</div>
+                <p className='font-FiraSans text-TextColor2-0 dark:text-gray-300'>{customerData.stats.satisfaction}</p>
               </div>
             </div>
           </div>

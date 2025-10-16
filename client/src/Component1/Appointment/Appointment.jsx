@@ -15,7 +15,7 @@ const Appointment = () => {
   const { currentLanguage } = useLanguage();
   const t = (key) => getTranslation(currentLanguage, key);
   return (
-    <section className='pt-[120px] pb-28 relative'>
+    <section className='pt-[120px] pb-28 relative bg-BodyBg4-0'>
       <div className='absolute -z-10 right-48 bottom-10 hidden 2xl:block animate-rotate'>
         <img
           src={serviceShape3}
@@ -57,7 +57,7 @@ const Appointment = () => {
               draggable='false'
               className='absolute top-0 right-6 animate-movebtn'
             />
-            <div className='relative z-20 bg-white shadow-shades pt-11 mt-[100px] px-4 sm:px-6 md:px-[50px] lg:px-4 xl:px-10 2xl:px-[50px] rounded-md'>
+            <div className='relative z-20 bg-white dark:bg-gray-800 shadow-shades pt-11 mt-[100px] px-4 sm:px-6 md:px-[50px] lg:px-4 xl:px-10 2xl:px-[50px] rounded-md'>
               <div className='text-center'>
                 <h5 className='font-FiraSans font-medium text-sm sm:text-base text-PrimaryColor-0 uppercase mb-3'>
                   {t('contact.sectionTitle')}

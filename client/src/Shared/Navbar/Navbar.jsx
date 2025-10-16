@@ -233,10 +233,23 @@ const Navbar = () => {
           </div>
           <div className='offcanvas_title'>
             <p>
-              Business consultation provides expert advice to improve
-              performance.
+              {currentLanguage === 'VN'
+                ? 'C&T Electronics - Giải pháp công nghệ toàn diện cho doanh nghiệp'
+                : 'C&T Electronics - Comprehensive technology solutions for businesses'}
             </p>
           </div>
+
+          {/* Mobile Theme and Language Toggle */}
+          <div className='flex items-center gap-4 mb-6 px-6'>
+            <ThemeToggle />
+            <button
+              onClick={toggleLanguage}
+              className='flex-1 px-5 py-3 bg-PrimaryColor-0 dark:bg-green-600 text-white font-FiraSans font-medium text-sm rounded transition-all duration-300 hover:bg-opacity-90'
+            >
+              {currentLanguage === 'VN' ? '🇻🇳 Tiếng Việt' : '🇬🇧 English'}
+            </button>
+          </div>
+
           <div className='main-menu-mobile lg:none'></div>
           <div className='offcanvas_contact-info'>
             <div className='offcanvas_contact-title'>
@@ -373,13 +386,14 @@ const Navbar = () => {
         className='header-area header-sticky style-three'
       >
         <div className='Container'>
-          <div className='bg-transparent rounded-md flex items-center justify-between lg:grid lg:grid-cols-12 lg:gap-4'>
+          <div className='bg-transparent rounded-md flex items-center justify-between lg:grid lg:grid-cols-12 lg:gap-4 py-2 lg:py-0'>
             <div className='col-span-2'>
-              <div className='header-logo pl-4'>
+              <div className='header-logo pl-0 lg:pl-4'>
                 <Link to={'/'}>
                   <img
                     src={Logo}
                     draggable='false'
+                    className='h-8 lg:h-auto'
                   />
                 </Link>
               </div>
@@ -425,14 +439,28 @@ const Navbar = () => {
               </div>
             </div>
             <div className='col-span-3'>
-              <div className='header-right-box flex items-center gap-5 justify-end'>
+              <div className='header-right-box flex items-center gap-3 lg:gap-5 justify-end pr-2 lg:pr-0'>
+                {/* Mobile Menu Toggle - Hamburger Icon */}
+                <button
+                  ref={menuBarRef}
+                  className='lg:hidden flex flex-col gap-[5px] w-7 h-7 justify-center items-center group p-1'
+                  aria-label='Toggle menu'
+                >
+                  <span className='w-full h-[2.5px] bg-HeadingColor-0 dark:bg-white rounded-full transition-all duration-300 group-hover:bg-PrimaryColor-0 dark:group-hover:bg-green-400 group-active:bg-PrimaryColor-0'></span>
+                  <span className='w-full h-[2.5px] bg-HeadingColor-0 dark:bg-white rounded-full transition-all duration-300 group-hover:bg-PrimaryColor-0 dark:group-hover:bg-green-400 group-active:bg-PrimaryColor-0'></span>
+                  <span className='w-full h-[2.5px] bg-HeadingColor-0 dark:bg-white rounded-full transition-all duration-300 group-hover:bg-PrimaryColor-0 dark:group-hover:bg-green-400 group-active:bg-PrimaryColor-0'></span>
+                </button>
+
+                {/* Desktop Theme Toggle */}
                 <div className='hidden lg:block'>
                   <ThemeToggle />
                 </div>
+
+                {/* Desktop Language Toggle */}
                 <div className='hidden lg:block relative before:absolute before:top-1/2 before:-translate-y-1/2 before:-right-[27px] before:h-20 before:w-[1px] before:bg-white before:opacity-20'>
                   <button
                     onClick={toggleLanguage}
-                    className='px-5 py-[20px] bg-PrimaryColor-0 text-white font-FiraSans font-medium text-sm rounded transition-all duration-300 hover:bg-opacity-90 relative overflow-hidden group'
+                    className='px-5 py-[20px] bg-PrimaryColor-0 dark:bg-green-600 text-white font-FiraSans font-medium text-sm rounded transition-all duration-300 hover:bg-opacity-90 relative overflow-hidden group'
                   >
                     <span
                       key={currentLanguage}

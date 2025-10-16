@@ -15,8 +15,8 @@ const Banner = () => {
   const { currentLanguage } = useLanguage();
   const t = (key) => getTranslation(currentLanguage, key);
   return (
-    <section className="bg-[url('/images/bg1.jpg')] bg-cover bg-center bg-no-repeat h-[850px] sm:h-[1000px] md:h-[1180px] lg:h-[660px] xl:h-[750px] flex items-center relative z-10 overflow-hidden">
-      <div className='Container'>
+    <section className="bg-[url('/images/bg1.jpg')] bg-cover bg-center bg-no-repeat h-[850px] sm:h-[1000px] md:h-[1180px] lg:h-[660px] xl:h-[750px] flex items-center relative z-10 overflow-hidden before:absolute before:inset-0 before:bg-gray-900 before:opacity-0 dark:before:opacity-80 before:transition-opacity before:duration-300 before:-z-10">
+      <div className='Container relative z-10'>
         <div className='grid lg:grid-cols-2 items-center gap-16 lg:gap-0 mt-[72px]'>
           <div className='relative'>
             <img
@@ -62,8 +62,9 @@ const Banner = () => {
                 <FsLightbox
                   toggler={toggler}
                   sources={[
-                    'https://youtu.be/ksf5BMLhRE0',
+                    'https://www.youtube.com/embed/ksf5BMLhRE0?autoplay=1',
                   ]}
+
                 />
               </div>
             </div>

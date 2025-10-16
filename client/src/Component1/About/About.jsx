@@ -9,7 +9,7 @@ const About = () => {
   const { currentLanguage } = useLanguage();
   const t = (key) => getTranslation(currentLanguage, key);
   return (
-    <section className='pb-[120px] pt-[170px] lg:pt-28 xl:pt-[170px] relative z-10'>
+    <section className='pb-[120px] pt-[170px] lg:pt-28 xl:pt-[170px] relative z-10 bg-BodyBg4-0'>
       <div className='Container'>
         <div className='grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-20 lg:gap-10 2xl:gap-16 items-center'>
           <div className='relative z-10'>
@@ -19,7 +19,7 @@ const About = () => {
               draggable='false'
               className='w-full 2xl:w-[inherit] lg:-ml-2 xl:-ml-12'
             />
-            <div className='absolute sm:mr-12 -top-8 sm:-top-16 right-6 md:-top-8 lg:-top-14 sm:right-2 md:right-8 lg:right-0 xl:right-8 xl:-top-20 2xl:-top-[70px] 2xl:right-[56px] size-[85px] sm:size-[142px] md:size-[180px] lg:size-[140px] xl:size-[180px] bg-BodyBg-0 rounded-full flex items-center justify-center border-2 sm:border-[5px] border-white'>
+            <div className='absolute sm:mr-12 -top-8 sm:-top-16 right-6 md:-top-8 lg:-top-14 sm:right-2 md:right-8 lg:right-0 xl:right-8 xl:-top-20 2xl:-top-[70px] 2xl:right-[56px] size-[85px] sm:size-[142px] md:size-[180px] lg:size-[140px] xl:size-[180px] bg-BodyBg-0 dark:bg-gray-800 rounded-full flex items-center justify-center border-2 sm:border-[5px] border-white dark:border-gray-600'>
               <div className='size-16 sm:size-24 md:size-32 lg:size-24 xl:size-[120px] animate-rotational'>
                 <svg
                   xmlns='http://www.w3.org/2000/svg'
@@ -31,12 +31,11 @@ const About = () => {
                     id='e-path-35ee1b2'
                     className='fill-transparent'
                   ></path>
-                  <text className='font-FiraSans text-[32px] uppercase'>
+                  <text className='font-FiraSans text-[32px] uppercase fill-HeadingColor-0 dark:fill-green-400'>
                     <textPath
                       id='e-text-path-35ee1b2'
                       href='#e-path-35ee1b2'
                       startOffset='0%'
-                      className='fill-HeadingColor-0'
                     >
                       * C&T. * Electronic Electrical * Company Limited
                     </textPath>

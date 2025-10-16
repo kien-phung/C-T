@@ -1,6 +1,11 @@
 import CountUp from "react-countup";
+import { useLanguage } from '../../contexts/LanguageContext';
+import { getTranslation } from '../../utils/translations';
 
 const Counter = () => {
+  const { currentLanguage } = useLanguage();
+  const t = (key) => getTranslation(currentLanguage, key);
+
   return (
     <div className='Container'>
       <div className='bg-[url(/images/counter_bg.png)] bg-no-repeat bg-cover bg-center relative z-10 grid grid-cols-1 md:grid-cols-2 gap-7 lg:gap-0 lg:grid-cols-3 items-center justify-center py-[71px] px-3 rounded-md -mt-[100px]'>
@@ -14,7 +19,7 @@ const Counter = () => {
             />
           </div>
           <p className='font-FiraSans text-[15px] text-white capitalize'>
-            Completed Works <br /> with Satisfaction
+            {t('counter.completedWorks')} <br /> {t('counter.withSatisfaction')}
           </p>
         </div>
         <div className='relative flex items-center justify-center gap-10'>
@@ -29,7 +34,7 @@ const Counter = () => {
           </div>
           <div>
             <p className='font-FiraSans text-[15px] text-white capitalize mt-2'>
-              Satisfied Active <br /> Customers
+              {t('counter.avgClientsRatings')}
             </p>
           </div>
         </div>
@@ -44,7 +49,7 @@ const Counter = () => {
             />
           </div>
           <p className='font-FiraSans text-[15px] text-white capitalize'>
-            Average Clients <br /> Ratings
+            {t('counter.trackAnalyze')} <br /> {t('counter.businessReports')}
           </p>
         </div>
       </div>

@@ -22,11 +22,11 @@ const Footer = () => {
   const t = (key) => getTranslation(currentLanguage, key);
   return (
     <>
-      <div className='bg-PrimaryColor-0 py-3'>
+      <div className='bg-PrimaryColor-0 dark:bg-green-700 py-3'>
         <div className='Container'>
           <div className='grid grid-cols-1 md:grid-cols-2 gap-7 lg:gap-0 lg:grid-cols-3 lg:items-center'>
             <div className='flex items-center gap-5'>
-              <div className='size-[60px] bg-BorderColor2-0 rounded-full flex items-center justify-center text-white'>
+              <div className='size-[60px] bg-BorderColor2-0 dark:bg-green-800 rounded-full flex items-center justify-center text-white'>
                 <FaRegEnvelope size={'22'} />
               </div>
               <div>
@@ -40,7 +40,7 @@ const Footer = () => {
                 </Link>
               </div>
             </div>
-            <div className='flex md:justify-center md:border-l lg:border-l-0 xl:border-x-2 border-BorderColor2-0 py-2'>
+            <div className='flex md:justify-center md:border-l lg:border-l-0 xl:border-x-2 border-BorderColor2-0 dark:border-green-800 py-2'>
               <Link to={'/'}>
                 <img
                   src={footerLogo}
@@ -54,7 +54,7 @@ const Footer = () => {
                 <li>
                   <Link
                     to={'/'}
-                    className='size-[48px] flex justify-center items-center rounded-full bg-BorderColor2-0 transition-all duration-500 text-white hover:text-PrimaryColor-0 relative z-10 after:absolute after:rounded-full after:top-0 after:left-0 after:bg-white after:w-full after:h-full after:scale-0 after:-z-10 after:transition-all after:duration-500 hover:after:scale-100'
+                    className='size-[48px] flex justify-center items-center rounded-full bg-BorderColor2-0 dark:bg-green-800 transition-all duration-500 text-white hover:text-PrimaryColor-0 dark:hover:text-green-400 relative z-10 after:absolute after:rounded-full after:top-0 after:left-0 after:bg-white dark:after:bg-gray-800 after:w-full after:h-full after:scale-0 after:-z-10 after:transition-all after:duration-500 hover:after:scale-100'
                   >
                     <ImFacebook2 size={'15'} />
                   </Link>
@@ -62,7 +62,7 @@ const Footer = () => {
                 <li>
                   <Link
                     to={'/'}
-                    className='size-[48px] flex justify-center items-center rounded-full bg-BorderColor2-0 transition-all duration-500 text-white hover:text-PrimaryColor-0 relative z-10 after:absolute after:rounded-full after:top-0 after:left-0 after:bg-white after:w-full after:h-full after:scale-0 after:-z-10 after:transition-all after:duration-500 hover:after:scale-100'
+                    className='size-[48px] flex justify-center items-center rounded-full bg-BorderColor2-0 dark:bg-green-800 transition-all duration-500 text-white hover:text-PrimaryColor-0 dark:hover:text-green-400 relative z-10 after:absolute after:rounded-full after:top-0 after:left-0 after:bg-white dark:after:bg-gray-800 after:w-full after:h-full after:scale-0 after:-z-10 after:transition-all after:duration-500 hover:after:scale-100'
                   >
                     <FaXTwitter />
                   </Link>
@@ -70,7 +70,7 @@ const Footer = () => {
                 <li>
                   <Link
                     to={'/'}
-                    className='size-[48px] flex justify-center items-center rounded-full bg-BorderColor2-0 transition-all duration-500 text-white hover:text-PrimaryColor-0 relative z-10 after:absolute after:rounded-full after:top-0 after:left-0 after:bg-white after:w-full after:h-full after:scale-0 after:-z-10 after:transition-all after:duration-500 hover:after:scale-100'
+                    className='size-[48px] flex justify-center items-center rounded-full bg-BorderColor2-0 dark:bg-green-800 transition-all duration-500 text-white hover:text-PrimaryColor-0 dark:hover:text-green-400 relative z-10 after:absolute after:rounded-full after:top-0 after:left-0 after:bg-white dark:after:bg-gray-800 after:w-full after:h-full after:scale-0 after:-z-10 after:transition-all after:duration-500 hover:after:scale-100'
                   >
                     <FaLinkedinIn />
                   </Link>
@@ -78,7 +78,7 @@ const Footer = () => {
                 <li>
                   <Link
                     to={'/'}
-                    className='size-[48px] flex justify-center items-center rounded-full bg-BorderColor2-0 transition-all duration-500 text-white hover:text-PrimaryColor-0 relative z-10 after:absolute after:rounded-full after:top-0 after:left-0 after:bg-white after:w-full after:h-full after:scale-0 after:-z-10 after:transition-all after:duration-500 hover:after:scale-100'
+                    className='size-[48px] flex justify-center items-center rounded-full bg-BorderColor2-0 dark:bg-green-800 transition-all duration-500 text-white hover:text-PrimaryColor-0 dark:hover:text-green-400 relative z-10 after:absolute after:rounded-full after:top-0 after:left-0 after:bg-white dark:after:bg-gray-800 after:w-full after:h-full after:scale-0 after:-z-10 after:transition-all after:duration-500 hover:after:scale-100'
                   >
                     <FaInstagram />
                   </Link>
@@ -88,7 +88,10 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      <footer className="bg-[url('/images/footer_bg.jpg')] bg-no-repeat bg-center bg-cover relative z-10 pt-28 overflow-hidden">
+      <footer className="bg-[url('/images/footer_bg.jpg')] dark:bg-gray-900 bg-no-repeat bg-center bg-cover relative z-10 pt-28 overflow-hidden">
+        {/* Dark mode overlay */}
+        <div className='absolute inset-0 bg-gray-900 opacity-0 dark:opacity-90 transition-opacity duration-300 -z-20'></div>
+
         <img
           src={footerShape}
           draggable='false'
@@ -102,10 +105,10 @@ const Footer = () => {
         <div className='Container'>
           <div className='grid grid-cols-12 gap-6 lg:gap-0'>
             <div className='col-span-12 md:col-span-6 lg:col-span-4 xl:col-span-4'>
-              <h4 className='font-FiraSans text-2xl text-HeadingColor-0 font-medium'>
+              <h4 className='font-FiraSans text-2xl text-HeadingColor-0 dark:text-white font-medium'>
                 {t('footer.aboutUs')}
               </h4>
-              <p className='font-FiraSans text-TextColor2-0 text-[15px] mt-5 mb-8 max-w-[290px] w-full'>
+              <p className='font-FiraSans text-TextColor2-0 dark:text-gray-300 text-[15px] mt-5 mb-8 max-w-[290px] w-full'>
                 {t('footer.aboutDescription')}
               </p>
               <form
@@ -123,13 +126,13 @@ const Footer = () => {
                     id='email'
                     placeholder={t('footer.enterEmail')}
                     required
-                    className='w-full h-[56px] outline-none font-FiraSans border-b border-HeadingColor-0 border-opacity-30 bg-transparent px-4 py-4 text-HeadingColor-0 placeholder:text-HeadingColor-0 mb-4'
+                    className='w-full h-[56px] outline-none font-FiraSans border-b border-HeadingColor-0 dark:border-gray-600 border-opacity-30 bg-transparent px-4 py-4 text-HeadingColor-0 dark:text-white placeholder:text-HeadingColor-0 dark:placeholder:text-gray-400 mb-4'
                   />
                 </label>
                 <div className='absolute top-3 right-0'>
                   <button
                     type='submit'
-                    className='size-9 rounded-full border border-PrimaryColor-0 bg-PrimaryColor-0 gap-2 text-sm text-white font-FiraSans flex items-center justify-center relative z-10 before:absolute before:top-0 before:left-0 before:w-full before:h-full before:rounded before:bg-HeadingColor-0 before:-z-10 before:scale-0 before:transition-all before:duration-500 hover:before:scale-100'
+                    className='size-9 rounded-full border border-PrimaryColor-0 dark:border-green-600 bg-PrimaryColor-0 dark:bg-green-600 gap-2 text-sm text-white font-FiraSans flex items-center justify-center relative z-10 before:absolute before:top-0 before:left-0 before:w-full before:h-full before:rounded before:bg-HeadingColor-0 dark:before:bg-gray-700 before:-z-10 before:scale-0 before:transition-all before:duration-500 hover:before:scale-100'
                   >
                     <IoPaperPlaneSharp size={'20'} />
                   </button>
@@ -138,7 +141,7 @@ const Footer = () => {
             </div>
             <div className='col-span-12 md:col-span-6 lg:col-span-4 xl:col-span-4 flex justify-center'>
               <div>
-                <h4 className='font-FiraSans text-2xl text-HeadingColor-0 font-medium mb-[30px] text-center'>
+                <h4 className='font-FiraSans text-2xl text-HeadingColor-0 dark:text-white font-medium mb-[30px] text-center'>
                   {t('footer.quickLinks')}
                 </h4>
                 <ul className='overflow-hidden'>
@@ -147,8 +150,8 @@ const Footer = () => {
                       to={'/'}
                       className='inline-block'
                     >
-                      <button className='flex items-center gap-2 font-FiraSans -ml-5 hover:ml-0 text-[15px] text-HeadingColor-0 transition-all duration-500 hover:text-PrimaryColor-0 hover:gap-1 mb-3'>
-                        <FaAnglesRight className='text-xs text-PrimaryColor-0' />
+                      <button className='flex items-center gap-2 font-FiraSans -ml-5 hover:ml-0 text-[15px] text-HeadingColor-0 dark:text-gray-300 transition-all duration-500 hover:text-PrimaryColor-0 dark:hover:text-green-400 hover:gap-1 mb-3'>
+                        <FaAnglesRight className='text-xs text-PrimaryColor-0 dark:text-green-400' />
                         {t('footer.introduction')}
                       </button>
                     </Link>
@@ -158,8 +161,8 @@ const Footer = () => {
                       to={'/team'}
                       className='inline-block'
                     >
-                      <button className='flex items-center gap-2 font-FiraSans -ml-5 hover:ml-0 text-[15px] text-HeadingColor-0 transition-all duration-500 hover:text-PrimaryColor-0 hover:gap-1 mb-3'>
-                        <FaAnglesRight className='text-xs text-PrimaryColor-0' />
+                      <button className='flex items-center gap-2 font-FiraSans -ml-5 hover:ml-0 text-[15px] text-HeadingColor-0 dark:text-gray-300 transition-all duration-500 hover:text-PrimaryColor-0 dark:hover:text-green-400 hover:gap-1 mb-3'>
+                        <FaAnglesRight className='text-xs text-PrimaryColor-0 dark:text-green-400' />
                         {t('footer.team')}
                       </button>
                     </Link>
@@ -169,8 +172,8 @@ const Footer = () => {
                       to={'/service_details'}
                       className='inline-block'
                     >
-                      <button className='flex items-center gap-2 font-FiraSans -ml-5 hover:ml-0 text-[15px] text-HeadingColor-0 transition-all duration-500 hover:text-PrimaryColor-0 hover:gap-1 mb-3'>
-                        <FaAnglesRight className='text-xs text-PrimaryColor-0' />
+                      <button className='flex items-center gap-2 font-FiraSans -ml-5 hover:ml-0 text-[15px] text-HeadingColor-0 dark:text-gray-300 transition-all duration-500 hover:text-PrimaryColor-0 dark:hover:text-green-400 hover:gap-1 mb-3'>
+                        <FaAnglesRight className='text-xs text-PrimaryColor-0 dark:text-green-400' />
                         {t('footer.products')}
                       </button>
                     </Link>
@@ -180,8 +183,8 @@ const Footer = () => {
                       to={'/contact'}
                       className='inline-block'
                     >
-                      <button className='flex items-center gap-2 font-FiraSans -ml-5 hover:ml-0 text-[15px] text-HeadingColor-0 transition-all duration-500 hover:text-PrimaryColor-0 hover:gap-1 mb-3'>
-                        <FaAnglesRight className='text-xs text-PrimaryColor-0' />
+                      <button className='flex items-center gap-2 font-FiraSans -ml-5 hover:ml-0 text-[15px] text-HeadingColor-0 dark:text-gray-300 transition-all duration-500 hover:text-PrimaryColor-0 dark:hover:text-green-400 hover:gap-1 mb-3'>
+                        <FaAnglesRight className='text-xs text-PrimaryColor-0 dark:text-green-400' />
                         {t('footer.contactLink')}
                       </button>
                     </Link>
@@ -191,8 +194,8 @@ const Footer = () => {
                       to={'/blog_grid'}
                       className='inline-block'
                     >
-                      <button className='flex items-center gap-2 font-FiraSans -ml-5 hover:ml-0 text-[15px] text-HeadingColor-0 transition-all duration-500 hover:text-PrimaryColor-0 hover:gap-1'>
-                        <FaAnglesRight className='text-xs text-PrimaryColor-0' />
+                      <button className='flex items-center gap-2 font-FiraSans -ml-5 hover:ml-0 text-[15px] text-HeadingColor-0 dark:text-gray-300 transition-all duration-500 hover:text-PrimaryColor-0 dark:hover:text-green-400 hover:gap-1'>
+                        <FaAnglesRight className='text-xs text-PrimaryColor-0 dark:text-green-400' />
                         {t('footer.news')}
                       </button>
                     </Link>
@@ -202,7 +205,7 @@ const Footer = () => {
             </div>
             <div className='col-span-12 md:col-span-6 lg:col-span-4 xl:col-span-4 flex justify-end'>
               <div>
-                <h4 className='font-FiraSans text-2xl text-HeadingColor-0 font-medium mb-[36px] text-center'>
+                <h4 className='font-FiraSans text-2xl text-HeadingColor-0 dark:text-white font-medium mb-[36px] text-center'>
                   {t('footer.latestNews')}
                 </h4>
                 <Link
@@ -216,15 +219,15 @@ const Footer = () => {
                     />
                   </div>
                   <div className='flex-1'>
-                    <h6 className='font-FiraSans font-medium text-HeadingColor-0 transition-all duration-500 group-hover:text-PrimaryColor-0'>
+                    <h6 className='font-FiraSans font-medium text-HeadingColor-0 dark:text-white transition-all duration-500 group-hover:text-PrimaryColor-0 dark:group-hover:text-green-400'>
                       {currentLanguage === 'VN' ? (
                         <>Diễn Đàn Đổi Mới <br className='hidden 2xl:block' /> Sáng Tạo Năng Lượng</>
                       ) : (
                         <>Energy <br className='hidden 2xl:block' /> Innovation Forum</>
                       )}
                     </h6>
-                    <p className='font-FiraSans text-sm text-TextColor2-0 flex items-center gap-2 mt-1'>
-                      <span className='text-PrimaryColor-0'>
+                    <p className='font-FiraSans text-sm text-TextColor2-0 dark:text-gray-400 flex items-center gap-2 mt-1'>
+                      <span className='text-PrimaryColor-0 dark:text-green-400'>
                         <FaCircle size={'8'} />
                       </span>
                       {currentLanguage === 'VN' ? '16 th11, 2025' : 'Nov 16, 2025'}
@@ -242,15 +245,15 @@ const Footer = () => {
                     />
                   </div>
                   <div className='flex-1'>
-                    <h6 className='font-FiraSans font-medium text-HeadingColor-0 transition-all duration-500 group-hover:text-PrimaryColor-0'>
+                    <h6 className='font-FiraSans font-medium text-HeadingColor-0 dark:text-white transition-all duration-500 group-hover:text-PrimaryColor-0 dark:group-hover:text-green-400'>
                       {currentLanguage === 'VN' ? (
                         <>Giải Pháp Hệ Thống <br className='hidden 2xl:block' /> Camera Giám Sát Tích Hợp AI</>
                       ) : (
                         <>AI-Integrated Camera <br className='hidden 2xl:block' /> Surveillance System</>
                       )}
                     </h6>
-                    <p className='font-FiraSans text-sm text-TextColor2-0 flex items-center gap-2 mt-1'>
-                      <span className='text-PrimaryColor-0'>
+                    <p className='font-FiraSans text-sm text-TextColor2-0 dark:text-gray-400 flex items-center gap-2 mt-1'>
+                      <span className='text-PrimaryColor-0 dark:text-green-400'>
                         <FaCircle size={'8'} />
                       </span>
                       {currentLanguage === 'VN' ? '16 th11, 2025' : 'Nov 16, 2025'}
@@ -261,12 +264,12 @@ const Footer = () => {
             </div>
           </div>
         </div>
-        <div className='Container flex flex-col gap-5 md:flex-row md:gap-0 justify-between mt-[120px] py-6 border-t border-HeadingColor-0 border-opacity-20'>
-          <p className='font-FiraSans text-HeadingColor-0 text-[15px]'>
+        <div className='Container flex flex-col gap-5 md:flex-row md:gap-0 justify-between mt-[120px] py-6 border-t border-HeadingColor-0 dark:border-gray-700 border-opacity-20'>
+          <p className='font-FiraSans text-HeadingColor-0 dark:text-gray-300 text-[15px]'>
             {t('footer.copyright')}{' '}
             <Link
               to={'/'}
-              className='text-PrimaryColor-0'
+              className='text-PrimaryColor-0 dark:text-green-400'
             >
               STL Solutions
             </Link>{' '}
@@ -276,21 +279,21 @@ const Footer = () => {
             <ul className='flex gap-7'>
               <li>
                 <Link to={'/'}>
-                  <button className='font-FiraSans text-HeadingColor-0 text-[15px] transition-all duration-500 hover:text-PrimaryColor-0'>
+                  <button className='font-FiraSans text-HeadingColor-0 dark:text-gray-300 text-[15px] transition-all duration-500 hover:text-PrimaryColor-0 dark:hover:text-green-400'>
                     {t('footer.privacyTerms')}
                   </button>
                 </Link>
               </li>
               <li>
                 <Link to={'/'}>
-                  <button className='font-FiraSans text-HeadingColor-0 text-[15px] transition-all duration-500 hover:text-PrimaryColor-0'>
+                  <button className='font-FiraSans text-HeadingColor-0 dark:text-gray-300 text-[15px] transition-all duration-500 hover:text-PrimaryColor-0 dark:hover:text-green-400'>
                     {t('footer.faq')}
                   </button>
                 </Link>
               </li>
               <li>
                 <Link to={'/'}>
-                  <button className='font-FiraSans text-HeadingColor-0 text-[15px] transition-all duration-500 hover:text-PrimaryColor-0'>
+                  <button className='font-FiraSans text-HeadingColor-0 dark:text-gray-300 text-[15px] transition-all duration-500 hover:text-PrimaryColor-0 dark:hover:text-green-400'>
                     {t('footer.contactUsFooter')}
                   </button>
                 </Link>

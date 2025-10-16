@@ -3,7 +3,7 @@ import { FaCircle } from 'react-icons/fa6';
 
 const BreadCrumb2 = () => {
   return (
-    <div className='relative z-10 before:-z-10 before:absolute before:top-0 before:left-0 before:w-full before:h-[80%] before:bg-BodyBg4-0'>
+    <div className='relative z-10 before:-z-10 before:absolute before:top-0 before:left-0 before:w-full before:h-[80%] before:bg-BodyBg4-0 dark:before:bg-gray-900'>
       <div className='flex items-center justify-start sm:pb-[60px] h-[400px] sm:h-[500px] md:h-[600px] text-center mx-3 md:mx-10 lg:mx-[66px] overflow-hidden rounded-2xl md:rounded-[30px] relative z-10'>
         <span className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 overflow-hidden'>
           <img

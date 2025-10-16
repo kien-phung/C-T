@@ -131,6 +131,14 @@ export const translations = {
       ecommerce: 'Website bán hàng',
       companyIntegration: 'Công ty tổng',
     },
+    // Counter/Stats
+    counter: {
+      completedWorks: 'Dự Án Hoàn Thành',
+      withSatisfaction: 'Với Sự Hài Lòng',
+      avgClientsRatings: 'Đánh Giá Trung Bình',
+      trackAnalyze: 'Theo Dõi và Phân Tích',
+      businessReports: 'Báo Cáo Kinh Doanh',
+    },
     // Common
     common: {
       readMore: 'Đọc Thêm',
@@ -269,6 +277,14 @@ export const translations = {
       busTicketing: 'Bus station, passenger transport',
       ecommerce: 'E-commerce website',
       companyIntegration: 'Corporate integration',
+    },
+    // Counter/Stats
+    counter: {
+      completedWorks: 'Completed Works',
+      withSatisfaction: 'With Satisfaction',
+      avgClientsRatings: 'Avg. Clients Ratings',
+      trackAnalyze: 'Track and Analyze',
+      businessReports: 'Business Reports',
     },
     // Common
     common: {

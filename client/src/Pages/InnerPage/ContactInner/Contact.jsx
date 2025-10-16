@@ -1,4 +1,5 @@
 import { FaPhoneAlt, FaRegThumbsUp, FaUser } from 'react-icons/fa';
+import { FaHouse } from 'react-icons/fa6';
 import { HiOutlineMailOpen } from 'react-icons/hi';
 import { MdCall } from 'react-icons/md';
 import border from '/images/hero_border.png';
@@ -136,36 +137,20 @@ const Contact = () => {
                   </div>
                 </div>
                 <div className='grid grid-cols-1 sm:grid-cols-2 gap-5'>
-                  <select
-                    name='select'
-                    id='select'
-                    className='font-FiraSans text-black placeholder:text-gray-600 text-sm bg-transparent border border-Secondarycolor-0 border-opacity-20 rounded py-2 px-6 h-[54px] w-full focus:outline-PrimaryColor-0'
-                  >
-                    <option
-                      value='subject'
-                      className='text-TextColor-0'
-                    >
-                      {currentLanguage === 'VN' ? 'Chọn chủ đề' : 'Select subject'}
-                    </option>
-                    <option
-                      value='product'
-                      className='text-TextColor-0'
-                    >
-                      {currentLanguage === 'VN' ? 'Hỏi về sản phẩm' : 'Product inquiry'}
-                    </option>
-                    <option
-                      value='solution'
-                      className='text-TextColor-0'
-                    >
-                      {currentLanguage === 'VN' ? 'Hỏi về giải pháp' : 'Solution inquiry'}
-                    </option>
-                    <option
-                      value='support'
-                      className='text-TextColor-0'
-                    >
-                      {currentLanguage === 'VN' ? 'Hỗ trợ kỹ thuật' : 'Technical support'}
-                    </option>
-                  </select>
+                  <div className='relative inline-block'>
+                    <input
+                      type='text'
+                      name='address'
+                      id='address'
+                      placeholder={t('contact.addressPlaceholder')}
+                      required
+                      className='font-FiraSans text-black placeholder:text-gray-600 text-sm bg-transparent border border-Secondarycolor-0 border-opacity-20 rounded py-2 px-6 h-[54px] w-full focus:outline-PrimaryColor-0'
+                    />
+                    <FaHouse
+                      size={'16'}
+                      className='absolute text-PrimaryColor-0 top-1/2 -translate-y-1/2 right-5'
+                    />
+                  </div>
                   <div className='relative inline-block'>
                     <input
                       type='text'

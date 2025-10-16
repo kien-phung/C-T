@@ -67,10 +67,10 @@ const Testimonial = () => {
   const testiData = getCertificateData(currentLanguage);
 
   const settings = {
-    loop: true,
+    loop: false,
     spaceBetween: 30,
     speed: 1500,
-    autoplay: true,
+    autoplay: false,
     breakpoints: {
       320: {
         slidesPerView: 1,
@@ -88,7 +88,7 @@ const Testimonial = () => {
   };
 
   return (
-    <section className='testimonial pt-28 pb-[220px] bg-[url(/images/testi_bg.png)] bg-no-repeat bg-cover bg-center relative z-10 overflow-hidden'>
+    <section className='testimonial pt-28 pb-[120px] bg-[url(/images/testi_bg.png)] bg-no-repeat bg-cover bg-center relative z-10 overflow-hidden'>
       <div className='absolute -z-10 top-24 right-[35%] hidden 2xl:block animate-rotate'>
         <img
           src={serviceShape4}
@@ -110,10 +110,10 @@ const Testimonial = () => {
       <div className='Container'>
         <div className='grid grid-cols-6 lg:grid-cols-12'>
           <div className='col-span-6 lg:col-span-5'>
-            <h5 className='font-FiraSans font-medium text-sm sm:text-base text-PrimaryColor-0 uppercase mb-3'>
+            <h5 className='font-FiraSans font-medium text-sm sm:text-base text-PrimaryColor-0 dark:text-green-400 uppercase mb-3'>
               {t('testimonial.sectionTitle')}
             </h5>
-            <h1 className='font-FiraSans font-semibold text-HeadingColor-0 text-[16px] leading-[26px] sm:text-[25px] sm:leading-[35px] md:text-[30px] md:leading-[40px] lg:text-[34px] lg:leading-[44px] xl:text-[40px] xl:leading-[50px] 2xl:text-[42px] 2xl:leading-[52px] relative pb-4'>
+            <h1 className='font-FiraSans font-semibold text-HeadingColor-0 dark:text-white text-[16px] leading-[26px] sm:text-[25px] sm:leading-[35px] md:text-[30px] md:leading-[40px] lg:text-[34px] lg:leading-[44px] xl:text-[40px] xl:leading-[50px] 2xl:text-[42px] 2xl:leading-[52px] relative pb-4'>
               {t('testimonial.title')}
               <img
                 src={border}
@@ -121,15 +121,15 @@ const Testimonial = () => {
                 className='absolute bottom-0 left-0'
               />
             </h1>
-            <p className='font-FiraSans text-lg text-TextColor2-0 pt-[30px] pb-6'>
+            <p className='font-FiraSans text-lg text-TextColor2-0 dark:text-gray-300 pt-[30px] pb-6'>
               {t('testimonial.subtitle')}
             </p>
-            <div className='flex items-center gap-[22px] border-y border-BorderColor-0 py-[26px] relative sm:mr-10'>
+            <div className='flex items-center gap-[22px] border-y border-BorderColor-0 dark:border-gray-600 py-[26px] relative sm:mr-10'>
               <CountUp
                 start={0}
                 prefix=''
                 end={2}
-                className='font-FiraSans text-3xl leading-[22px] sm:text-[50px] sm:leading-[42px] xl:text-[56px] xl:leading-[44px] text-PrimaryColor-0 font-medium border-r border-BorderColor-0 pr-[22px]'
+                className='font-FiraSans text-3xl leading-[22px] sm:text-[50px] sm:leading-[42px] xl:text-[56px] xl:leading-[44px] text-PrimaryColor-0 dark:text-green-400 font-medium border-r border-BorderColor-0 dark:border-gray-600 pr-[22px]'
               />
               <div>
                 <ul className='flex gap-[6px] items-center'>
@@ -149,7 +149,7 @@ const Testimonial = () => {
                     <MdOutlineStarPurple500 />
                   </li>
                 </ul>
-                <p className='font-FiraSans text-lg text-TextColor2-0 pt-1'>
+                <p className='font-FiraSans text-lg text-TextColor2-0 dark:text-gray-300 pt-1'>
                   {t('testimonial.governmentCertified')}
                 </p>
               </div>
@@ -160,8 +160,8 @@ const Testimonial = () => {
                 />
               </div>
             </div>
-            <h6 className='font-FiraSans text-TextColor2-0 flex items-center gap-2 pt-[18px]'>
-              <span className='text-PrimaryColor-0'>
+            <h6 className='font-FiraSans text-TextColor2-0 dark:text-gray-300 flex items-center gap-2 pt-[18px]'>
+              <span className='text-PrimaryColor-0 dark:text-green-400'>
                 <IoIosCheckmarkCircle size={'22'} />
               </span>
               {t('testimonial.governmentCertificate')}
@@ -172,9 +172,8 @@ const Testimonial = () => {
               {...settings}
               modules={[]}
               className='testimonial-swiper'
-              style={{ '--swiper-wrapper-height': 'auto' }}
             >
-              <div>
+              <div className='swiper-wrapper' style={{ alignItems: 'stretch' }}>
                 {testiData.map(
                   ({
                     id,
@@ -186,8 +185,8 @@ const Testimonial = () => {
                     testiDesc,
                   }) => {
                     return (
-                      <SwiperSlide key={id}>
-                        <div className='pb-[52px] h-full'>
+                      <SwiperSlide key={id} style={{ height: 'auto', display: 'flex' }}>
+                        <div className='pb-[52px] w-full flex'>
                           <TestimonialCard
                             testiThumb={testiThumb}
                             testiQuote={testiQuote}

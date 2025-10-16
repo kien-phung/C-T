@@ -15,15 +15,17 @@ body {
 }
 
 /* Smooth transition for theme toggle - ONLY color properties */
-* {
-  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, fill 0.3s ease, stroke 0.3s ease;
-}
-
-/* Disable transition for spacing and layout properties */
-*,
-*::before,
-*::after {
-  transition-property: background-color, color, border-color, fill, stroke !important;
+/* Apply only to specific elements, not globally */
+body,
+section,
+div:not([class*="animate-"]),
+header,
+footer,
+nav,
+button:not([class*="animate-"]),
+input,
+textarea {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 }
 
 /* Dark Mode Styles - ONLY color changes, NO spacing modifications */
@@ -40,9 +42,35 @@ body {
   background-color: #1f2937 !important;
 }
 
-.dark section {
-  background-color: #111827 !important;
+/* Keep image containers visible in dark mode - higher specificity */
+/* Force images to always be visible - updated fix */
+.dark img,
+.dark div > img {
+  opacity: 1 !important;
+  visibility: visible !important;
+  filter: none !important;
 }
+
+.dark .bg-gray-50,
+.dark .bg-gray-100 {
+  background-color: #374151 !important;
+}
+
+/* Ensure dark mode classes work for image containers */
+/* Target the compiled dark:bg-gray-700 class */
+.dark .dark\:bg-gray-700 {
+  background-color: #374151 !important;
+}
+
+/* Also target if Tailwind compiles it differently */
+:is(.dark *).dark\:bg-gray-700 {
+  background-color: #374151 !important;
+}
+
+/* Removed global section background to prevent spacing issues */
+/* .dark section {
+  background-color: #111827 !important;
+} */
 
 .dark footer {
   background-color: #111827 !important;
@@ -105,11 +133,14 @@ body {
 }
 
 /* Background overlays for sections with bg images */
-.dark [class*="bg-[url"] {
+/* Only apply to section backgrounds, not image containers */
+.dark .bg-\[url\(\'\/images\/breadcrumb_bg\.png\'\)\],
+.dark .bg-\[url\(\/images\/blog3_bg\.png\)\] {
   position: relative;
 }
 
-.dark [class*="bg-[url"]::before {
+.dark .bg-\[url\(\'\/images\/breadcrumb_bg\.png\'\)\]::before,
+.dark .bg-\[url\(\/images\/blog3_bg\.png\)\]::before {
   content: '';
   position: absolute;
   top: 0;
@@ -121,9 +152,18 @@ body {
   pointer-events: none;
 }
 
-.dark [class*="bg-[url"] > * {
+.dark .bg-\[url\(\'\/images\/breadcrumb_bg\.png\'\)\] > *,
+.dark .bg-\[url\(\/images\/blog3_bg\.png\)\] > * {
   position: relative;
   z-index: 2;
+}
+
+/* Special handling for sections - simpler approach without overlay to prevent spacing issues */
+.dark .bg-\[url\(\/images\/choose_bg\.jpg\)\],
+.dark .bg-\[url\(\/images\/team_bg\.png\)\],
+.dark .bg-\[url\(\/images\/testi_bg\.png\)\] {
+  background-color: #111827 !important;
+  background-blend-mode: multiply;
 }
 
 
@@ -473,6 +513,21 @@ span.swiper-pagination-bullet.swiper-pagination-bullet-active::before {
   border-radius: 6px 80px 6px 6px !important;
 }
 
+/* Testimonial Swiper Equal Heights */
+.testimonial-swiper .swiper-wrapper {
+  align-items: stretch !important;
+}
+
+.testimonial-swiper .swiper-slide {
+  height: auto !important;
+  display: flex !important;
+}
+
+.testimonial-swiper .swiper-slide > div {
+  width: 100%;
+  display: flex;
+}
+
 /* Faq */
 
 .faq-button[aria-expanded='true'],
@@ -631,10 +686,10 @@ span.swiper-pagination-bullet.swiper-pagination-bullet-active::before {
 }
 
 /* Team Member */
-
-.team-member:nth-child(2n + 2) {
+/* Removed alternating margin to fix dark mode layout */
+/* .team-member:nth-child(2n + 2) {
   margin-top: 30px;
-}
+} */
 
 /* Language Toggle Animation */
 @keyframes slideIn {
@@ -645,5 +700,49 @@ span.swiper-pagination-bullet.swiper-pagination-bullet-active::before {
   100% {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+/* Theme Toggle Animations */
+@keyframes rotateIn {
+  0% {
+    opacity: 0;
+    transform: rotate(-180deg) scale(0);
+  }
+  100% {
+    opacity: 1;
+    transform: rotate(0deg) scale(1);
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 10px rgba(34, 197, 94, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(34, 197, 94, 0.6);
+  }
+}
+
+/* Hamburger Menu Animation */
+@media (max-width: 1023px) {
+  .header-right-box button:hover span:nth-child(1) {
+    transform: translateY(-2px);
+  }
+
+  .header-right-box button:hover span:nth-child(3) {
+    transform: translateY(2px);
+  }
+
+  .header-right-box button:active span:nth-child(1) {
+    transform: rotate(45deg) translateY(8px);
+  }
+
+  .header-right-box button:active span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .header-right-box button:active span:nth-child(3) {
+    transform: rotate(-45deg) translateY(-8px);
   }
 }

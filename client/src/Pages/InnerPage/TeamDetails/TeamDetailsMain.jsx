@@ -58,6 +58,7 @@ const TeamDetailsMain = () => {
                   </p>
                 </div>
               </div>
+              
             </div>
             <div className="flex items-center gap-6 my-[50px]">
               <h5 className="font-FiraSans font-semibold text-2xl text-HeadingColor-0">

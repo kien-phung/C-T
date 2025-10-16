@@ -93,12 +93,7 @@ const TeamMember = () => {
 
   return (
     <section
-      className='py-28 relative z-10'
-      style={{
-        backgroundImage: "url('/images/team_bg.png')",
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-      }}
+      className='pt-28 pb-28 relative z-10 bg-[url(/images/team_bg.png)] bg-cover bg-center'
     >
       <div className='absolute -z-10 top-10 left-1/2 -translate-x-1/2'>
         <img
@@ -109,10 +104,10 @@ const TeamMember = () => {
       </div>
       <div className='Container'>
         <div className='text-center'>
-          <h5 className='font-FiraSans font-medium text-sm sm:text-base text-PrimaryColor-0 uppercase mb-3'>
+          <h5 className='font-FiraSans font-medium text-sm sm:text-base text-PrimaryColor-0 dark:text-green-400 uppercase mb-3'>
             {t('team.sectionTitle')}
           </h5>
-          <h1 className='font-FiraSans font-semibold text-HeadingColor-0 inline-block text-[16px] leading-[26px] sm:text-[25px] sm:leading-[35px] md:text-[30px] md:leading-[40px] lg:text-[34px] lg:leading-[44px] xl:text-[40px] xl:leading-[50px] 2xl:text-[42px] 2xl:leading-[52px] relative pb-4'>
+          <h1 className='font-FiraSans font-semibold text-HeadingColor-0 dark:text-white inline-block text-[16px] leading-[26px] sm:text-[25px] sm:leading-[35px] md:text-[30px] md:leading-[40px] lg:text-[34px] lg:leading-[44px] xl:text-[40px] xl:leading-[50px] 2xl:text-[42px] 2xl:leading-[52px] relative pb-4'>
             {t('team.title')}
             <img
               src={border}

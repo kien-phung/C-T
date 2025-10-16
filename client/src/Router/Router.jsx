@@ -3,6 +3,7 @@ import Main from '../Main/Main';
 import Home1 from '../Pages/Home1/Home1'; // Trang Chủ
 import ErrorPage from '../Shared/ErrorPage/ErrorPage';
 import AboutInner from '../Pages/InnerPage/AboutInner/AboutInner'; // Giải Pháp
+import SolutionDetails from '../Pages/InnerPage/SolutionDetails/SolutionDetails'; // Chi tiết Giải Pháp
 import ServiceDetails from '../Pages/InnerPage/ServiceDetails/ServiceDetails'; // Sản Phẩm
 import ContactInner from '../Pages/InnerPage/ContactInner/ContactInner'; // Liên Hệ
 import PolicyInner from '../Pages/InnerPage/PolicyInner/PolicyInner'; // Chính Sách
@@ -27,6 +28,10 @@ const router = createBrowserRouter([
       {
         path: '/about', // Giải Pháp
         element: <AboutInner />,
+      },
+      {
+        path: '/solution/:slug', // Chi tiết Giải Pháp
+        element: <SolutionDetails />,
       },
       {
         path: '/contact', // Liên Hệ
