@@ -84,6 +84,9 @@
 
 .offcanvas .main-menu-mobile {
   margin-bottom: 50px;
+  padding: 0;
+  margin-left: 0;
+  margin-right: 0;
 }
 
 .offcanvas.opened {
@@ -331,8 +334,8 @@
 /* Header Main Menu */
 
 .header-area {
-  /* navbar background changed to light sea-blue */
-  background: #cfeff2;
+  /* navbar background changed to blue */
+  background: #dbeafe;
   position: absolute;
   z-index: 50;
   width: 100%;
@@ -340,18 +343,18 @@
 
 /* Dark mode header */
 .dark .header-area {
-  background: #1f2937;
+  background: #111827;
 }
 
 @media only screen and (max-width: 991px) {
-  /* keep mobile navbar matching the requested light sea-blue */
+  /* keep mobile navbar matching blue */
   .header-area {
-    background: #cfeff2;
+    background: #dbeafe;
     padding: 8px 0 !important;
   }
 
   .dark .header-area {
-    background: #1f2937;
+    background: #111827;
   }
 
   /* Compact mobile header */
@@ -374,13 +377,13 @@
   backdrop-filter: blur(6px);
   /* keep existing header animation if present */
   animation: headerSlideDown 500ms ease-in-out 0s 1 normal both;
-  /* override background color for sticky header to the requested light sea-blue */
-  background-color: #cfeff2 !important;
+  /* override background color for sticky header to blue */
+  background-color: #dbeafe !important;
 }
 
 /* Dark mode sticky header */
 .dark .is-sticky {
-  background-color: #1f2937 !important;
+  background-color: #111827 !important;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
 
@@ -393,7 +396,7 @@
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
   backdrop-filter: blur(6px);
   animation: headerSlideDown 500ms ease-in-out 0s 1 normal both;
-  background-color: #cfeff2 !important;
+  background-color: #dbeafe !important;
 }
 
 .header-creative.is-sticky .header-logo {
@@ -429,7 +432,7 @@
 }
 
 .header-logo img {
-  max-height: 50px;
+  max-height: 65px;
   width: auto;
   object-fit: contain;
 }
@@ -442,7 +445,7 @@
   }
 
   .header-logo img {
-    max-height: 35px !important;
+    max-height: 45px !important;
   }
 }
 
@@ -699,8 +702,11 @@ nav.main-menu-content > ul > li:hover > a > span {
 
 .main-menu-mobile ul {
   position: static;
-  display: block;
+  display: flex;
+  flex-direction: column;
   box-shadow: none;
+  padding: 0;
+  margin: 0;
 }
 
 .main-menu-mobile ul li {
@@ -708,10 +714,11 @@ nav.main-menu-content > ul > li:hover > a > span {
   position: relative;
   width: 100%;
   padding: 0;
+  display: block;
 }
 
 .main-menu-mobile ul li:not(:last-child) a {
-  border-bottom: 1px solid #ffffff33;
+  border-bottom: none;
 }
 
 .main-menu-mobile ul > li > ul > li > a {
@@ -810,15 +817,18 @@ li.has-dropdown a button span {
 }
 
 .main-menu-mobile ul li > a {
-  display: block;
+  display: flex;
+  align-items: center;
   font-size: 18px;
   color: #ffffff;
   position: relative;
   padding: 16px 0;
   padding-right: 20px;
+  padding-left: 0;
   font-family: 'Fira Sans', sans-serif;
   font-weight: 500;
   transition: all 0.3s ease;
+  text-align: left;
 }
 
 .main-menu-mobile ul li > a svg {
@@ -845,10 +855,11 @@ li.has-dropdown a button span {
 .main-menu-mobile ul li > a .menu-text {
   font-size: 16px;
   line-height: 11px;
-  border-bottom: 1px solid #eaebed;
-  width: 82%;
-  display: inline-block;
+  border-bottom: none;
+  width: 100%;
+  display: block;
   padding: 19px 0 17px;
+  text-align: left;
 }
 
 .main-menu-mobile ul li img {
@@ -1001,8 +1012,8 @@ li.has-dropdown a button span {
 }
 
 .header-area.header-classic.is-sticky {
-  /* override classic sticky background to the requested light sea-blue */
-  background: #cfeff2;
+  /* override classic sticky background to blue */
+  background: #dbeafe;
   padding: 8px;
 }
 
@@ -1060,14 +1071,24 @@ li.has-dropdown a button span {
 
 /* Header Style Three */
 .header-area.style-three {
-  background: transparent;
+  background: #dbeafe;
   position: relative;
   z-index: 50;
   width: 100%;
 }
 
+/* Dark mode for style-three */
+.dark .header-area.style-three {
+  background: #111827;
+}
+
 .header-area.style-three.is-sticky {
-  background: #ffffff75;
+  background: #dbeafe;
+}
+
+/* Dark mode for style-three sticky */
+.dark .header-area.style-three.is-sticky {
+  background: #111827;
 }
 
 .header-area.style-three .header-logo {

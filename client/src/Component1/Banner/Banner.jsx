@@ -24,10 +24,10 @@ const Banner = () => {
               draggable='false'
               className='absolute -top-20 right-14 animate-rotational'
             />
-            <h6 className='font-FiraSans font-medium text-PrimaryColor-0 mb-3'>
+            <h6 className='font-FiraSans font-medium text-red-500 dark:text-red-400 mb-3'>
               {t('banner.tagline')}
             </h6>
-            <h1 className='font-FiraSans font-semibold text-HeadingColor-0 text-[26px] leading-[32px] sm:text-[46px] sm:leading-[52px] md:text-[68x] lg:text-[46px] xl:text-[54px] xl:leading-[68px] 2xl:text-[56px] 2xl:leading-[70px] relative z-10 pb-4'>
+            <h1 className='font-FiraSans font-semibold text-[#16a34a] dark:text-white text-[26px] leading-[32px] sm:text-[46px] sm:leading-[52px] md:text-[68x] lg:text-[46px] xl:text-[54px] xl:leading-[68px] 2xl:text-[56px] 2xl:leading-[70px] relative z-10 pb-4'>
               {t('banner.companyName')}
               <img
                 src={border}
@@ -35,7 +35,7 @@ const Banner = () => {
                 className='absolute bottom-0 left-0'
               />
             </h1>
-            <p className='font-FiraSans text-TextColor2-0 mb-[38px] mt-6'>
+            <p className='font-FiraSans text-white   dark:text-gray-300 mb-[38px] mt-6'>
               {t('banner.slogan')}{' '}
               <br className='hidden xl:block 2xl:hidden' />
               <br className='hidden md:block lg:hidden 2xl:block' />{' '}

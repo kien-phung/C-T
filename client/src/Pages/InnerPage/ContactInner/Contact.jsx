@@ -174,7 +174,7 @@ const Contact = () => {
                 ></textarea>
                 <label
                   htmlFor='terms'
-                  className='font-FiraSans text-black text-sm flex items-center gap-2 cursor-pointer'
+                  className='font-FiraSans text-black dark:text-white text-sm flex items-center gap-2 cursor-pointer'
                 >
                   <input
                     type='checkbox'

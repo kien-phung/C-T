@@ -141,11 +141,11 @@ const Footer = () => {
             </div>
             <div className='col-span-12 md:col-span-6 lg:col-span-4 xl:col-span-4 flex justify-center'>
               <div>
-                <h4 className='font-FiraSans text-2xl text-HeadingColor-0 dark:text-white font-medium mb-[30px] text-center'>
+                <h4 className='font-FiraSans text-2xl text-HeadingColor-0 dark:text-white font-medium mb-[30px] text-center animate-fade-in-up'>
                   {t('footer.quickLinks')}
                 </h4>
                 <ul className='overflow-hidden'>
-                  <li>
+                  <li className='animate-fade-in-up' style={{ animationDelay: '0.1s' }}>
                     <Link
                       to={'/'}
                       className='inline-block'
@@ -156,7 +156,7 @@ const Footer = () => {
                       </button>
                     </Link>
                   </li>
-                  <li>
+                  <li className='animate-fade-in-up' style={{ animationDelay: '0.2s' }}>
                     <Link
                       to={'/team'}
                       className='inline-block'
@@ -167,7 +167,7 @@ const Footer = () => {
                       </button>
                     </Link>
                   </li>
-                  <li>
+                  <li className='animate-fade-in-up' style={{ animationDelay: '0.3s' }}>
                     <Link
                       to={'/service_details'}
                       className='inline-block'
@@ -178,7 +178,7 @@ const Footer = () => {
                       </button>
                     </Link>
                   </li>
-                  <li>
+                  <li className='animate-fade-in-up' style={{ animationDelay: '0.4s' }}>
                     <Link
                       to={'/contact'}
                       className='inline-block'
@@ -189,7 +189,7 @@ const Footer = () => {
                       </button>
                     </Link>
                   </li>
-                  <li>
+                  <li className='animate-fade-in-up' style={{ animationDelay: '0.5s' }}>
                     <Link
                       to={'/blog_grid'}
                       className='inline-block'

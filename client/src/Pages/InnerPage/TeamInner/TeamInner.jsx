@@ -14,6 +14,7 @@ const TeamInner = () => {
         breadCrumbTitle={t('nav.team')}
         breadCrumbIcon={<FaArrowRightLong />}
         breadCrumbLink={t('nav.team')}
+        bgImage={'/images/solutions/team.jpg'}
       />
       <TeamMember />
     </>
