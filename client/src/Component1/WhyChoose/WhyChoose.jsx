@@ -14,7 +14,7 @@ const WhyChoose = () => {
   const { currentLanguage } = useLanguage();
   const t = (key) => getTranslation(currentLanguage, key);
   return (
-    <section className='pb-[120px] pt-20 sm:pt-0 lg:pt-[170px] bg-[url(/images/choose_bg.jpg)] bg-no-repeat bg-cover bg-center relative z-20'>
+    <section className='pb-20 pt-20 sm:pt-0 lg:pt-20 bg-[url(/images/choose_bg.jpg)] bg-no-repeat bg-cover bg-center relative z-20'>
       <div className='Container'>
         <div className='grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-20 lg:gap-10 2xl:gap-16 items-center'>
           <div className='relative z-10'>

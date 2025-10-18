@@ -95,7 +95,7 @@ const Blog = () => {
   const blogData = getBlogData(currentLanguage);
 
   return (
-    <section className='bg-[url(/images/blog3_bg.png)] bg-no-repeat bg-center bg-cover py-28'>
+    <section className='bg-[url(/images/blog3_bg.png)] bg-no-repeat bg-center bg-cover py-20'>
       <div className='Container'>
         <div className='text-center'>
           <h5 className='font-FiraSans font-medium text-sm sm:text-base text-PrimaryColor-0 uppercase mb-3'>

@@ -9,7 +9,7 @@ const About = () => {
   const { currentLanguage } = useLanguage();
   const t = (key) => getTranslation(currentLanguage, key);
   return (
-    <section className='pb-[120px] pt-[170px] lg:pt-28 xl:pt-[170px] relative z-10 bg-BodyBg4-0'>
+    <section className='pb-20 pt-28 lg:pt-20 xl:pt-28 relative z-10 bg-BodyBg4-0'>
       <div className='Container'>
         <div className='grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-20 lg:gap-10 2xl:gap-16 items-center'>
           <div className='relative z-10'>

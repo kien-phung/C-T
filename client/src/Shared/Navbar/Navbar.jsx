@@ -5,7 +5,6 @@ import './navbar.css';
 import { useEffect, useRef, useState } from 'react';
 import {
   FaArrowUp,
-  FaChevronDown,
   FaEnvelope,
   FaFacebookF,
   FaInstagram,
@@ -16,7 +15,6 @@ import {
 import { FaPhoneAlt, FaTimes } from 'react-icons/fa';
 import { MdLocationPin } from 'react-icons/md';
 import { IoMdPaperPlane } from 'react-icons/io';
-import { LuMoveRight } from 'react-icons/lu';
 import { ImFacebook2 } from 'react-icons/im';
 import { HiOutlineMail } from 'react-icons/hi';
 import { GiPhone } from 'react-icons/gi';
@@ -389,7 +387,7 @@ const Navbar = () => {
           <div className='bg-transparent rounded-md flex items-center justify-between lg:grid lg:grid-cols-12 lg:gap-4 py-2 lg:py-0'>
             <div className='col-span-2'>
               <div className='header-logo pl-0 lg:pl-4'>
-                <Link to={'/'}>
+                <Link to={'/'} className='inline-block p-4 -m-4'>
                   <img
                     src={Logo}
                     draggable='false'

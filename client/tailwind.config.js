@@ -12,7 +12,7 @@ export default {
         PrimaryColor2: { 0: '#1d4ed8' },
         Secondarycolor: { 0: '#15803d' },
         Secondarycolor2: { 0: '#1e3a8a' },
-        HeadingColor: { 0: '#86efac' },
+        HeadingColor: { 0: '#22c55e' },
         HeadingColor2: { 0: '#1e3a8a' },
         TextColor: { 0: '#15803d' },
         TextColor2: { 0: '#1d4ed8' },

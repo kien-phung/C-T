@@ -150,9 +150,11 @@ const Footer = () => {
                       to={'/'}
                       className='inline-block'
                     >
-                      <button className='flex items-center gap-2 font-FiraSans -ml-5 hover:ml-0 text-[15px] text-HeadingColor-0 dark:text-gray-300 transition-all duration-500 hover:text-PrimaryColor-0 dark:hover:text-green-400 hover:gap-1 mb-3'>
-                        <FaAnglesRight className='text-xs text-PrimaryColor-0 dark:text-green-400' />
-                        {t('footer.introduction')}
+                      <button className='flex items-center gap-2 font-FiraSans -ml-5 hover:ml-0 text-[15px] text-HeadingColor-0 dark:text-gray-300 transition-all duration-500 hover:text-PrimaryColor-0 dark:hover:text-green-400 hover:gap-1 mb-3 relative group hover:scale-105'>
+                        <FaAnglesRight className='text-xs text-PrimaryColor-0 dark:text-green-400 transition-transform duration-300 group-hover:rotate-12' />
+                        <span className='relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-PrimaryColor-0 dark:after:bg-green-400 after:transition-all after:duration-300 group-hover:after:w-full'>
+                          {t('footer.introduction')}
+                        </span>
                       </button>
                     </Link>
                   </li>
@@ -161,9 +163,11 @@ const Footer = () => {
                       to={'/team'}
                       className='inline-block'
                     >
-                      <button className='flex items-center gap-2 font-FiraSans -ml-5 hover:ml-0 text-[15px] text-HeadingColor-0 dark:text-gray-300 transition-all duration-500 hover:text-PrimaryColor-0 dark:hover:text-green-400 hover:gap-1 mb-3'>
-                        <FaAnglesRight className='text-xs text-PrimaryColor-0 dark:text-green-400' />
-                        {t('footer.team')}
+                      <button className='flex items-center gap-2 font-FiraSans -ml-5 hover:ml-0 text-[15px] text-HeadingColor-0 dark:text-gray-300 transition-all duration-500 hover:text-PrimaryColor-0 dark:hover:text-green-400 hover:gap-1 mb-3 relative group hover:scale-105'>
+                        <FaAnglesRight className='text-xs text-PrimaryColor-0 dark:text-green-400 transition-transform duration-300 group-hover:rotate-12' />
+                        <span className='relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-PrimaryColor-0 dark:after:bg-green-400 after:transition-all after:duration-300 group-hover:after:w-full'>
+                          {t('footer.team')}
+                        </span>
                       </button>
                     </Link>
                   </li>
@@ -172,9 +176,11 @@ const Footer = () => {
                       to={'/service_details'}
                       className='inline-block'
                     >
-                      <button className='flex items-center gap-2 font-FiraSans -ml-5 hover:ml-0 text-[15px] text-HeadingColor-0 dark:text-gray-300 transition-all duration-500 hover:text-PrimaryColor-0 dark:hover:text-green-400 hover:gap-1 mb-3'>
-                        <FaAnglesRight className='text-xs text-PrimaryColor-0 dark:text-green-400' />
-                        {t('footer.products')}
+                      <button className='flex items-center gap-2 font-FiraSans -ml-5 hover:ml-0 text-[15px] text-HeadingColor-0 dark:text-gray-300 transition-all duration-500 hover:text-PrimaryColor-0 dark:hover:text-green-400 hover:gap-1 mb-3 relative group hover:scale-105'>
+                        <FaAnglesRight className='text-xs text-PrimaryColor-0 dark:text-green-400 transition-transform duration-300 group-hover:rotate-12' />
+                        <span className='relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-PrimaryColor-0 dark:after:bg-green-400 after:transition-all after:duration-300 group-hover:after:w-full'>
+                          {t('footer.products')}
+                        </span>
                       </button>
                     </Link>
                   </li>
@@ -183,9 +189,11 @@ const Footer = () => {
                       to={'/contact'}
                       className='inline-block'
                     >
-                      <button className='flex items-center gap-2 font-FiraSans -ml-5 hover:ml-0 text-[15px] text-HeadingColor-0 dark:text-gray-300 transition-all duration-500 hover:text-PrimaryColor-0 dark:hover:text-green-400 hover:gap-1 mb-3'>
-                        <FaAnglesRight className='text-xs text-PrimaryColor-0 dark:text-green-400' />
-                        {t('footer.contactLink')}
+                      <button className='flex items-center gap-2 font-FiraSans -ml-5 hover:ml-0 text-[15px] text-HeadingColor-0 dark:text-gray-300 transition-all duration-500 hover:text-PrimaryColor-0 dark:hover:text-green-400 hover:gap-1 mb-3 relative group hover:scale-105'>
+                        <FaAnglesRight className='text-xs text-PrimaryColor-0 dark:text-green-400 transition-transform duration-300 group-hover:rotate-12' />
+                        <span className='relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-PrimaryColor-0 dark:after:bg-green-400 after:transition-all after:duration-300 group-hover:after:w-full'>
+                          {t('footer.contactLink')}
+                        </span>
                       </button>
                     </Link>
                   </li>
@@ -194,9 +202,11 @@ const Footer = () => {
                       to={'/blog_grid'}
                       className='inline-block'
                     >
-                      <button className='flex items-center gap-2 font-FiraSans -ml-5 hover:ml-0 text-[15px] text-HeadingColor-0 dark:text-gray-300 transition-all duration-500 hover:text-PrimaryColor-0 dark:hover:text-green-400 hover:gap-1'>
-                        <FaAnglesRight className='text-xs text-PrimaryColor-0 dark:text-green-400' />
-                        {t('footer.news')}
+                      <button className='flex items-center gap-2 font-FiraSans -ml-5 hover:ml-0 text-[15px] text-HeadingColor-0 dark:text-gray-300 transition-all duration-500 hover:text-PrimaryColor-0 dark:hover:text-green-400 hover:gap-1 relative group hover:scale-105'>
+                        <FaAnglesRight className='text-xs text-PrimaryColor-0 dark:text-green-400 transition-transform duration-300 group-hover:rotate-12' />
+                        <span className='relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-PrimaryColor-0 dark:after:bg-green-400 after:transition-all after:duration-300 group-hover:after:w-full'>
+                          {t('footer.news')}
+                        </span>
                       </button>
                     </Link>
                   </li>

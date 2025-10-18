@@ -88,7 +88,7 @@ const Testimonial = () => {
   };
 
   return (
-    <section className='testimonial pt-28 pb-[120px] bg-[url(/images/testi_bg.png)] bg-no-repeat bg-cover bg-center relative z-10 overflow-hidden'>
+    <section className='testimonial pt-20 pb-20 bg-[url(/images/testi_bg.png)] bg-no-repeat bg-cover bg-center relative z-10 overflow-hidden'>
       <div className='absolute -z-10 top-24 right-[35%] hidden 2xl:block animate-rotate'>
         <img
           src={serviceShape4}

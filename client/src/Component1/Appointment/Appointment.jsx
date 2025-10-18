@@ -15,7 +15,7 @@ const Appointment = () => {
   const { currentLanguage } = useLanguage();
   const t = (key) => getTranslation(currentLanguage, key);
   return (
-    <section className='pt-[120px] pb-28 relative bg-BodyBg4-0'>
+    <section className='pt-20 pb-20 relative bg-BodyBg4-0'>
       <div className='absolute -z-10 right-48 bottom-10 hidden 2xl:block animate-rotate'>
         <img
           src={serviceShape3}
