@@ -1,17 +1,13 @@
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
-import FsLightbox from 'fslightbox-react';
 import bannerThumb from '/images/hero_thumb3.png';
 import border from '/images/hero_border.png';
 import box from '/images/box.png';
 import thumbDot from '/images/hero3_dot_shape.png';
 import { FaPhone, FaDownload } from 'react-icons/fa';
-import { LuSquarePlay } from 'react-icons/lu';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { getTranslation } from '../../utils/translations';
 
 const Banner = () => {
-  const [toggler, setToggler] = useState(false);
   const { currentLanguage } = useLanguage();
   const t = (key) => getTranslation(currentLanguage, key);
   return (
@@ -55,49 +51,25 @@ const Banner = () => {
               <br className='hidden md:block lg:hidden 2xl:block' />{' '}
               {t('banner.description')}
             </p>
-            <div className='flex flex-col gap-6'>
-              <div
-                className='flex flex-col sm:flex-row sm:items-center gap-8'
-                data-aos='fade-up'
-                data-aos-duration='800'
-                data-aos-delay='300'
-              >
-                <Link to={'/contact'}>
-                  <button className='primary-btn3'>
-                    {t('banner.contactUs')}
-                    <FaPhone />
-                  </button>
-                </Link>
-                <div className='relative z-50'>
-                  <button
-                    className='flex items-center gap-3 text-white dark:text-gray-200 font-FiraSans font-medium'
-                    onClick={() => setToggler(!toggler)}
-                  >
-                    <LuSquarePlay
-                      size={'24'}
-                      className='text-white dark:text-gray-200'
-                    />
-                    {t('banner.aboutUs')}
-                  </button>
-                  <FsLightbox
-                    toggler={toggler}
-                    sources={[
-                      'https://www.youtube.com/embed/ksf5BMLhRE0?autoplay=1',
-                    ]}
-
-                  />
-                </div>
-              </div>
+            <div
+              className='flex flex-col sm:flex-row sm:items-center gap-6'
+              data-aos='fade-up'
+              data-aos-duration='800'
+              data-aos-delay='300'
+            >
+              <Link to={'/contact'}>
+                <button className='primary-btn3'>
+                  {t('banner.contactUs')}
+                  <FaPhone />
+                </button>
+              </Link>
               <a
                 href={currentLanguage === 'VN' ? '/profile/VI.pdf' : '/profile/EN.pdf'}
                 download={currentLanguage === 'VN' ? 'VI.pdf' : 'EN.pdf'}
-                className='inline-flex items-center justify-center gap-2 py-3 px-5 text-sm w-fit bg-gray-300 dark:bg-gray-600 text-gray-800 dark:text-white font-FiraSans font-medium rounded transition-all duration-300 hover:bg-gray-400 dark:hover:bg-gray-500'
-                data-aos='fade-up'
-                data-aos-duration='800'
-                data-aos-delay='300'
+                className='inline-flex items-center justify-center gap-2 py-[18px] px-8 bg-gray-300 dark:bg-gray-600 text-gray-800 dark:text-white font-FiraSans font-medium rounded-md transition-all duration-300 hover:bg-gray-400 dark:hover:bg-gray-500'
               >
                 {currentLanguage === 'VN' ? 'Tải Profile' : 'Download Profile'}
-                <FaDownload className='text-xs' />
+                <FaDownload className='text-sm' />
               </a>
             </div>
           </div>

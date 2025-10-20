@@ -100,17 +100,25 @@ const WhyChoose = () => {
               </li>
             </ul>
             <div className='inline-block relative z-50'>
-              <div
-                className='flex items-center gap-7'
+              <button
+                className='flex items-center gap-2 font-FiraSans font-medium text-HeadingColor-0 dark:text-white hover:text-PrimaryColor-0 dark:hover:text-green-400 transition-all duration-300'
                 onClick={() => setToggler(!toggler)}
               >
-                <FsLightbox
-                  toggler={toggler}
-                  sources={[
-                    'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
-                  ]}
-                />
-              </div>
+                <div className='size-8 rounded-md bg-white dark:bg-gray-600 flex items-center justify-center shadow-md border-2 border-PrimaryColor-0 dark:border-green-400'>
+                  <svg className='w-3 h-3 ml-0.5 text-PrimaryColor-0 dark:text-green-400' fill='currentColor' viewBox='0 0 24 24'>
+                    <path d='M8 5v14l11-7z' />
+                  </svg>
+                </div>
+                <span className='font-semibold text-sm'>
+                  {currentLanguage === 'VN' ? 'Về Chúng Tôi' : 'About Us'}
+                </span>
+              </button>
+              <FsLightbox
+                toggler={toggler}
+                sources={[
+                  '/images/video/intro.mp4',
+                ]}
+              />
             </div>
           </div>
         </div>

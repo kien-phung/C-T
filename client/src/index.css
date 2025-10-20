@@ -4,6 +4,81 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ============================================
+   FsLightbox Video - FULL SCREEN FIX
+   ============================================ */
+
+/* STEP 1: Main container - BLACK OVERLAY */
+div[id^="fslightbox"],
+.fslightbox-container,
+.fslightbox-absoluted {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  z-index: 2147483647 !important;
+  background: rgba(0, 0, 0, 0.97) !important;
+}
+
+/* STEP 2: Slide container - CENTER VIDEO */
+.fslightbox-slide-btn-container {
+  position: fixed !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  z-index: 2147483647 !important;
+}
+
+/* STEP 3: Slide button wrapper */
+.fslightbox-slide-btn {
+  position: relative !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 100% !important;
+  height: 100% !important;
+  margin: 0 auto !important;
+  z-index: 2147483647 !important;
+}
+
+/* STEP 4: VIDEO - LARGE SIZE (for both iframe and video tag) */
+.fslightbox-slide-btn iframe,
+.fslightbox-slide-btn video {
+  position: relative !important;
+  width: 85vw !important;
+  height: calc(85vw * 9 / 16) !important;
+  max-width: 1600px !important;
+  max-height: 85vh !important;
+  z-index: 2147483647 !important;
+  border: none !important;
+  background: #000 !important;
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  margin: 0 auto !important;
+  vertical-align: middle !important;
+}
+/* Responsive: On wide screens */
+@media (min-aspect-ratio: 16/9) {
+  .fslightbox-slide-btn iframe,
+  .fslightbox-slide-btn video {
+    width: calc(85vh * 16 / 9) !important;
+    height: 85vh !important;
+  }
+}
+
+/* STEP 5: Toolbar buttons on top */
+.fslightbox-toolbar,
+.fslightbox-toolbar-button {
+  z-index: 2147483647 !important;
+}
+
 html {
   scroll-behavior: smooth;
   box-sizing: border-box;
