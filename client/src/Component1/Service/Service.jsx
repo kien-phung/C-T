@@ -138,10 +138,19 @@ const Service = () => {
       </div>
       <div className='Container'>
         <div className='text-center'>
-          <h5 className='font-FiraSans font-medium text-sm sm:text-base text-PrimaryColor-0 uppercase mb-3'>
+          <h5
+            className='font-FiraSans font-medium text-sm sm:text-base text-PrimaryColor-0 uppercase mb-3'
+            data-aos='fade-up'
+            data-aos-duration='800'
+          >
             {t('portfolio.sectionTitle')}
           </h5>
-          <h1 className='font-FiraSans font-semibold text-HeadingColor-0 inline-block text-[16px] leading-[26px] sm:text-[25px] sm:leading-[35px] md:text-[30px] md:leading-[40px] lg:text-[34px] lg:leading-[44px] xl:text-[40px] xl:leading-[50px] 2xl:text-[42px] 2xl:leading-[52px] relative pb-4'>
+          <h1
+            className='font-FiraSans font-semibold text-HeadingColor-0 inline-block text-[16px] leading-[26px] sm:text-[25px] sm:leading-[35px] md:text-[30px] md:leading-[40px] lg:text-[34px] lg:leading-[44px] xl:text-[40px] xl:leading-[50px] 2xl:text-[42px] 2xl:leading-[52px] relative pb-4'
+            data-aos='fade-up'
+            data-aos-duration='800'
+            data-aos-delay='100'
+          >
             {t('portfolio.title')}
             <img
               src={border}
@@ -150,7 +159,12 @@ const Service = () => {
             />
           </h1>
         </div>
-        <div className='mt-[66px]'>
+        <div
+          className='mt-[66px]'
+          data-aos='fade-up'
+          data-aos-duration='1000'
+          data-aos-delay='200'
+        >
           <Swiper
             {...settings}
           >

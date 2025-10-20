@@ -110,10 +110,19 @@ const Testimonial = () => {
       <div className='Container'>
         <div className='grid grid-cols-6 lg:grid-cols-12'>
           <div className='col-span-6 lg:col-span-5'>
-            <h5 className='font-FiraSans font-medium text-sm sm:text-base text-PrimaryColor-0 dark:text-green-400 uppercase mb-3'>
+            <h5
+              className='font-FiraSans font-medium text-sm sm:text-base text-PrimaryColor-0 dark:text-green-400 uppercase mb-3'
+              data-aos='fade-right'
+              data-aos-duration='800'
+            >
               {t('testimonial.sectionTitle')}
             </h5>
-            <h1 className='font-FiraSans font-semibold text-HeadingColor-0 dark:text-white text-[16px] leading-[26px] sm:text-[25px] sm:leading-[35px] md:text-[30px] md:leading-[40px] lg:text-[34px] lg:leading-[44px] xl:text-[40px] xl:leading-[50px] 2xl:text-[42px] 2xl:leading-[52px] relative pb-4'>
+            <h1
+              className='font-FiraSans font-semibold text-HeadingColor-0 dark:text-white text-[16px] leading-[26px] sm:text-[25px] sm:leading-[35px] md:text-[30px] md:leading-[40px] lg:text-[34px] lg:leading-[44px] xl:text-[40px] xl:leading-[50px] 2xl:text-[42px] 2xl:leading-[52px] relative pb-4'
+              data-aos='fade-right'
+              data-aos-duration='800'
+              data-aos-delay='100'
+            >
               {t('testimonial.title')}
               <img
                 src={border}
@@ -121,7 +130,12 @@ const Testimonial = () => {
                 className='absolute bottom-0 left-0'
               />
             </h1>
-            <p className='font-FiraSans text-lg text-TextColor2-0 dark:text-gray-300 pt-[30px] pb-6'>
+            <p
+              className='font-FiraSans text-lg text-TextColor2-0 dark:text-gray-300 pt-[30px] pb-6'
+              data-aos='fade-right'
+              data-aos-duration='800'
+              data-aos-delay='200'
+            >
               {t('testimonial.subtitle')}
             </p>
             <div className='flex items-center gap-[22px] border-y border-BorderColor-0 dark:border-gray-600 py-[26px] relative sm:mr-10'>
@@ -167,7 +181,12 @@ const Testimonial = () => {
               {t('testimonial.governmentCertificate')}
             </h6>
           </div>
-          <div className='col-span-6 lg:col-span-7 mt-10 lg:mt-0'>
+          <div
+            className='col-span-6 lg:col-span-7 mt-10 lg:mt-0'
+            data-aos='fade-left'
+            data-aos-duration='1000'
+            data-aos-delay='200'
+          >
             <Swiper
               {...settings}
               modules={[]}

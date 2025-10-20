@@ -27,17 +27,36 @@ const Contact = () => {
         <div className='grid grid-cols-1 lg:grid-cols-2 gap-7 items-center'>
           <div>
             <div>
-              <h5 className='font-FiraSans font-medium text-sm sm:text-base text-PrimaryColor-0 uppercase flex items-center gap-2 mb-3 pt-4'>
+              <h5
+                className='font-FiraSans font-medium text-sm sm:text-base text-PrimaryColor-0 uppercase flex items-center gap-2 mb-3 pt-4'
+                data-aos='fade-up'
+                data-aos-duration='800'
+              >
                 {t('contact.sectionTitle')}
               </h5>
-              <h1 className='font-FiraSans font-semibold text-HeadingColor-0 text-[16px] leading-[26px] sm:text-[25px] sm:leading-[35px] md:text-[30px] md:leading-[40px] lg:text-[38px] lg:leading-[48px] xl:text-[42px] xl:leading-[52px]'>
+              <h1
+                className='font-FiraSans font-semibold text-HeadingColor-0 text-[16px] leading-[26px] sm:text-[25px] sm:leading-[35px] md:text-[30px] md:leading-[40px] lg:text-[38px] lg:leading-[48px] xl:text-[42px] xl:leading-[52px]'
+                data-aos='fade-up'
+                data-aos-duration='800'
+                data-aos-delay='100'
+              >
                 {t('contact.contactWithUs')}
               </h1>
-              <p className='font-FiraSans text-TextColor2-0 pt-4'>
+              <p
+                className='font-FiraSans text-TextColor2-0 pt-4'
+                data-aos='fade-up'
+                data-aos-duration='800'
+                data-aos-delay='200'
+              >
                 {t('contact.contactDescription')}
               </p>
             </div>
-            <div className='bg-BodyBg4-0 rounded-xl p-10 mt-11'>
+            <div
+              className='bg-BodyBg4-0 rounded-xl p-10 mt-11'
+              data-aos='fade-up'
+              data-aos-duration='800'
+              data-aos-delay='300'
+            >
               <div className='flex items-center gap-5 group border-b border-dashed border-HeadingColor-0 border-opacity-40 pb-5'>
                 <div className='size-[70px] bg-white rounded-full flex items-center justify-center text-PrimaryColor-0 transition-all duration-500 group-hover:text-white relative z-10 before:absolute before:left-0 before:top-0 before:size-full before:bg-PrimaryColor-0 before:transition-all before:duration-500 before:scale-0 before:-z-10 before:rounded-full group-hover:before:scale-100'>
                   <FaPhoneAlt size={'20'} />
@@ -81,7 +100,12 @@ const Contact = () => {
               </div>
             </div>
           </div>
-          <div className='relative'>
+          <div
+            className='relative'
+            data-aos='fade-up'
+            data-aos-duration='800'
+            data-aos-delay='400'
+          >
             <img
               src={appoinmentShape}
               draggable='false'

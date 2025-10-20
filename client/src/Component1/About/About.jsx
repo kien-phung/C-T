@@ -12,7 +12,11 @@ const About = () => {
     <section className='pb-20 pt-28 lg:pt-20 xl:pt-28 relative z-10 bg-BodyBg4-0'>
       <div className='Container'>
         <div className='grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-20 lg:gap-10 2xl:gap-16 items-center'>
-          <div className='relative z-10'>
+          <div
+            className='relative z-10'
+            data-aos='fade-right'
+            data-aos-duration='1000'
+          >
             <span className='absolute right-40 top-0 -z-10 h-96 w-52 blur-[150px] bg-PrimaryColor-0 bg-opacity-70 rounded-full'></span>
             <img
               src={aboutThumb}
@@ -53,10 +57,19 @@ const About = () => {
             </div>
           </div>
           <div className='relative z-10'>
-            <h5 className='font-FiraSans font-medium text-sm sm:text-base text-PrimaryColor-0 uppercase mb-3'>
+            <h5
+              className='font-FiraSans font-medium text-sm sm:text-base text-PrimaryColor-0 uppercase mb-3'
+              data-aos='fade-up'
+              data-aos-duration='800'
+            >
                {t('about.subtitle')}
             </h5>
-            <h1 className='font-FiraSans font-semibold text-HeadingColor-0 text-[16px] leading-[26px] sm:text-[25px] sm:leading-[35px] md:text-[30px] md:leading-[40px] lg:text-[34px] lg:leading-[44px] xl:text-[40px] xl:leading-[50px] 2xl:text-[42px] 2xl:leading-[52px] relative pb-4'>
+            <h1
+              className='font-FiraSans font-semibold text-HeadingColor-0 text-[16px] leading-[26px] sm:text-[25px] sm:leading-[35px] md:text-[30px] md:leading-[40px] lg:text-[34px] lg:leading-[44px] xl:text-[40px] xl:leading-[50px] 2xl:text-[42px] 2xl:leading-[52px] relative pb-4'
+              data-aos='fade-up'
+              data-aos-duration='800'
+              data-aos-delay='100'
+            >
               {t('about.title')}
               <img
                 src={border}
@@ -64,7 +77,12 @@ const About = () => {
                 className='absolute bottom-0 left-0'
               />
             </h1>
-            <p className='font-FiraSans text-TextColor2-0 pt-6'>
+            <p
+              className='font-FiraSans text-TextColor2-0 pt-6'
+              data-aos='fade-up'
+              data-aos-duration='800'
+              data-aos-delay='200'
+            >
               <strong className='text-PrimaryColor-0 block mb-2'>{t('about.companyName')}</strong>
               {t('about.description')}
             </p>

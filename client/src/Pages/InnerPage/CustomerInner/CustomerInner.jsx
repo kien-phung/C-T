@@ -49,16 +49,30 @@ const CustomerInner = () => {
       <section className='py-[120px] bg-BodyBg4-0 dark:bg-gray-900'>
         <div className='Container'>
           <div className='text-center mb-16'>
-            <h1 className='font-FiraSans font-semibold text-4xl sm:text-5xl text-HeadingColor-0 dark:text-white mb-6'>
+            <h1
+              className='font-FiraSans font-semibold text-4xl sm:text-5xl text-HeadingColor-0 dark:text-white mb-6'
+              data-aos='fade-up'
+              data-aos-duration='800'
+            >
               {customerData.pageTitle}
             </h1>
-            <p className='font-FiraSans text-TextColor2-0 dark:text-gray-300 text-lg max-w-3xl mx-auto'>
+            <p
+              className='font-FiraSans text-TextColor2-0 dark:text-gray-300 text-lg max-w-3xl mx-auto'
+              data-aos='fade-up'
+              data-aos-duration='800'
+              data-aos-delay='100'
+            >
               {customerData.pageDescription}
             </p>
           </div>
 
           {/* Customer logos section */}
-          <div className='bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg mb-16'>
+          <div
+            className='bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg mb-16'
+            data-aos='fade-up'
+            data-aos-duration='800'
+            data-aos-delay='200'
+          >
             <h2 className='font-FiraSans font-semibold text-3xl text-HeadingColor-0 dark:text-white mb-8 text-center'>
               {customerData.partnersTitle}
             </h2>
@@ -138,7 +152,12 @@ const CustomerInner = () => {
             </div>
           </div>
 
-          <div className='bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg'>
+          <div
+            className='bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg'
+            data-aos='fade-up'
+            data-aos-duration='800'
+            data-aos-delay='300'
+          >
             <h2 className='font-FiraSans font-semibold text-3xl text-HeadingColor-0 dark:text-white mb-6 text-center'>
               {customerData.statisticsTitle}
             </h2>

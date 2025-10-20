@@ -134,9 +134,14 @@ const BlogGrid = () => {
                 blogGridTitle,
                 blogGridBtn,
                 blogGridBtnIcon,
-              }) => {
+              }, index) => {
                 return (
-                  <div key={id}>
+                  <div
+                    key={id}
+                    data-aos='fade-up'
+                    data-aos-duration='800'
+                    data-aos-delay={200 + (index * 100)}
+                  >
                     <BlogGridCard
                       blogGridThumb={blogGridThumb}
                       blogGridDateIcon={blogGridDateIcon}
@@ -167,7 +172,12 @@ const BlogGrid = () => {
                   blogGridBtnIcon,
                 }) => {
                   return (
-                    <div key={id}>
+                    <div
+                      key={id}
+                      data-aos='fade-up'
+                      data-aos-duration='800'
+                      data-aos-delay='500'
+                    >
                       <BlogGridCard
                         blogGridThumb={blogGridThumb}
                         blogGridDateIcon={blogGridDateIcon}

@@ -1,6 +1,6 @@
 import { Link, useLocation } from 'react-router-dom';
-import Logo from '/images/stlLogo.png';
-import Logo2 from '/images/stlLogo.png';
+import Logo from '/images/logo1.png';
+import Logo2 from '/images/logo1.png';
 import './navbar.css';
 import { useEffect, useRef, useState } from 'react';
 import {
@@ -292,7 +292,7 @@ const Navbar = () => {
           </div>
           <div className='offcanvas_social'>
             <div className='social-icon'>
-              <Link to={'/'}>
+              <Link to={'https://www.facebook.com/profile.php?id=61581551666794'}>
                 <FaFacebookF />
               </Link>
               <Link to={'/'}>
@@ -391,7 +391,7 @@ const Navbar = () => {
                   <img
                     src={Logo}
                     draggable='false'
-                    className='h-8 lg:h-auto'
+                    className='h-12 lg:h-16'
                   />
                 </Link>
               </div>

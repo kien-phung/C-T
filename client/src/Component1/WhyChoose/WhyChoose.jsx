@@ -17,7 +17,11 @@ const WhyChoose = () => {
     <section className='pb-20 pt-20 sm:pt-0 lg:pt-20 bg-[url(/images/choose_bg.jpg)] bg-no-repeat bg-cover bg-center relative z-20'>
       <div className='Container'>
         <div className='grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-20 lg:gap-10 2xl:gap-16 items-center'>
-          <div className='relative z-10'>
+          <div
+            className='relative z-10'
+            data-aos='fade-right'
+            data-aos-duration='1000'
+          >
             <img
               src={whyChooseShape3}
               draggable='false'
@@ -36,10 +40,19 @@ const WhyChoose = () => {
           </div>
           <div className='relative z-10'>
             <span className='absolute -left-32 -bottom-32 -z-10 h-96 w-96 blur-3xl bg-[#e9f8f5] dark:bg-gray-800 rounded-full'></span>
-            <h5 className='font-FiraSans font-medium text-sm sm:text-base text-PrimaryColor-0 uppercase mb-3'>
+            <h5
+              className='font-FiraSans font-medium text-sm sm:text-base text-PrimaryColor-0 uppercase mb-3'
+              data-aos='fade-up'
+              data-aos-duration='800'
+            >
               {t('whyChoose.sectionTitle')}
             </h5>
-            <h1 className='font-FiraSans font-semibold text-HeadingColor-0 text-[16px] leading-[26px] sm:text-[25px] sm:leading-[35px] md:text-[30px] md:leading-[40px] lg:text-[34px] lg:leading-[44px] xl:text-[38px] xl:leading-[50px] 2xl:text-[42px] 2xl:leading-[52px] relative pb-4'>
+            <h1
+              className='font-FiraSans font-semibold text-HeadingColor-0 text-[16px] leading-[26px] sm:text-[25px] sm:leading-[35px] md:text-[30px] md:leading-[40px] lg:text-[34px] lg:leading-[44px] xl:text-[38px] xl:leading-[50px] 2xl:text-[42px] 2xl:leading-[52px] relative pb-4'
+              data-aos='fade-up'
+              data-aos-duration='800'
+              data-aos-delay='100'
+            >
              {t('whyChoose.title')}
               <img
                 src={border}
@@ -47,10 +60,20 @@ const WhyChoose = () => {
                 className='absolute bottom-0 left-0'
               />
             </h1>
-            <p className='font-FiraSans text-TextColor2-0 pt-5'>
+            <p
+              className='font-FiraSans text-TextColor2-0 pt-5'
+              data-aos='fade-up'
+              data-aos-duration='800'
+              data-aos-delay='200'
+            >
               {t('whyChoose.subtitle')}
             </p>
-            <ul className='grid items-center grid-cols-1 gap-x-7 gap-y-5 sm:grid-cols-2 mt-9 pb-10'>
+            <ul
+              className='grid items-center grid-cols-1 gap-x-7 gap-y-5 sm:grid-cols-2 mt-9 pb-10'
+              data-aos='fade-up'
+              data-aos-duration='800'
+              data-aos-delay='300'
+            >
               <li className='font-FiraSans text-HeadingColor-0 dark:text-white bg-white dark:bg-gray-800 py-5 px-8 w-full rounded-md flex items-center gap-2 shadow-cases'>
                 <span className='text-PrimaryColor-0 dark:text-green-400 text-2xl'>
                   <IoIosCheckmarkCircleOutline />

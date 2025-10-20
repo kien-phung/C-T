@@ -105,17 +105,31 @@ const PolicyInner = () => {
       <section className='py-[120px] bg-BodyBg4-0'>
         <div className='Container'>
           <div className='text-center mb-16'>
-            <h1 className='font-FiraSans font-semibold text-4xl sm:text-5xl text-HeadingColor-0 mb-6'>
+            <h1
+              className='font-FiraSans font-semibold text-4xl sm:text-5xl text-HeadingColor-0 mb-6'
+              data-aos='fade-up'
+              data-aos-duration='800'
+            >
               {policyData.pageTitle}
             </h1>
-            <p className='font-FiraSans text-TextColor2-0 text-lg max-w-3xl mx-auto'>
+            <p
+              className='font-FiraSans text-TextColor2-0 text-lg max-w-3xl mx-auto'
+              data-aos='fade-up'
+              data-aos-duration='800'
+              data-aos-delay='100'
+            >
               {policyData.pageDescription}
             </p>
           </div>
 
           <div className='grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch'>
             {/* Warranty Policy */}
-            <div className='bg-white rounded-2xl p-8 shadow-lg flex flex-col h-full'>
+            <div
+              className='bg-white rounded-2xl p-8 shadow-lg flex flex-col h-full'
+              data-aos='fade-up'
+              data-aos-duration='800'
+              data-aos-delay='200'
+            >
               <h3 className='font-FiraSans font-semibold text-2xl text-HeadingColor-0 mb-4'>
                 {policyData.warranty.title}
               </h3>
@@ -133,7 +147,12 @@ const PolicyInner = () => {
             </div>
 
             {/* Return Policy */}
-            <div className='bg-white rounded-2xl p-8 shadow-lg flex flex-col h-full'>
+            <div
+              className='bg-white rounded-2xl p-8 shadow-lg flex flex-col h-full'
+              data-aos='fade-up'
+              data-aos-duration='800'
+              data-aos-delay='300'
+            >
               <h3 className='font-FiraSans font-semibold text-2xl text-HeadingColor-0 mb-4'>
                 {policyData.return.title}
               </h3>
@@ -151,7 +170,12 @@ const PolicyInner = () => {
             </div>
 
             {/* Shipping Policy */}
-            <div className='bg-white rounded-2xl p-8 shadow-lg flex flex-col h-full'>
+            <div
+              className='bg-white rounded-2xl p-8 shadow-lg flex flex-col h-full'
+              data-aos='fade-up'
+              data-aos-duration='800'
+              data-aos-delay='400'
+            >
               <h3 className='font-FiraSans font-semibold text-2xl text-HeadingColor-0 mb-4'>
                 {policyData.shipping.title}
               </h3>
@@ -169,7 +193,12 @@ const PolicyInner = () => {
             </div>
 
             {/* Payment Policy */}
-            <div className='bg-white rounded-2xl p-8 shadow-lg flex flex-col h-full'>
+            <div
+              className='bg-white rounded-2xl p-8 shadow-lg flex flex-col h-full'
+              data-aos='fade-up'
+              data-aos-duration='800'
+              data-aos-delay='500'
+            >
               <h3 className='font-FiraSans font-semibold text-2xl text-HeadingColor-0 mb-4'>
                 {policyData.payment.title}
               </h3>

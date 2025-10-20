@@ -677,25 +677,49 @@ const SolutionDetails = () => {
         <div className='Container'>
           {/* Hero Section */}
           <div className='text-center mb-16'>
-            <h1 className='font-FiraSans font-semibold text-4xl sm:text-5xl text-HeadingColor-0 dark:text-white mb-4'>
+            <h1
+              className='font-FiraSans font-semibold text-4xl sm:text-5xl text-HeadingColor-0 dark:text-white mb-4'
+              data-aos='fade-up'
+              data-aos-duration='800'
+            >
               {solution.title}
             </h1>
-            <p className='font-FiraSans text-xl text-PrimaryColor-0 dark:text-green-400 mb-6'>
+            <p
+              className='font-FiraSans text-xl text-PrimaryColor-0 dark:text-green-400 mb-6'
+              data-aos='fade-up'
+              data-aos-duration='800'
+              data-aos-delay='100'
+            >
               {solution.subtitle}
             </p>
-            <p className='font-FiraSans text-TextColor2-0 dark:text-gray-300 text-lg max-w-4xl mx-auto'>
+            <p
+              className='font-FiraSans text-TextColor2-0 dark:text-gray-300 text-lg max-w-4xl mx-auto'
+              data-aos='fade-up'
+              data-aos-duration='800'
+              data-aos-delay='200'
+            >
               {solution.description}
             </p>
           </div>
 
           {/* User Roles Section */}
           <div className='mb-16'>
-            <h2 className='font-FiraSans font-semibold text-3xl text-HeadingColor-0 dark:text-white text-center mb-12'>
+            <h2
+              className='font-FiraSans font-semibold text-3xl text-HeadingColor-0 dark:text-white text-center mb-12'
+              data-aos='fade-up'
+              data-aos-duration='800'
+            >
               {currentLanguage === 'VN' ? 'Đối tượng sử dụng' : 'User Roles'}
             </h2>
             <div className='grid grid-cols-1 md:grid-cols-3 gap-8'>
               {solution.userRoles.map((role, index) => (
-                <div key={index} className='bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 text-center'>
+                <div
+                  key={index}
+                  className='bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 text-center'
+                  data-aos='fade-up'
+                  data-aos-duration='800'
+                  data-aos-delay={300 + (index * 100)}
+                >
                   <div className='text-6xl mb-4'>{role.icon}</div>
                   <h3 className='font-FiraSans font-semibold text-xl text-HeadingColor-0 dark:text-white mb-3'>
                     {role.title}
@@ -710,10 +734,19 @@ const SolutionDetails = () => {
 
           {/* Features Section */}
           <div className='mb-16'>
-            <h2 className='font-FiraSans font-semibold text-3xl text-HeadingColor-0 dark:text-white text-center mb-12'>
+            <h2
+              className='font-FiraSans font-semibold text-3xl text-HeadingColor-0 dark:text-white text-center mb-12'
+              data-aos='fade-up'
+              data-aos-duration='800'
+            >
               {currentLanguage === 'VN' ? 'Tính năng nổi bật' : 'Key Features'}
             </h2>
-            <div className='bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg'>
+            <div
+              className='bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg'
+              data-aos='fade-up'
+              data-aos-duration='800'
+              data-aos-delay='200'
+            >
               <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
                 {solution.features.map((feature, index) => (
                   <div key={index} className='flex items-start gap-3'>
@@ -729,10 +762,19 @@ const SolutionDetails = () => {
 
           {/* Benefits Section */}
           <div className='mb-16'>
-            <h2 className='font-FiraSans font-semibold text-3xl text-HeadingColor-0 dark:text-white text-center mb-12'>
+            <h2
+              className='font-FiraSans font-semibold text-3xl text-HeadingColor-0 dark:text-white text-center mb-12'
+              data-aos='fade-up'
+              data-aos-duration='800'
+            >
               {currentLanguage === 'VN' ? 'Lợi ích' : 'Benefits'}
             </h2>
-            <div className='bg-gradient-to-br from-PrimaryColor-0 to-green-600 dark:from-green-700 dark:to-green-900 rounded-2xl p-8 shadow-lg'>
+            <div
+              className='bg-gradient-to-br from-PrimaryColor-0 to-green-600 dark:from-green-700 dark:to-green-900 rounded-2xl p-8 shadow-lg'
+              data-aos='fade-up'
+              data-aos-duration='800'
+              data-aos-delay='200'
+            >
               <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
                 {solution.benefits.map((benefit, index) => (
                   <div key={index} className='flex items-start gap-3'>
@@ -747,7 +789,12 @@ const SolutionDetails = () => {
           </div>
 
           {/* CTA Section */}
-          <div className='text-center'>
+          <div
+            className='text-center'
+            data-aos='fade-up'
+            data-aos-duration='800'
+            data-aos-delay='300'
+          >
             <div className='bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg'>
               <h3 className='font-FiraSans font-semibold text-2xl text-HeadingColor-0 dark:text-white mb-4'>
                 {currentLanguage === 'VN' ? 'Bạn quan tâm đến giải pháp này?' : 'Interested in this solution?'}

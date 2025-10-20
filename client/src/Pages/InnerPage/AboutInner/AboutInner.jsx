@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { useLanguage } from '../../../contexts/LanguageContext';
 import { getTranslation } from '../../../utils/translations';
 import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const getSolutionsData = (language) => {
   const data = {
@@ -259,25 +260,53 @@ const AboutInner = () => {
         <div className='Container'>
           {/* Header Section */}
           <div className='text-center mb-16'>
-            <h1 className='font-FiraSans font-semibold text-4xl sm:text-5xl text-HeadingColor-0 mb-6'>
+            <h1
+              className='font-FiraSans font-semibold text-4xl sm:text-5xl text-HeadingColor-0 mb-6'
+              data-aos='fade-up'
+              data-aos-duration='800'
+            >
               {t('service.pageTitle')}
             </h1>
-            <h2 className='font-FiraSans font-semibold text-3xl text-HeadingColor-0 mb-6'>
+            <h2
+              className='font-FiraSans font-semibold text-3xl text-HeadingColor-0 mb-6'
+              data-aos='fade-up'
+              data-aos-duration='800'
+              data-aos-delay='100'
+            >
               {t('service.subtitle')}
             </h2>
-            <p className='font-FiraSans text-TextColor2-0 text-lg max-w-3xl mx-auto'>
+            <p
+              className='font-FiraSans text-TextColor2-0 text-lg max-w-3xl mx-auto'
+              data-aos='fade-up'
+              data-aos-duration='800'
+              data-aos-delay='200'
+            >
               {t('service.description')}
             </p>
           </div>
 
           {/* Solutions Grid */}
-          <div className={`grid gap-8 ${
-            currentPage === totalPages && currentSolutions.length === 2
-              ? 'grid-cols-1 md:grid-cols-2 lg:grid-cols-2 max-w-4xl mx-auto'
-              : 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3'
-          }`}>
-            {currentSolutions.map(solution => (
-              <div key={solution.id} className='bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 group flex flex-col h-full'>
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={currentPage}
+              initial={{ opacity: 0, x: 100 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -100 }}
+              transition={{ duration: 0.5, ease: 'easeOut' }}
+              className={`grid gap-8 ${
+                currentPage === totalPages && currentSolutions.length === 2
+                  ? 'grid-cols-1 md:grid-cols-2 lg:grid-cols-2 max-w-4xl mx-auto'
+                  : 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3'
+              }`}
+            >
+              {currentSolutions.map((solution, index) => (
+                <div
+                  key={solution.id}
+                  className='bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 group flex flex-col h-full'
+                  data-aos='fade-up'
+                  data-aos-duration='800'
+                  data-aos-delay={300 + (index * 100)}
+                >
                 <div className='relative overflow-hidden bg-gray-100 dark:bg-gray-700' style={{minHeight: '256px'}}>
                   <img
                     src={solution.image}
@@ -317,12 +346,18 @@ const AboutInner = () => {
                   </div>
                 </div>
               </div>
-            ))}
-          </div>
+              ))}
+            </motion.div>
+          </AnimatePresence>
 
           {/* Pagination */}
           {totalPages > 1 && (
-            <div className='flex justify-center items-center gap-2 mt-12'>
+            <div
+              className='flex justify-center items-center gap-2 mt-12'
+              data-aos='fade-up'
+              data-aos-duration='800'
+              data-aos-delay='600'
+            >
               {/* Previous Button */}
               <button
                 onClick={() => handlePageChange(currentPage - 1, true)}
@@ -370,7 +405,12 @@ const AboutInner = () => {
           )}
 
           {/* Call to Action */}
-          <div className='mt-16 text-center'>
+          <div
+            className='mt-16 text-center'
+            data-aos='fade-up'
+            data-aos-duration='800'
+            data-aos-delay='400'
+          >
             <div className='bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg'>
               <h3 className='font-FiraSans font-semibold text-2xl text-HeadingColor-0 dark:text-white mb-4'>
                 {currentLanguage === 'VN' ? 'Bạn cần giải pháp riêng cho doanh nghiệp?' : 'Need a custom solution for your business?'}

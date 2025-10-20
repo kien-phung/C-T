@@ -98,10 +98,19 @@ const Blog = () => {
     <section className='bg-[url(/images/blog3_bg.png)] bg-no-repeat bg-center bg-cover py-20'>
       <div className='Container'>
         <div className='text-center'>
-          <h5 className='font-FiraSans font-medium text-sm sm:text-base text-PrimaryColor-0 uppercase mb-3'>
+          <h5
+            className='font-FiraSans font-medium text-sm sm:text-base text-PrimaryColor-0 uppercase mb-3'
+            data-aos='fade-up'
+            data-aos-duration='800'
+          >
             {t('blog.sectionTitle')}
           </h5>
-          <h1 className='font-FiraSans font-semibold text-HeadingColor-0 inline-block text-[16px] leading-[26px] sm:text-[25px] sm:leading-[35px] md:text-[30px] md:leading-[40px] lg:text-[34px] lg:leading-[44px] xl:text-[40px] xl:leading-[50px] 2xl:text-[42px] 2xl:leading-[52px] relative pb-4'>
+          <h1
+            className='font-FiraSans font-semibold text-HeadingColor-0 inline-block text-[16px] leading-[26px] sm:text-[25px] sm:leading-[35px] md:text-[30px] md:leading-[40px] lg:text-[34px] lg:leading-[44px] xl:text-[40px] xl:leading-[50px] 2xl:text-[42px] 2xl:leading-[52px] relative pb-4'
+            data-aos='fade-up'
+            data-aos-duration='800'
+            data-aos-delay='100'
+          >
             {t('blog.title')}
             <img
               src={border}
@@ -125,9 +134,14 @@ const Blog = () => {
                 blogTitle,
                 blogDesc,
                 isExternal,
-              }) => {
+              }, index) => {
                 return (
-                  <div key={id}>
+                  <div
+                    key={id}
+                    data-aos='fade-up'
+                    data-aos-duration='800'
+                    data-aos-delay={200 + (index * 100)}
+                  >
                     <BlogCard
                       blogThumb={blogThumb}
                       blogThumbTitle={blogThumbTitle}

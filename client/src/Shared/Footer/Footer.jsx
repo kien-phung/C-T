@@ -25,7 +25,11 @@ const Footer = () => {
       <div className='bg-PrimaryColor-0 dark:bg-green-700 py-3'>
         <div className='Container'>
           <div className='grid grid-cols-1 md:grid-cols-2 gap-7 lg:gap-0 lg:grid-cols-3 lg:items-center'>
-            <div className='flex items-center gap-5'>
+            <div
+              className='flex items-center gap-5'
+              data-aos='fade-right'
+              data-aos-duration='800'
+            >
               <div className='size-[60px] bg-BorderColor2-0 dark:bg-green-800 rounded-full flex items-center justify-center text-white'>
                 <FaRegEnvelope size={'22'} />
               </div>
@@ -40,7 +44,12 @@ const Footer = () => {
                 </Link>
               </div>
             </div>
-            <div className='flex md:justify-center md:border-l lg:border-l-0 xl:border-x-2 border-BorderColor2-0 dark:border-green-800 py-2'>
+            <div
+              className='flex md:justify-center md:border-l lg:border-l-0 xl:border-x-2 border-BorderColor2-0 dark:border-green-800 py-2'
+              data-aos='fade-up'
+              data-aos-duration='800'
+              data-aos-delay='100'
+            >
               <Link to={'/'}>
                 <img
                   src={footerLogo}
@@ -49,11 +58,16 @@ const Footer = () => {
                 />
               </Link>
             </div>
-            <div className='flex lg:justify-end'>
+            <div
+              className='flex lg:justify-end'
+              data-aos='fade-left'
+              data-aos-duration='800'
+              data-aos-delay='200'
+            >
               <ul className='flex gap-3 items-center'>
                 <li>
                   <Link
-                    to={'/'}
+                    to={'https://www.facebook.com/profile.php?id=61581551666794'}
                     className='size-[48px] flex justify-center items-center rounded-full bg-BorderColor2-0 dark:bg-green-800 transition-all duration-500 text-white hover:text-PrimaryColor-0 dark:hover:text-green-400 relative z-10 after:absolute after:rounded-full after:top-0 after:left-0 after:bg-white dark:after:bg-gray-800 after:w-full after:h-full after:scale-0 after:-z-10 after:transition-all after:duration-500 hover:after:scale-100'
                   >
                     <ImFacebook2 size={'15'} />

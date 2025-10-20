@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__ide__getDiagnostics",
+      "Bash(npm install framer-motion)",
+      "Bash(npm run dev)",
+      "Bash(npm install cookie-parser)",
+      "Bash(npm install --save-dev @types/cookie-parser)",
+      "Bash(netstat -ano)",
+      "Bash(findstr :5000)",
+      "Bash(taskkill /PID 22376 /F)",
+      "Bash(taskkill //PID 22376 //F)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
