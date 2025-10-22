@@ -9,7 +9,11 @@
       "Bash(powershell -Command \"cd ''D:\\ProjectCO\\C-T\\client\\src\\utils''; grep -i ''contact'' translations.js | head -20\")",
       "mcp__ide__getDiagnostics",
       "Bash(powershell -Command \"if (Test-Path .vite) { Remove-Item -Recurse -Force .vite }; if (Test-Path node_modules\\.vite) { Remove-Item -Recurse -Force node_modules\\.vite }; Write-Host ''Cache cleared''\")",
-      "Bash(powershell -Command \"if (Test-Path dist) { Remove-Item -Recurse -Force dist }; if (Test-Path .vite) { Remove-Item -Recurse -Force .vite }; Write-Host ''Build artifacts cleared''\")"
+      "Bash(powershell -Command \"if (Test-Path dist) { Remove-Item -Recurse -Force dist }; if (Test-Path .vite) { Remove-Item -Recurse -Force .vite }; Write-Host ''Build artifacts cleared''\")",
+      "Bash(dir:*)",
+      "Bash(powershell -Command \"cd ''D:\\ProjectCO\\C-T\\client''; Get-ChildItem\")",
+      "Bash(powershell -Command:*)",
+      "Bash(npm run build:*)"
     ],
     "deny": [],
     "ask": []

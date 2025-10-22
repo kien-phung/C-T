@@ -93,7 +93,8 @@ const TeamMember = () => {
 
   return (
     <section
-      className='pt-20 pb-20 relative z-10 bg-[url(/images/team_bg.png)] bg-cover bg-center'
+      style={{ backgroundImage: `url(/images/team_bg.png)` }}
+      className='pt-20 pb-20 relative z-10 bg-cover bg-center'
     >
       <div className='absolute -z-10 top-10 left-1/2 -translate-x-1/2'>
         <img

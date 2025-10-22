@@ -27,8 +27,8 @@ const Accordion = () => {
 
   return (
     <section
-      className="relative overflow-hidden py-28 bg-[url('/images/faq-bg.jpg')] bg-cover bg-no-repeat
-     bg-center"
+      style={{ backgroundImage: `url(/images/faq-bg.jpg)` }}
+      className="relative overflow-hidden py-28 bg-cover bg-no-repeat bg-center"
     >
       <div className='Container'>
         <div className='text-center'>

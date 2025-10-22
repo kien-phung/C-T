@@ -15,3 +15,5 @@ export const ROOT_EMAIL = process.env.ROOT_EMAIL!;
 export const ROOT_PASSWORD = process.env.ROOT_PASSWORD!;
 
 export const TOTAL_MS_IN_DAY = 24 * 60 * 60 * 1000;
+
+export const PRIVATE_CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()";

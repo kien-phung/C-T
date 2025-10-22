@@ -138,7 +138,7 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      <footer className="bg-[url('/images/footer_bg.jpg')] dark:bg-gray-900 bg-no-repeat bg-center bg-cover relative z-10 pt-28 overflow-hidden">
+      <footer style={{ backgroundImage: `url(/images/footer_bg.jpg)` }} className="dark:bg-gray-900 bg-no-repeat bg-center bg-cover relative z-10 pt-28 overflow-hidden">
         {/* Dark mode overlay */}
         <div className='absolute inset-0 bg-gray-900 opacity-0 dark:opacity-90 transition-opacity duration-300 -z-20'></div>
 

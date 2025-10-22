@@ -85,7 +85,8 @@ export const sendMail = HandlerCustom(async (
         const result = await transporter.sendMail(mailOptions);
         console.log(`[EMAIL] Email sent successfully to ${to}:`, result.response);
     } catch (emailError) {
-        console.error(`[EMAIL] Error sending email to ${to}:`, emailError.message);
+        const errorMessage = emailError instanceof Error ? emailError.message : String(emailError);
+        console.error(`[EMAIL] Error sending email to ${to}:`, errorMessage);
         throw emailError;
     }
 

@@ -8,7 +8,7 @@ const Counter = () => {
 
   return (
     <div className='Container'>
-      <div className='bg-[url(/images/counter_bg.png)] bg-no-repeat bg-cover bg-center relative z-10 grid grid-cols-1 md:grid-cols-2 gap-7 lg:gap-0 lg:grid-cols-3 items-center justify-center py-[71px] px-3 rounded-md -mt-[100px]'>
+      <div style={{ backgroundImage: `url(/images/counter_bg.png)` }} className='bg-no-repeat bg-cover bg-center relative z-10 grid grid-cols-1 md:grid-cols-2 gap-7 lg:gap-0 lg:grid-cols-3 items-center justify-center py-[71px] px-3 rounded-md -mt-[100px]'>
         <div className='relative flex items-center justify-center gap-10'>
           <div>
             <CountUp
