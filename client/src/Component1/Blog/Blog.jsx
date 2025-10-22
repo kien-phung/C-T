@@ -16,7 +16,7 @@ const getBlogData = (language) => {
         blogThumbTitle: 'Công nghệ',
         blogDateIcon: <FaCircle />,
         blogDate: '04 Th3, 2025',
-        blogUrl: 'https://www.facebook.com/profile.php?id=61571026593304',
+        blogUrl: 'https://www.facebook.com/permalink.php?story_fbid=pfbid02f8HJnrt2pYeyymHTpwwLgCeoruUfTg23Minx54XmdG3BjDG5G9FWmDbSivmyhAH1l&id=61581551666794',
         blogTitle: 'Diễn Đàn Đổi Mới Sáng Tạo Năng Lượng',
         blogDesc:
           'Tham dự gặp gỡ các ban lãnh đạo cấp cao, tìm hiểu về quy trình chuyển đổi công nghệ mới vào trong nguồn năng lượng hẳng ngày.',
@@ -28,7 +28,7 @@ const getBlogData = (language) => {
         blogThumbTitle: 'Công nghệ',
         blogDateIcon: <FaCircle />,
         blogDate: '14 Th3, 2025',
-        blogUrl: 'https://www.facebook.com/profile.php?id=61571026593304',
+        blogUrl: 'https://www.facebook.com/permalink.php?story_fbid=pfbid033AUea7wNJDD32K3B7n3HK1wK58Mmn5s3BX63aRWw8TuQE1pTcd1T66AdBRph7nZ2l&id=61581551666794',
         blogTitle: 'Giải Pháp Hệ Thống Camera Giám Sát Tích Hợp AI',
         blogDesc:
           'Cung cấp giải pháp thông minh dành cho doanh nghiệp, mang đến giá trị to lớn cho khách hàng',
@@ -40,7 +40,7 @@ const getBlogData = (language) => {
         blogThumbTitle: 'Công nghệ',
         blogDateIcon: <FaCircle />,
         blogDate: '24 Th3, 2025',
-        blogUrl: 'https://www.facebook.com/profile.php?id=61571026593304',
+        blogUrl: 'https://www.facebook.com/permalink.php?story_fbid=pfbid06JXqDBEtuvNJvM5NfCtjihEN3CxH7bsbUrrHB95Shpm5g9dMeSiNgASRpoDLJxyWl&id=61581551666794',
         blogTitle: 'Giải pháp Tiết Kiệm Năng Lượng Điện Tích Hợp AI',
         blogDesc:
           'Giúp doanh nghiệp của bạn giảm chi phí tiền điện hằng tháng lên đến con số 10 - 15% sự lựa chọn thông minh...',
@@ -54,7 +54,7 @@ const getBlogData = (language) => {
         blogThumbTitle: 'Technology',
         blogDateIcon: <FaCircle />,
         blogDate: 'Mar 04, 2025',
-        blogUrl: 'https://www.facebook.com/profile.php?id=61571026593304',
+        blogUrl: 'https://www.facebook.com/permalink.php?story_fbid=pfbid02f8HJnrt2pYeyymHTpwwLgCeoruUfTg23Minx54XmdG3BjDG5G9FWmDbSivmyhAH1l&id=61581551666794',
         blogTitle: 'Energy Innovation Forum',
         blogDesc:
           'Attended meetings with senior leadership, learning about the process of integrating new technology into daily energy sources.',
@@ -66,7 +66,7 @@ const getBlogData = (language) => {
         blogThumbTitle: 'Technology',
         blogDateIcon: <FaCircle />,
         blogDate: 'Mar 14, 2025',
-        blogUrl: 'https://www.facebook.com/profile.php?id=61571026593304',
+        blogUrl: 'https://www.facebook.com/permalink.php?story_fbid=pfbid033AUea7wNJDD32K3B7n3HK1wK58Mmn5s3BX63aRWw8TuQE1pTcd1T66AdBRph7nZ2l&id=61581551666794',
         blogTitle: 'AI-Integrated Camera Surveillance System Solution',
         blogDesc:
           'Providing smart solutions for businesses, bringing great value to customers',
@@ -78,7 +78,7 @@ const getBlogData = (language) => {
         blogThumbTitle: 'Technology',
         blogDateIcon: <FaCircle />,
         blogDate: 'Mar 24, 2025',
-        blogUrl: 'https://www.facebook.com/profile.php?id=61571026593304',
+        blogUrl: 'https://www.facebook.com/permalink.php?story_fbid=pfbid06JXqDBEtuvNJvM5NfCtjihEN3CxH7bsbUrrHB95Shpm5g9dMeSiNgASRpoDLJxyWl&id=61581551666794',
         blogTitle: 'AI-Integrated Energy Saving Solution',
         blogDesc:
           'Help your business reduce monthly electricity costs by up to 10 - 15%, a smart choice...',

@@ -8,6 +8,8 @@ import solutionRoute from './solution.route.js';
 import teamMemberRoute from './team.member.route.js';
 import certificateRoute from './certificate.route.js';
 import contactRoute from './contact.route.js';
+import adminAuthRoute from './admin.auth.route.js';
+import adminContactRoute from './admin.contact.route.js';
 
 const router = express.Router();
 
@@ -21,6 +23,9 @@ const routes = [
     { path: '/team-members', router: teamMemberRoute },
     { path: '/certificates', router: certificateRoute },
     { path: '/contacts', router: contactRoute },
+    // Admin routes
+    { path: '/admin/auth', router: adminAuthRoute },
+    { path: '/admin/contacts', router: adminContactRoute },
 ];
 
 routes.forEach(route => {

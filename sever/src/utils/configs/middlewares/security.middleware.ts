@@ -72,6 +72,7 @@ const ALLOWED_METHODS: string[] = [
 
 const ALLOWED_HEADERS: string[] = [
     "Content-Type",
+    "Authorization",
 ];
 
 /**

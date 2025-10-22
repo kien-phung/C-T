@@ -111,7 +111,7 @@ const Service = () => {
     // pagination removed to avoid dots that change slides
 
   return (
-    <section className='Service relative z-10 pt-20 pb-20 bg-gradient-to-t to-BodyBg-0 from-transparent'>
+    <section className='Service relative z-10 pt-20 pb-20 bg-gradient-to-t to-BodyBg-0 dark:to-gray-900 from-transparent'>
       <div className='absolute -z-10 top-28 left-[22%] hidden 2xl:block animate-rotate'>
         <img
           src={serviceShape}

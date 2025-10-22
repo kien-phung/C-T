@@ -10,10 +10,74 @@ import { FaRegEnvelopeOpen } from 'react-icons/fa6';
 import { IoLocationOutline } from 'react-icons/io5';
 import { useLanguage } from '../../../contexts/LanguageContext';
 import { getTranslation } from '../../../utils/translations';
+import { useState } from 'react';
+import { submitContact } from '../../../api/api';
 
 const Contact = () => {
   const { currentLanguage } = useLanguage();
   const t = (key) => getTranslation(currentLanguage, key);
+
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    address: '',
+    phone: '',
+    message: '',
+    terms: false
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitMessage, setSubmitMessage] = useState('');
+
+  const handleInputChange = (e) => {
+    const { name, value, type, checked } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: type === 'checkbox' ? checked : value
+    }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (!formData.terms) {
+      setSubmitMessage(t('contact.termsError'));
+      return;
+    }
+
+    setIsSubmitting(true);
+    setSubmitMessage('');
+
+    try {
+      const response = await submitContact({
+        name: formData.name,
+        email: formData.email,
+        address: formData.address,
+        phone: formData.phone,
+        message: formData.message,
+        submit_type: 'Contact Form',
+        language: currentLanguage
+      });
+
+      if (response.data.success) {
+        setSubmitMessage(t('contact.successMessage'));
+        setFormData({
+          name: '',
+          email: '',
+          address: '',
+          phone: '',
+          message: '',
+          terms: false
+        });
+      } else {
+        setSubmitMessage(t('contact.errorMessage'));
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      setSubmitMessage(t('contact.errorMessage'));
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
     <section className='py-28 relative'>
@@ -65,11 +129,11 @@ const Contact = () => {
                   <h6 className='font-FiraSans text-TextColor2-0'>
                     {t('contact.callUs')}
                   </h6>
-                  <Link to={'/'}>
+                  <a href='https://zalo.me/84822191605' target='_blank' rel='noopener noreferrer'>
                     <button className='font-FiraSans text-xl text-HeadingColor-0 font-medium mt-1'>
                       0822191605
                     </button>
-                  </Link>
+                  </a>
                 </div>
               </div>
               <div className='flex items-center gap-5 group border-b border-dashed border-HeadingColor-0 border-opacity-40 py-5'>
@@ -78,11 +142,11 @@ const Contact = () => {
                 </div>
                 <div>
                   <h6 className='font-FiraSans text-TextColor2-0'>{t('contact.emailUs')}</h6>
-                  <Link to={'/'}>
+                  <a href='https://mail.google.com/mail/?view=cm&fs=1&to=stl.solution.co@gmail.com' target='_blank' rel='noopener noreferrer'>
                     <button className='font-FiraSans text-xl text-HeadingColor-0 font-medium mt-1'>
                       stl.solution.co@gmail.com
                     </button>
-                  </Link>
+                  </a>
                 </div>
               </div>
               <div className='flex items-center gap-5 group pt-5 pb-2'>
@@ -126,8 +190,7 @@ const Contact = () => {
                 </h1>
               </div>
               <form
-                action='https://formspree.io/f/xayrekgy'
-                method='post'
+                onSubmit={handleSubmit}
                 className='flex flex-col gap-y-5 pt-11 pb-[60px]'
               >
                 <div className='grid grid-cols-1 sm:grid-cols-2 gap-5'>
@@ -136,9 +199,11 @@ const Contact = () => {
                       type='text'
                       name='name'
                       id='name'
+                      value={formData.name}
+                      onChange={handleInputChange}
                       placeholder={t('contact.namePlaceholder')}
                       required
-                      className='font-FiraSans text-black placeholder:text-gray-600 text-sm bg-transparent border border-Secondarycolor-0 border-opacity-20 rounded py-2 px-6 h-[54px] w-full focus:outline-PrimaryColor-0'
+                      className='font-FiraSans text-HeadingColor-0 placeholder:text-TextColor-0 text-sm bg-transparent border border-Secondarycolor-0 border-opacity-20 rounded py-2 px-6 h-[54px] w-full focus:outline-PrimaryColor-0'
                     />
                     <FaUser
                       size={'14'}
@@ -150,9 +215,11 @@ const Contact = () => {
                       type='email'
                       name='email'
                       id='email'
+                      value={formData.email}
+                      onChange={handleInputChange}
                       placeholder={t('contact.emailPlaceholder')}
                       required
-                      className='font-FiraSans text-black placeholder:text-gray-600 text-sm bg-transparent border border-Secondarycolor-0 border-opacity-20 rounded py-2 px-6 h-[54px] w-full focus:outline-PrimaryColor-0'
+                      className='font-FiraSans text-HeadingColor-0 placeholder:text-TextColor-0 text-sm bg-transparent border border-Secondarycolor-0 border-opacity-20 rounded py-2 px-6 h-[54px] w-full focus:outline-PrimaryColor-0'
                     />
                     <HiOutlineMailOpen
                       size={'16'}
@@ -166,9 +233,11 @@ const Contact = () => {
                       type='text'
                       name='address'
                       id='address'
+                      value={formData.address}
+                      onChange={handleInputChange}
                       placeholder={t('contact.addressPlaceholder')}
                       required
-                      className='font-FiraSans text-black placeholder:text-gray-600 text-sm bg-transparent border border-Secondarycolor-0 border-opacity-20 rounded py-2 px-6 h-[54px] w-full focus:outline-PrimaryColor-0'
+                      className='font-FiraSans text-HeadingColor-0 placeholder:text-TextColor-0 text-sm bg-transparent border border-Secondarycolor-0 border-opacity-20 rounded py-2 px-6 h-[54px] w-full focus:outline-PrimaryColor-0'
                     />
                     <FaHouse
                       size={'16'}
@@ -178,11 +247,13 @@ const Contact = () => {
                   <div className='relative inline-block'>
                     <input
                       type='text'
-                      name='number'
-                      id='number'
+                      name='phone'
+                      id='phone'
+                      value={formData.phone}
+                      onChange={handleInputChange}
                       placeholder={t('contact.phonePlaceholder')}
                       required
-                      className='font-FiraSans text-black placeholder:text-gray-600 text-sm bg-transparent border border-Secondarycolor-0 border-opacity-20 rounded py-2 px-6 h-[54px] w-full focus:outline-PrimaryColor-0'
+                      className='font-FiraSans text-HeadingColor-0 placeholder:text-TextColor-0 text-sm bg-transparent border border-Secondarycolor-0 border-opacity-20 rounded py-2 px-6 h-[54px] w-full focus:outline-PrimaryColor-0'
                     />
                     <MdCall
                       size={'16'}
@@ -193,24 +264,37 @@ const Contact = () => {
                 <textarea
                   name='message'
                   id='message'
+                  value={formData.message}
+                  onChange={handleInputChange}
                   placeholder={t('contact.messagePlaceholder')}
-                  className='font-FiraSans text-black placeholder:text-gray-600 text-sm bg-transparent border border-Secondarycolor-0 border-opacity-20 rounded py-2 px-6 h-[120px] w-full focus:outline-PrimaryColor-0 resize-none'
+                  className='font-FiraSans text-HeadingColor-0 placeholder:text-TextColor-0 text-sm bg-transparent border border-Secondarycolor-0 border-opacity-20 rounded py-2 px-6 h-[120px] w-full focus:outline-PrimaryColor-0 resize-none'
                 ></textarea>
                 <label
                   htmlFor='terms'
-                  className='font-FiraSans text-black dark:text-white text-sm flex items-center gap-2 cursor-pointer'
+                  className='font-FiraSans text-TextColor-0 text-sm flex items-center gap-2 cursor-pointer'
                 >
                   <input
                     type='checkbox'
                     name='terms'
                     id='terms'
+                    checked={formData.terms}
+                    onChange={handleInputChange}
                   />
                   {t('contact.agreeTerms')}
                 </label>
+                {submitMessage && (
+                  <div className={`text-sm font-FiraSans ${submitMessage.includes('error') || submitMessage.includes('lỗi') || submitMessage.includes('vui lòng') ? 'text-red-500' : 'text-green-600'}`}>
+                    {submitMessage}
+                  </div>
+                )}
                 <div className='inline-block mt-2'>
-                  <button className='primary-btn2 !py-[15px]'>
+                  <button
+                    type='submit'
+                    className='primary-btn2 !py-[15px]'
+                    disabled={isSubmitting}
+                  >
                     <FaRegThumbsUp />
-                    {t('contact.submitButton')}
+                    {isSubmitting ? t('contact.submitting') : t('contact.submitButton')}
                   </button>
                 </div>
               </form>

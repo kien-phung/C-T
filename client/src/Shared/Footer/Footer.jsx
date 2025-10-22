@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import footerShape2 from '/images/footer_shape.png';
-import footerLogo from '/images/stlLogo.png';
+import footerLogo from '/images/logo1.png';
 import footerShape from '/images/choose_rotete.png';
 import footerImg from '/images/blog/blog1.jpg';
 import footerImg2 from '/images/blog/blog2.jpg';
@@ -16,10 +16,46 @@ import { FaCircle } from 'react-icons/fa';
 import { ImFacebook2 } from 'react-icons/im';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { getTranslation } from '../../utils/translations';
+import { useState } from 'react';
+import { submitContact } from '../../api/api';
 
 const Footer = () => {
   const { currentLanguage } = useLanguage();
   const t = (key) => getTranslation(currentLanguage, key);
+
+  const [newsletterEmail, setNewsletterEmail] = useState('');
+  const [newsletterMessage, setNewsletterMessage] = useState('');
+  const [isSubmittingNewsletter, setIsSubmittingNewsletter] = useState(false);
+
+  const handleNewsletterSubmit = async (e) => {
+    e.preventDefault();
+    setIsSubmittingNewsletter(true);
+    setNewsletterMessage('');
+
+    try {
+      const response = await submitContact({
+        name: 'Newsletter Subscriber',
+        email: newsletterEmail,
+        address: 'N/A',
+        phone: 'N/A',
+        message: currentLanguage === 'VN' ? 'Đăng ký nhận bản tin' : 'Subscribe to newsletter',
+        submit_type: 'Newsletter',
+        language: currentLanguage
+      });
+
+      if (response.data.success) {
+        setNewsletterMessage(t('footer.newsletterSuccess'));
+        setNewsletterEmail('');
+      } else {
+        setNewsletterMessage(t('footer.newsletterError'));
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      setNewsletterMessage(t('footer.newsletterError'));
+    } finally {
+      setIsSubmittingNewsletter(false);
+    }
+  };
   return (
     <>
       <div className='bg-PrimaryColor-0 dark:bg-green-700 py-3'>
@@ -37,11 +73,11 @@ const Footer = () => {
                 <h6 className='font-FiraSans text-[15px] text-white'>
                   {t('footer.contact')}
                 </h6>
-                <Link to={'/'}>
+                <a href='https://mail.google.com/mail/?view=cm&fs=1&to=stl.solution.co@gmail.com' target='_blank' rel='noopener noreferrer'>
                   <button className='font-FiraSans text-xl text-white font-medium'>
                     stl.solution.co@gmail.com
                   </button>
-                </Link>
+                </a>
               </div>
             </div>
             <div
@@ -126,27 +162,34 @@ const Footer = () => {
                 {t('footer.aboutDescription')}
               </p>
               <form
-                action='https://formspree.io/f/xayrekgy'
-                method='post'
+                onSubmit={handleNewsletterSubmit}
                 className='relative sm:w-8/12'
               >
                 <label
-                  htmlFor='email'
+                  htmlFor='newsletterEmail'
                   className='relative'
                 >
                   <input
                     type='email'
                     name='email'
-                    id='email'
+                    id='newsletterEmail'
+                    value={newsletterEmail}
+                    onChange={(e) => setNewsletterEmail(e.target.value)}
                     placeholder={t('footer.enterEmail')}
                     required
                     className='w-full h-[56px] outline-none font-FiraSans border-b border-HeadingColor-0 dark:border-gray-600 border-opacity-30 bg-transparent px-4 py-4 text-HeadingColor-0 dark:text-white placeholder:text-HeadingColor-0 dark:placeholder:text-gray-400 mb-4'
                   />
                 </label>
+                {newsletterMessage && (
+                  <div className={`text-xs font-FiraSans mb-2 ${newsletterMessage.includes('error') || newsletterMessage.includes('lỗi') ? 'text-red-500' : 'text-green-600'}`}>
+                    {newsletterMessage}
+                  </div>
+                )}
                 <div className='absolute top-3 right-0'>
                   <button
                     type='submit'
-                    className='size-9 rounded-full border border-PrimaryColor-0 dark:border-green-600 bg-PrimaryColor-0 dark:bg-green-600 gap-2 text-sm text-white font-FiraSans flex items-center justify-center relative z-10 before:absolute before:top-0 before:left-0 before:w-full before:h-full before:rounded before:bg-HeadingColor-0 dark:before:bg-gray-700 before:-z-10 before:scale-0 before:transition-all before:duration-500 hover:before:scale-100'
+                    disabled={isSubmittingNewsletter}
+                    className='size-9 rounded-full border border-PrimaryColor-0 dark:border-green-600 bg-PrimaryColor-0 dark:bg-green-600 gap-2 text-sm text-white font-FiraSans flex items-center justify-center relative z-10 before:absolute before:top-0 before:left-0 before:w-full before:h-full before:rounded before:bg-HeadingColor-0 dark:before:bg-gray-700 before:-z-10 before:scale-0 before:transition-all before:duration-500 hover:before:scale-100 disabled:opacity-50'
                   >
                     <IoPaperPlaneSharp size={'20'} />
                   </button>

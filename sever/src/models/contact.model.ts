@@ -4,8 +4,9 @@ interface IContactDocument extends Document {
   name?: string;
   email?: string;
   phone?: string;
+  address?: string;
   message?: string;
-  program?: string;
+  submit_type?: string;
 }
 
 const schema: Schema<IContactDocument> = new Schema(
@@ -13,8 +14,9 @@ const schema: Schema<IContactDocument> = new Schema(
     name: String,
     email: String,
     phone: String,
+    address: String,
     message: String,
-    program: String,
+    submit_type: String,
   },
   {
     timestamps: true,

@@ -2,6 +2,7 @@ import { Outlet, useLocation } from 'react-router-dom';
 import Navbar from '../Shared/Navbar/Navbar';
 import BackToTop from '../Shared/BackToTop/BackToTop';
 import Footer from '../Shared/Footer/Footer';
+import FloatingContact from '../Shared/FloatingContact/FloatingContact';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import HelmetChanger from '../Shared/Helmet/Helmet';
@@ -77,6 +78,7 @@ const Main = () => {
       <HelmetChanger />
       <Navbar />
       <BackToTop />
+      <FloatingContact />
       <AnimatePresence mode="wait">
         <PageTransition key={location.pathname}>
           <Outlet />

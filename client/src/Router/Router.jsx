@@ -1,4 +1,4 @@
-import { createBrowserRouter } from 'react-router-dom';
+import { createBrowserRouter, Navigate } from 'react-router-dom';
 import Main from '../Main/Main';
 import Home1 from '../Pages/Home1/Home1'; // Trang Chủ
 import ErrorPage from '../Shared/ErrorPage/ErrorPage';
@@ -10,6 +10,10 @@ import PolicyInner from '../Pages/InnerPage/PolicyInner/PolicyInner'; // Chính 
 import CustomerInner from '../Pages/InnerPage/CustomerInner/CustomerInner'; // Khách Hàng
 import BlogGrid from '../Pages/InnerPage/BlogGrid/BlogGrid'; // Tin Tức
 import TeamInner from '../Pages/InnerPage/TeamInner/TeamInner'; // Đội Ngũ
+import AdminLogin from '../Pages/Admin/AdminLogin'; // Admin Login
+import AdminDashboard from '../Pages/Admin/AdminDashboard'; // Admin Dashboard
+import AdminContacts from '../Pages/Admin/AdminContacts'; // Admin Contacts
+import ProtectedAdminRoute from './ProtectedAdminRoute'; // Protected Route
 
 const router = createBrowserRouter([
   {
@@ -54,6 +58,39 @@ const router = createBrowserRouter([
         element: <TeamInner />,
       },
     ],
+  },
+  // Admin routes (separate from main layout)
+  {
+    path: '/admin',
+    element: localStorage.getItem('adminToken') ?
+      <Navigate to="/admin/dashboard" replace /> :
+      <Navigate to="/admin/login" replace />,
+  },
+  {
+    path: '/admin/',
+    element: localStorage.getItem('adminToken') ?
+      <Navigate to="/admin/dashboard" replace /> :
+      <Navigate to="/admin/login" replace />,
+  },
+  {
+    path: '/admin/login',
+    element: <AdminLogin />,
+  },
+  {
+    path: '/admin/dashboard',
+    element: (
+      <ProtectedAdminRoute>
+        <AdminDashboard />
+      </ProtectedAdminRoute>
+    ),
+  },
+  {
+    path: '/admin/contacts',
+    element: (
+      <ProtectedAdminRoute>
+        <AdminContacts />
+      </ProtectedAdminRoute>
+    ),
   },
 ]);
 

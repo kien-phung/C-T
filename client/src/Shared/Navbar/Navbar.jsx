@@ -23,6 +23,7 @@ import { IoSearch } from 'react-icons/io5';
 import ThemeToggle from '../ThemeToggle/ThemeToggle';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { getTranslation } from '../../utils/translations';
+import { submitContact } from '../../api/api';
 
 
 const Navbar = () => {
@@ -47,6 +48,42 @@ const Navbar = () => {
     scrollTop >= 250
       ? header.classList.add('is-sticky')
       : header.classList.remove('is-sticky');
+  };
+
+  // Newsletter Form State
+  const [newsletterEmail, setNewsletterEmail] = useState('');
+  const [newsletterStatus, setNewsletterStatus] = useState('');
+
+  const handleNewsletterSubmit = async (e) => {
+    e.preventDefault();
+    setNewsletterStatus('');
+
+    if (!newsletterEmail) {
+      setNewsletterStatus('❌ Vui lòng nhập email');
+      return;
+    }
+
+    try {
+      const response = await submitContact({
+        name: 'Newsletter Subscriber',
+        email: newsletterEmail,
+        address: 'N/A',
+        phone: 'N/A',
+        message: currentLanguage === 'VN' ? 'Đăng ký nhận bản tin' : 'Subscribe to newsletter',
+        submit_type: 'Newsletter',
+        language: currentLanguage
+      });
+
+      if (response.data.success) {
+        setNewsletterStatus('✅ Cảm ơn bạn đã đăng ký!');
+        setNewsletterEmail('');
+      } else {
+        setNewsletterStatus('❌ Có lỗi xảy ra');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      setNewsletterStatus('❌ Lỗi kết nối');
+    }
   };
 
   //Menu Sidebar
@@ -226,6 +263,7 @@ const Navbar = () => {
               <img
                 src={Logo2}
                 draggable='false'
+                style={{ margin: '0 auto', display: 'block' }}
               />
             </Link>
           </div>
@@ -244,43 +282,52 @@ const Navbar = () => {
               onClick={toggleLanguage}
               className='flex-1 px-5 py-3 bg-PrimaryColor-0 dark:bg-green-600 text-white font-FiraSans font-medium text-sm rounded transition-all duration-300 hover:bg-opacity-90'
             >
-              {currentLanguage === 'VN' ? '🇻🇳 Tiếng Việt' : '🇬🇧 English'}
+              {currentLanguage === 'VN' ? 'VN' : 'EN'}
             </button>
           </div>
 
           <div className='main-menu-mobile lg:none'></div>
           <div className='offcanvas_contact-info'>
             <div className='offcanvas_contact-title'>
-              <h5>Contact Us</h5>
+              <h5>{t('footer.contactUsFooter')}</h5>
             </div>
             <ul>
               <li>
                 <MdLocationPin />
-                <Link to={'/'}>TP Ho Chi Minh</Link>
+                <a href="https://maps.google.com/maps/search/TP+Ho+Chi+Minh" target="_blank" rel="noopener noreferrer">TP Ho Chi Minh</a>
               </li>
               <li>
                 <FaEnvelope />
-                <Link to={'/'}>needhelp@company.com</Link>
+                <a
+                  href='https://mail.google.com/mail/?view=cm&fs=1&to=stl.solution.co@gmail.com'
+                  target='_blank'
+                  rel='noopener noreferrer'
+                  onClick={() => {
+                    offcanvasRef.current?.classList.remove('opened');
+                    bodyOverlayRef.current?.classList.remove('apply');
+                  }}
+                >
+                  stl.solution.co@gmail.com
+                </a>
               </li>
               <li>
                 <FaPhoneAlt />
-                <Link to={'/'}>+48 555 223 224</Link>
+                <a href="tel:+84908229309">+84 908 229 309</a>
               </li>
             </ul>
           </div>
           <div className='offcanvas_input'>
             <div className='offcanvas_input-title'>
-              <h4>Get Update</h4>
+              <h4>{currentLanguage === 'VN' ? 'Nhận Cập Nhật' : 'Get Update'}</h4>
             </div>
-            <form
-              action='#'
-              method='post'
-            >
+            <form onSubmit={handleNewsletterSubmit}>
               <div className='relative'>
                 <input
                   type='email'
                   name='email'
-                  placeholder='Enter E-Mail'
+                  value={newsletterEmail}
+                  onChange={(e) => setNewsletterEmail(e.target.value)}
+                  placeholder={currentLanguage === 'VN' ? 'Nhập E-Mail' : 'Enter E-Mail'}
                   required
                 />
                 <button type='submit'>
@@ -288,7 +335,9 @@ const Navbar = () => {
                 </button>
               </div>
             </form>
-            <div className='status'></div>
+            <div className='status' style={{ marginTop: '8px', fontSize: '12px', textAlign: 'center' }}>
+              {newsletterStatus}
+            </div>
           </div>
           <div className='offcanvas_social'>
             <div className='social-icon'>
@@ -319,12 +368,14 @@ const Navbar = () => {
               <h6 className='text-lg text-white'>
                 <HiOutlineMail />
               </h6>
-  <a
-  href=" https://mail.google.com/mail/u/0/?hl=vi" // Sử dụng mailto: + địa chỉ email
-  className='font-FiraSans text-[15px] text-white transition-all duration-500 hover:text-white'
->
-  stl.solution.co@gmail.com
-</a>
+              <a
+                href='https://mail.google.com/mail/?view=cm&fs=1&to=stl.solution.co@gmail.com'
+                target='_blank'
+                rel='noopener noreferrer'
+                className='font-FiraSans text-[15px] text-white'
+              >
+                stl.solution.co@gmail.com
+              </a>
             </div>
             <div className=' md:flex items-center gap-2 hidden'>
               <h6 className='text-white [transform:rotateX(180deg)]'>
@@ -345,7 +396,7 @@ const Navbar = () => {
             <ul className='flex gap-5 items-center'>
               <li>
                 <Link
-                  to={'/'}
+                  to={'https://www.facebook.com/profile.php?id=61581551666794'}
                   className='transition-all duration-500 text-white hover:text-PrimaryColor-0'
                 >
                   <ImFacebook2 size={'14'} />
@@ -508,7 +559,13 @@ const Navbar = () => {
               </li>
               <li>
                 <FaEnvelope />
-                <Link to={'/'}>stl.solution.co@gmail.com</Link>
+                <a
+                  href='https://mail.google.com/mail/?view=cm&fs=1&to=stl.solution.co@gmail.com'
+                  target='_blank'
+                  rel='noopener noreferrer'
+                >
+                  stl.solution.co@gmail.com
+                </a>
               </li>
               <li>
                 <FaPhoneAlt />

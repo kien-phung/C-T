@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Email Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #555;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        textarea {
+            min-height: 100px;
+        }
+        button {
+            background: #0056b3;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background: #004494;
+        }
+        button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+        .message {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 4px;
+        }
+        .success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        .info {
+            background: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧪 Test Email Contact Form</h1>
+
+        <div class="info">
+            <strong>Hướng dẫn test:</strong><br>
+            1. Mở DevTools (F12) → Tab Console và Network<br>
+            2. Điền form dưới đây<br>
+            3. Click "Gửi Test"<br>
+            4. Xem kết quả trong Console và message bên dưới
+        </div>
+
+        <form id="testForm">
+            <div class="form-group">
+                <label for="name">Họ tên:</label>
+                <input type="text" id="name" name="name" value="Nguyễn Văn Test" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" value="test@example.com" required>
+            </div>
+
+            <div class="form-group">
+                <label for="phone">Số điện thoại:</label>
+                <input type="text" id="phone" name="phone" value="0123456789" required>
+            </div>
+
+            <div class="form-group">
+                <label for="address">Địa chỉ:</label>
+                <input type="text" id="address" name="address" value="123 Test Street" required>
+            </div>
+
+            <div class="form-group">
+                <label for="message">Tin nhắn:</label>
+                <textarea id="message" name="message" required>Đây là tin nhắn test từ form HTML.</textarea>
+            </div>
+
+            <button type="submit" id="submitBtn">Gửi Test</button>
+        </form>
+
+        <div id="result"></div>
+    </div>
+
+    <script>
+        const form = document.getElementById('testForm');
+        const resultDiv = document.getElementById('result');
+        const submitBtn = document.getElementById('submitBtn');
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            console.log('🚀 Bắt đầu gửi request...');
+
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Đang gửi...';
+            resultDiv.innerHTML = '';
+
+            const formData = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                address: document.getElementById('address').value,
+                message: document.getElementById('message').value,
+                submit_type: 'Test Form'
+            };
+
+            console.log('📦 Data gửi đi:', formData);
+
+            try {
+                const response = await fetch('http://localhost:4040/api/contacts', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(formData)
+                });
+
+                console.log('📡 Response status:', response.status);
+
+                const data = await response.json();
+                console.log('📥 Response data:', data);
+
+                if (data.success) {
+                    resultDiv.innerHTML = `
+                        <div class="message success">
+                            <strong>✅ Thành công!</strong><br>
+                            ${data.message}<br>
+                            <br>
+                            <strong>Kiểm tra email:</strong><br>
+                            • Admin (davidkien04@gmail.com) nên nhận email thông báo<br>
+                            • Khách hàng (${formData.email}) nên nhận email xác nhận
+                        </div>
+                    `;
+                } else {
+                    resultDiv.innerHTML = `
+                        <div class="message error">
+                            <strong>❌ Lỗi!</strong><br>
+                            ${data.message || 'Không thể gửi email'}
+                        </div>
+                    `;
+                }
+            } catch (error) {
+                console.error('❌ Lỗi:', error);
+                resultDiv.innerHTML = `
+                    <div class="message error">
+                        <strong>❌ Lỗi kết nối!</strong><br>
+                        ${error.message}<br>
+                        <br>
+                        <strong>Kiểm tra:</strong><br>
+                        • Backend có đang chạy không? (http://localhost:4040)<br>
+                        • CORS có được cấu hình không?<br>
+                        • Xem Console (F12) để biết chi tiết
+                    </div>
+                `;
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Gửi Test';
+            }
+        });
+
+        // Auto check backend on load
+        window.addEventListener('load', async () => {
+            console.log('🔍 Kiểm tra backend...');
+            try {
+                const response = await fetch('http://localhost:4040/api/contacts', {
+                    method: 'OPTIONS'
+                });
+                console.log('✅ Backend đang chạy!', response.status);
+            } catch (error) {
+                console.error('❌ Backend không chạy hoặc có lỗi CORS:', error);
+                resultDiv.innerHTML = `
+                    <div class="message error">
+                        <strong>⚠️ Cảnh báo!</strong><br>
+                        Backend không phản hồi. Vui lòng kiểm tra:<br>
+                        • Backend có đang chạy không? (npm run dev trong folder sever)<br>
+                        • Port 4040 có bị chiếm không?
+                    </div>
+                `;
+            }
+        });
+    </script>
+</body>
+</html>

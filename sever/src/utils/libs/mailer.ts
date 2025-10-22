@@ -11,7 +11,9 @@ export enum EmailTemplate {
     WELCOME = "../templates/welcome.html",
     RESET_PASSWORD = "../templates/resetPassword.html",
     CONTACT_CONFIRMATION = "../templates/contactConfirmation.html",
+    CONTACT_CONFIRMATION_EN = "../templates/contactConfirmationEN.html",
     SEND_PASSWORD = "../templates/sendPassword.html",
+    ADMIN_NOTIFICATION = "../templates/adminNotification.html",
 }
 
 type TemplateDataValue = string | number | boolean | null;
@@ -72,13 +74,20 @@ export const sendMail = HandlerCustom(async (
     });
 
     const mailOptions = {
-        from: "VietAu Academy <VietAuAcademy@gmail.com>",
+        from: `STL Solution <${EMAIL_USER}>`,
         to,
         subject,
         html
     };
 
-    await transporter.sendMail(mailOptions);
+    try {
+        console.log(`[EMAIL] Sending email to: ${to} from: ${EMAIL_USER}`);
+        const result = await transporter.sendMail(mailOptions);
+        console.log(`[EMAIL] Email sent successfully to ${to}:`, result.response);
+    } catch (emailError) {
+        console.error(`[EMAIL] Error sending email to ${to}:`, emailError.message);
+        throw emailError;
+    }
 
     return {
         success: true,
