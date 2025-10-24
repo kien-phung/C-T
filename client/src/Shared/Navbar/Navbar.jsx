@@ -279,8 +279,9 @@ const Navbar = () => {
           <div className='flex items-center gap-4 mb-6 px-6'>
             <ThemeToggle />
             <button
+              type='button'
               onClick={toggleLanguage}
-              className='flex-1 px-5 py-3 bg-PrimaryColor-0 dark:bg-green-600 text-white font-FiraSans font-medium text-sm rounded transition-all duration-300 hover:bg-opacity-90'
+              className='flex-1 px-5 py-3 bg-PrimaryColor-0 dark:bg-green-600 text-white font-FiraSans font-medium text-sm rounded transition-all duration-300 hover:bg-opacity-90 cursor-pointer'
             >
               {currentLanguage === 'VN' ? 'VN' : 'EN'}
             </button>
@@ -435,9 +436,9 @@ const Navbar = () => {
         className='header-area header-sticky style-three'
       >
         <div className='Container'>
-          <div className='bg-transparent rounded-md flex items-center justify-between lg:grid lg:grid-cols-12 lg:gap-4 py-2 lg:py-0'>
-            <div className='col-span-2'>
-              <div className='header-logo pl-0 lg:pl-4'>
+          <div className='bg-transparent rounded-md flex items-center justify-center lg:justify-between lg:grid lg:grid-cols-12 lg:gap-4 py-2 lg:py-0'>
+            <div className='col-span-2 w-full lg:w-auto lg:flex'>
+              <div className='header-logo pl-0 lg:pl-4 flex-1 lg:flex-none'>
                 <Link to={'/'} className='inline-block p-4 -m-4'>
                   <img
                     src={Logo}

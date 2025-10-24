@@ -14,7 +14,7 @@ const WhyChoose = () => {
   const { currentLanguage } = useLanguage();
   const t = (key) => getTranslation(currentLanguage, key);
   return (
-    <section style={{ backgroundImage: `url(/images/choose_bg.jpg)` }} className='pb-20 pt-20 sm:pt-0 lg:pt-20 bg-no-repeat bg-cover bg-center relative z-20'>
+    <section className='pb-20 pt-20 sm:pt-0 lg:pt-20 bg-[url(/images/choose_bg.jpg)] bg-no-repeat bg-cover bg-center relative z-20'>
       <div className='Container'>
         <div className='grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-20 lg:gap-10 2xl:gap-16 items-center'>
           <div
@@ -38,7 +38,7 @@ const WhyChoose = () => {
               className='w-full 2xl:w-[inherit] lg:-ml-5 xl:-ml-12'
             />
           </div>
-          <div className='relative z-10'>
+          <div className='relative z-10 text-center lg:text-left'>
             <span className='absolute -left-32 -bottom-32 -z-10 h-96 w-96 blur-3xl bg-[#e9f8f5] dark:bg-gray-800 rounded-full'></span>
             <h5
               className='font-FiraSans font-medium text-sm sm:text-base text-PrimaryColor-0 uppercase mb-3'
@@ -48,7 +48,7 @@ const WhyChoose = () => {
               {t('whyChoose.sectionTitle')}
             </h5>
             <h1
-              className='font-FiraSans font-semibold text-HeadingColor-0 text-[16px] leading-[26px] sm:text-[25px] sm:leading-[35px] md:text-[30px] md:leading-[40px] lg:text-[34px] lg:leading-[44px] xl:text-[38px] xl:leading-[50px] 2xl:text-[42px] 2xl:leading-[52px] relative pb-4'
+              className='font-FiraSans font-semibold text-HeadingColor-0 text-[20px] leading-[30px] sm:text-[25px] sm:leading-[35px] md:text-[30px] md:leading-[40px] lg:text-[34px] lg:leading-[44px] xl:text-[38px] xl:leading-[50px] 2xl:text-[42px] 2xl:leading-[52px] relative pb-4'
               data-aos='fade-up'
               data-aos-duration='800'
               data-aos-delay='100'
@@ -57,7 +57,7 @@ const WhyChoose = () => {
               <img
                 src={border}
                 draggable='false'
-                className='absolute bottom-0 left-0'
+                className='absolute bottom-0 left-1/2 -translate-x-1/2 lg:left-0 lg:translate-x-0'
               />
             </h1>
             <p
@@ -69,7 +69,7 @@ const WhyChoose = () => {
               {t('whyChoose.subtitle')}
             </p>
             <ul
-              className='grid items-center grid-cols-1 gap-x-7 gap-y-5 sm:grid-cols-2 mt-9 pb-10'
+              className='grid grid-cols-1 gap-x-7 gap-y-5 sm:grid-cols-2 lg:grid-cols-2 mt-9 pb-10'
               data-aos='fade-up'
               data-aos-duration='800'
               data-aos-delay='300'

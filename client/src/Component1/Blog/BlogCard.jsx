@@ -42,7 +42,7 @@ const BlogCard = ({
             </Link>
           )}
           <p className='font-FiraSans text-TextColor2-0 pt-3'>{blogDesc}</p>
-          <div className='flex justify-between border-t border-BorderColor2-0 mt-4 pt-4'>
+          <div className='flex flex-col sm:flex-row sm:justify-between gap-3 sm:gap-0 border-t border-BorderColor2-0 mt-4 pt-4'>
             <p className='font-FiraSans text-TextColor2-0 flex gap-2 items-center leading-[15px]'>
               <span className='text-PrimaryColor-0 text-[10px]'>
                 {blogDateIcon}

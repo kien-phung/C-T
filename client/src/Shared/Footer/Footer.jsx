@@ -62,7 +62,7 @@ const Footer = () => {
         <div className='Container'>
           <div className='grid grid-cols-1 md:grid-cols-2 gap-7 lg:gap-0 lg:grid-cols-3 lg:items-center'>
             <div
-              className='flex items-center gap-5'
+              className='flex items-center gap-5 justify-center lg:justify-start'
               data-aos='fade-right'
               data-aos-duration='800'
             >
@@ -81,7 +81,7 @@ const Footer = () => {
               </div>
             </div>
             <div
-              className='flex md:justify-center md:border-l lg:border-l-0 xl:border-x-2 border-BorderColor2-0 dark:border-green-800 py-2'
+              className='flex justify-center md:border-l lg:border-l-0 xl:border-x-2 border-BorderColor2-0 dark:border-green-800 py-2'
               data-aos='fade-up'
               data-aos-duration='800'
               data-aos-delay='100'
@@ -95,7 +95,7 @@ const Footer = () => {
               </Link>
             </div>
             <div
-              className='flex lg:justify-end'
+              className='flex justify-center lg:justify-end'
               data-aos='fade-left'
               data-aos-duration='800'
               data-aos-delay='200'
@@ -153,12 +153,12 @@ const Footer = () => {
           className='absolute -z-10 top-20 right-20 animate-dance2 hidden 2xl::block'
         />
         <div className='Container'>
-          <div className='grid grid-cols-12 gap-6 lg:gap-0'>
-            <div className='col-span-12 md:col-span-6 lg:col-span-4 xl:col-span-4'>
+          <div className='grid grid-cols-12 gap-5 sm:gap-6 lg:gap-0'>
+            <div className='col-span-12 md:col-span-6 lg:col-span-4 xl:col-span-4 text-center lg:text-left'>
               <h4 className='font-FiraSans text-2xl text-HeadingColor-0 dark:text-white font-medium'>
                 {t('footer.aboutUs')}
               </h4>
-              <p className='font-FiraSans text-TextColor2-0 dark:text-gray-300 text-[15px] mt-5 mb-8 max-w-[290px] w-full'>
+              <p className='font-FiraSans text-TextColor2-0 dark:text-gray-300 text-[15px] mt-3 sm:mt-5 mb-6 sm:mb-8 max-w-[290px] w-full mx-auto lg:mx-0'>
                 {t('footer.aboutDescription')}
               </p>
               <form
@@ -197,8 +197,8 @@ const Footer = () => {
               </form>
             </div>
             <div className='col-span-12 md:col-span-6 lg:col-span-4 xl:col-span-4 flex justify-center'>
-              <div>
-                <h4 className='font-FiraSans text-2xl text-HeadingColor-0 dark:text-white font-medium mb-[30px] text-center animate-fade-in-up'>
+              <div className='w-full lg:w-auto text-center lg:text-left'>
+                <h4 className='font-FiraSans text-2xl text-HeadingColor-0 dark:text-white font-medium mb-5 sm:mb-[30px] text-center lg:text-left animate-fade-in-up'>
                   {t('footer.quickLinks')}
                 </h4>
                 <ul className='overflow-hidden'>
@@ -270,14 +270,14 @@ const Footer = () => {
                 </ul>
               </div>
             </div>
-            <div className='col-span-12 md:col-span-6 lg:col-span-4 xl:col-span-4 flex justify-end'>
-              <div>
-                <h4 className='font-FiraSans text-2xl text-HeadingColor-0 dark:text-white font-medium mb-[36px] text-center'>
+            <div className='col-span-12 md:col-span-6 lg:col-span-4 xl:col-span-4 flex justify-center lg:justify-end'>
+              <div className='w-full lg:w-auto text-center lg:text-left'>
+                <h4 className='font-FiraSans text-2xl text-HeadingColor-0 dark:text-white font-medium mb-5 sm:mb-[36px] text-center lg:text-left'>
                   {t('footer.latestNews')}
                 </h4>
                 <Link
                   to={'https://www.facebook.com/share/p/1FTQYGGXjg/'}
-                  className='flex items-center gap-[18px] group'
+                  className='flex items-center justify-center lg:justify-start gap-[18px] group'
                 >
                   <div className='w-[100px] h-[100px] flex-shrink-0'>
                     <img
@@ -285,7 +285,7 @@ const Footer = () => {
                       className='rounded w-full h-full object-cover'
                     />
                   </div>
-                  <div className='flex-1'>
+                  <div className='flex-1 text-center lg:text-left'>
                     <h6 className='font-FiraSans font-medium text-HeadingColor-0 dark:text-white transition-all duration-500 group-hover:text-PrimaryColor-0 dark:group-hover:text-green-400'>
                       {currentLanguage === 'VN' ? (
                         <>Diễn Đàn Đổi Mới <br className='hidden 2xl:block' /> Sáng Tạo Năng Lượng</>
@@ -303,7 +303,7 @@ const Footer = () => {
                 </Link>
                 <Link
                   to={'https://www.facebook.com/share/p/16ND4mHNLF/'}
-                  className='flex items-center gap-[18px] group mt-7'
+                  className='flex items-center justify-center lg:justify-start gap-[18px] group mt-7'
                 >
                   <div className='w-[100px] h-[100px] flex-shrink-0'>
                     <img
@@ -311,7 +311,7 @@ const Footer = () => {
                       className='rounded w-full h-full object-cover'
                     />
                   </div>
-                  <div className='flex-1'>
+                  <div className='flex-1 text-center lg:text-left'>
                     <h6 className='font-FiraSans font-medium text-HeadingColor-0 dark:text-white transition-all duration-500 group-hover:text-PrimaryColor-0 dark:group-hover:text-green-400'>
                       {currentLanguage === 'VN' ? (
                         <>Giải Pháp Hệ Thống <br className='hidden 2xl:block' /> Camera Giám Sát Tích Hợp AI</>

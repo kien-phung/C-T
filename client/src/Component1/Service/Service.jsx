@@ -11,10 +11,11 @@ import serviceShape4 from '/images/tir.png';
 import border from '/images/hero_border.png';
 import ServiceCard from "./ServiceCard";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination } from "swiper/modules";
 import { useLanguage } from '../../contexts/LanguageContext';
 import { getTranslation } from '../../utils/translations';
-// pagination removed to keep slides fixed
 import "swiper/css";
+import "swiper/css/pagination";
 
 const getServiceData = (language) => {
   const services = {
@@ -111,7 +112,7 @@ const Service = () => {
     // pagination removed to avoid dots that change slides
 
   return (
-    <section className='Service relative z-10 pt-20 pb-20 bg-gradient-to-t to-BodyBg-0 dark:to-gray-900 from-transparent'>
+    <section className='Service relative z-10 pt-10 pb-20 bg-gradient-to-t to-BodyBg-0 dark:to-gray-900 from-transparent'>
       <div className='absolute -z-10 top-28 left-[22%] hidden 2xl:block animate-rotate'>
         <img
           src={serviceShape}
@@ -146,7 +147,7 @@ const Service = () => {
             {t('portfolio.sectionTitle')}
           </h5>
           <h1
-            className='font-FiraSans font-semibold text-HeadingColor-0 inline-block text-[16px] leading-[26px] sm:text-[25px] sm:leading-[35px] md:text-[30px] md:leading-[40px] lg:text-[34px] lg:leading-[44px] xl:text-[40px] xl:leading-[50px] 2xl:text-[42px] 2xl:leading-[52px] relative pb-4'
+            className='font-FiraSans font-semibold text-HeadingColor-0 inline-block text-[20px] leading-[30px] sm:text-[25px] sm:leading-[35px] md:text-[30px] md:leading-[40px] lg:text-[34px] lg:leading-[44px] xl:text-[40px] xl:leading-[50px] 2xl:text-[42px] 2xl:leading-[52px] relative pb-4'
             data-aos='fade-up'
             data-aos-duration='800'
             data-aos-delay='100'
@@ -167,6 +168,11 @@ const Service = () => {
         >
           <Swiper
             {...settings}
+            pagination={{
+              clickable: true,
+            }}
+            modules={[Pagination]}
+            className='service-swiper'
           >
             {ServiceData.map(({
               id,
@@ -182,7 +188,7 @@ const Service = () => {
               serviceThumb,
               thumbIcon,
             }) => (
-              <SwiperSlide key={id} className='pb-[70px]'>
+              <SwiperSlide key={id} className='pb-[70px]' style={{ height: 'auto', display: 'flex' }}>
                 <ServiceCard
                   serviceIcon={serviceIcon}
                   serviceSubTilte={serviceSubTitle}

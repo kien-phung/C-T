@@ -99,7 +99,7 @@ const Contact = () => {
                 {t('contact.sectionTitle')}
               </h5>
               <h1
-                className='font-FiraSans font-semibold text-HeadingColor-0 text-[16px] leading-[26px] sm:text-[25px] sm:leading-[35px] md:text-[30px] md:leading-[40px] lg:text-[38px] lg:leading-[48px] xl:text-[42px] xl:leading-[52px]'
+                className='font-FiraSans font-semibold text-HeadingColor-0 text-[22px] leading-[32px] sm:text-[32px] sm:leading-[42px] md:text-[40px] md:leading-[50px] lg:text-[48px] lg:leading-[58px] xl:text-[56px] xl:leading-[66px]'
                 data-aos='fade-up'
                 data-aos-duration='800'
                 data-aos-delay='100'
@@ -203,7 +203,7 @@ const Contact = () => {
                       onChange={handleInputChange}
                       placeholder={t('contact.namePlaceholder')}
                       required
-                      className='font-FiraSans text-HeadingColor-0 placeholder:text-TextColor-0 text-sm bg-transparent border border-Secondarycolor-0 border-opacity-20 rounded py-2 px-6 h-[54px] w-full focus:outline-PrimaryColor-0'
+                      className='font-FiraSans text-HeadingColor-0 placeholder:text-TextColor-0 text-xs sm:text-sm bg-transparent border border-Secondarycolor-0 border-opacity-20 rounded py-2 px-3 sm:px-6 h-12 sm:h-[54px] w-full focus:outline-PrimaryColor-0'
                     />
                     <FaUser
                       size={'14'}
@@ -219,7 +219,7 @@ const Contact = () => {
                       onChange={handleInputChange}
                       placeholder={t('contact.emailPlaceholder')}
                       required
-                      className='font-FiraSans text-HeadingColor-0 placeholder:text-TextColor-0 text-sm bg-transparent border border-Secondarycolor-0 border-opacity-20 rounded py-2 px-6 h-[54px] w-full focus:outline-PrimaryColor-0'
+                      className='font-FiraSans text-HeadingColor-0 placeholder:text-TextColor-0 text-xs sm:text-sm bg-transparent border border-Secondarycolor-0 border-opacity-20 rounded py-2 px-3 sm:px-6 h-12 sm:h-[54px] w-full focus:outline-PrimaryColor-0'
                     />
                     <HiOutlineMailOpen
                       size={'16'}
@@ -237,7 +237,7 @@ const Contact = () => {
                       onChange={handleInputChange}
                       placeholder={t('contact.addressPlaceholder')}
                       required
-                      className='font-FiraSans text-HeadingColor-0 placeholder:text-TextColor-0 text-sm bg-transparent border border-Secondarycolor-0 border-opacity-20 rounded py-2 px-6 h-[54px] w-full focus:outline-PrimaryColor-0'
+                      className='font-FiraSans text-HeadingColor-0 placeholder:text-TextColor-0 text-xs sm:text-sm bg-transparent border border-Secondarycolor-0 border-opacity-20 rounded py-2 px-3 sm:px-6 h-12 sm:h-[54px] w-full focus:outline-PrimaryColor-0'
                     />
                     <FaHouse
                       size={'16'}
@@ -253,7 +253,7 @@ const Contact = () => {
                       onChange={handleInputChange}
                       placeholder={t('contact.phonePlaceholder')}
                       required
-                      className='font-FiraSans text-HeadingColor-0 placeholder:text-TextColor-0 text-sm bg-transparent border border-Secondarycolor-0 border-opacity-20 rounded py-2 px-6 h-[54px] w-full focus:outline-PrimaryColor-0'
+                      className='font-FiraSans text-HeadingColor-0 placeholder:text-TextColor-0 text-xs sm:text-sm bg-transparent border border-Secondarycolor-0 border-opacity-20 rounded py-2 px-3 sm:px-6 h-12 sm:h-[54px] w-full focus:outline-PrimaryColor-0'
                     />
                     <MdCall
                       size={'16'}

@@ -56,7 +56,7 @@ const About = () => {
               </div>
             </div>
           </div>
-          <div className='relative z-10'>
+          <div className='relative z-10 text-center lg:text-left'>
             <h5
               className='font-FiraSans font-medium text-sm sm:text-base text-PrimaryColor-0 uppercase mb-3'
               data-aos='fade-up'
@@ -65,7 +65,7 @@ const About = () => {
                {t('about.subtitle')}
             </h5>
             <h1
-              className='font-FiraSans font-semibold text-HeadingColor-0 text-[16px] leading-[26px] sm:text-[25px] sm:leading-[35px] md:text-[30px] md:leading-[40px] lg:text-[34px] lg:leading-[44px] xl:text-[40px] xl:leading-[50px] 2xl:text-[42px] 2xl:leading-[52px] relative pb-4'
+              className='font-FiraSans font-semibold text-HeadingColor-0 text-[20px] leading-[30px] sm:text-[25px] sm:leading-[35px] md:text-[30px] md:leading-[40px] lg:text-[34px] lg:leading-[44px] xl:text-[40px] xl:leading-[50px] 2xl:text-[42px] 2xl:leading-[52px] relative pb-4 inline-block lg:inline-block'
               data-aos='fade-up'
               data-aos-duration='800'
               data-aos-delay='100'
@@ -74,7 +74,7 @@ const About = () => {
               <img
                 src={border}
                 draggable='false'
-                className='absolute bottom-0 left-0'
+                className='absolute bottom-0 left-1/2 lg:left-0 -translate-x-1/2 lg:translate-x-0'
               />
             </h1>
             <p

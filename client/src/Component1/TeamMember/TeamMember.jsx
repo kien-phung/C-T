@@ -13,6 +13,10 @@ import { FaFacebookF, FaLinkedinIn, FaXTwitter,} from 'react-icons/fa6';
 import { GoShareAndroid } from 'react-icons/go';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { getTranslation } from '../../utils/translations';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Pagination } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/pagination';
 
 const teamData = [
   {
@@ -113,7 +117,7 @@ const TeamMember = () => {
             {t('team.sectionTitle')}
           </h5>
           <h1
-            className='font-FiraSans font-semibold text-HeadingColor-0 dark:text-white inline-block text-[16px] leading-[26px] sm:text-[25px] sm:leading-[35px] md:text-[30px] md:leading-[40px] lg:text-[34px] lg:leading-[44px] xl:text-[40px] xl:leading-[50px] 2xl:text-[42px] 2xl:leading-[52px] relative pb-4'
+            className='font-FiraSans font-semibold text-HeadingColor-0 dark:text-white inline-block text-[20px] leading-[30px] sm:text-[25px] sm:leading-[35px] md:text-[30px] md:leading-[40px] lg:text-[34px] lg:leading-[44px] xl:text-[40px] xl:leading-[50px] 2xl:text-[42px] 2xl:leading-[52px] relative pb-4'
             data-aos='fade-up'
             data-aos-duration='800'
             data-aos-delay='100'
@@ -138,8 +142,64 @@ const TeamMember = () => {
             />
           </div>
         </div>
-<div
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 mt-16"
+        {/* Mobile Swiper */}
+        <div className='md:hidden mt-16'>
+          <Swiper
+            spaceBetween={20}
+            slidesPerView={1}
+            pagination={{
+              clickable: true,
+            }}
+            modules={[Pagination]}
+            className='team-swiper'
+            speed={800}
+            data-aos='fade-up'
+            data-aos-duration='1000'
+            data-aos-delay='200'
+          >
+            {teamData.map(
+              ({
+                id,
+                teamThumb,
+                teamTitle,
+                teamShare,
+                socialIcon,
+                socialIcon2,
+                socialIcon3,
+                socialIcon4,
+                teamDesc,
+                facebookUrl,
+                twitterUrl,
+                linkedinUrl,
+              }) => {
+                return (
+                  <SwiperSlide key={id}>
+                    <div className="h-full flex justify-center">
+                      <TeamCard
+                        teamThumb={teamThumb}
+                        teamTitle={teamTitle}
+                        teamShare={teamShare}
+                        socialIcon={socialIcon}
+                        socialIcon2={socialIcon2}
+                        socialIcon3={socialIcon3}
+                        socialIcon4={socialIcon4}
+                        teamDesc={teamDesc}
+                        teamShape={teamShape}
+                        facebookUrl={facebookUrl}
+                        twitterUrl={twitterUrl}
+                        linkedinUrl={linkedinUrl}
+                      />
+                    </div>
+                  </SwiperSlide>
+                );
+              }
+            )}
+          </Swiper>
+        </div>
+
+        {/* Desktop Grid */}
+        <div
+          className="hidden md:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 mt-16"
           data-aos='fade-up'
           data-aos-duration='1000'
           data-aos-delay='200'

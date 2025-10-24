@@ -6,6 +6,10 @@ import border from '/images/hero_border.png';
 import BlogCard from './BlogCard';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { getTranslation } from '../../utils/translations';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Autoplay, Pagination } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/pagination';
 
 const getBlogData = (language) => {
   const blogs = {
@@ -106,7 +110,7 @@ const Blog = () => {
             {t('blog.sectionTitle')}
           </h5>
           <h1
-            className='font-FiraSans font-semibold text-HeadingColor-0 inline-block text-[16px] leading-[26px] sm:text-[25px] sm:leading-[35px] md:text-[30px] md:leading-[40px] lg:text-[34px] lg:leading-[44px] xl:text-[40px] xl:leading-[50px] 2xl:text-[42px] 2xl:leading-[52px] relative pb-4'
+            className='font-FiraSans font-semibold text-HeadingColor-0 inline-block text-[22px] leading-[32px] sm:text-[32px] sm:leading-[42px] md:text-[40px] md:leading-[50px] lg:text-[40px] lg:leading-[50px] xl:text-[45px] xl:leading-[55px] 2xl:text-[48px] 2xl:leading-[58px] relative pb-4'
             data-aos='fade-up'
             data-aos-duration='800'
             data-aos-delay='100'
@@ -120,7 +124,58 @@ const Blog = () => {
           </h1>
         </div>
         <div className='mt-[60px]'>
-          <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7'>
+          {/* Mobile Swiper */}
+          <div className='md:hidden'>
+            <Swiper
+              spaceBetween={20}
+              slidesPerView={1}
+              autoplay={{
+                delay: 5000,
+                disableOnInteraction: false,
+              }}
+              pagination={{
+                clickable: true,
+              }}
+              modules={[Autoplay, Pagination]}
+              className='blog-swiper'
+            >
+              {blogData.map(
+                ({
+                  id,
+                  blogThumb,
+                  blogThumbTitle,
+                  blogDateIcon,
+                  blogDate,
+                  blogCommentIcon,
+                  blogComment,
+                  blogUrl,
+                  blogTitle,
+                  blogDesc,
+                  isExternal,
+                }) => {
+                  return (
+                    <SwiperSlide key={id}>
+                      <BlogCard
+                        blogThumb={blogThumb}
+                        blogThumbTitle={blogThumbTitle}
+                        blogDateIcon={blogDateIcon}
+                        blogDate={blogDate}
+                        blogCommentIcon={blogCommentIcon}
+                        blogComment={blogComment}
+                        blogUrl={blogUrl}
+                        blogTitle={blogTitle}
+                        blogDesc={blogDesc}
+                        isExternal={isExternal}
+                      />
+                    </SwiperSlide>
+                  );
+                }
+              )}
+            </Swiper>
+          </div>
+
+          {/* Desktop Grid */}
+          <div className='hidden md:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7'>
             {blogData.map(
               ({
                 id,

@@ -11,10 +11,10 @@ const Banner = () => {
   const { currentLanguage } = useLanguage();
   const t = (key) => getTranslation(currentLanguage, key);
   return (
-    <section style={{ backgroundImage: `url(/images/bg1.jpg)` }} className="bg-cover bg-center bg-no-repeat h-[850px] sm:h-[1000px] md:h-[1180px] lg:h-[660px] xl:h-[750px] flex items-center relative z-10 overflow-hidden before:absolute before:inset-0 before:bg-gray-900 before:opacity-0 dark:before:opacity-80 before:transition-opacity before:duration-300 before:-z-10">
+    <section className="bg-[url('/images/bg1.jpg')] bg-cover bg-center bg-no-repeat h-[700px] sm:h-[800px] md:h-[1000px] lg:h-[660px] xl:h-[750px] flex items-center relative z-10 overflow-hidden before:absolute before:inset-0 before:bg-gray-900 before:opacity-0 dark:before:opacity-80 before:transition-opacity before:duration-300 before:-z-10">
       <div className='Container relative z-10'>
         <div className='grid lg:grid-cols-2 items-center gap-16 lg:gap-0'>
-          <div className='relative'>
+          <div className='relative text-center lg:text-left'>
             <img
               src={box}
               draggable='false'
@@ -37,28 +37,27 @@ const Banner = () => {
               <img
                 src={border}
                 draggable='false'
-                className='absolute bottom-0 left-0'
+                className='absolute bottom-0 left-1/2 -translate-x-1/2 lg:left-0 lg:translate-x-0'
               />
             </h1>
             <p
-              className='font-FiraSans text-green-500 dark:text-green-400 font-semibold mb-[38px] mt-6'
+              className='font-FiraSans text-green-500 dark:text-green-400 font-semibold mb-[38px] mt-6 max-w-sm mx-auto lg:mx-0'
               data-aos='fade-up'
               data-aos-duration='800'
               data-aos-delay='200'
             >
               {t('banner.slogan')}{' '}
-              <br className='hidden xl:block 2xl:hidden' />
-              <br className='hidden md:block lg:hidden 2xl:block' />{' '}
+              <br className='hidden md:block lg:hidden' />
               {t('banner.description')}
             </p>
             <div
-              className='flex flex-col sm:flex-row sm:items-center gap-6'
+              className='flex flex-col items-center justify-center gap-4 sm:gap-6 sm:flex-row sm:items-center sm:justify-start lg:justify-start'
               data-aos='fade-up'
               data-aos-duration='800'
               data-aos-delay='300'
             >
               <Link to={'/contact'}>
-                <button className='primary-btn3'>
+                <button className='primary-btn3 !py-2 !px-4 sm:!py-3 sm:!px-6 text-xs sm:text-sm'>
                   {t('banner.contactUs')}
                   <FaPhone />
                 </button>
@@ -66,10 +65,10 @@ const Banner = () => {
               <a
                 href={currentLanguage === 'VN' ? '/profile/VI.pdf' : '/profile/EN.pdf'}
                 download={currentLanguage === 'VN' ? 'VI.pdf' : 'EN.pdf'}
-                className='inline-flex items-center justify-center gap-2 py-[18px] px-8 bg-gray-300 dark:bg-gray-600 text-gray-800 dark:text-white font-FiraSans font-medium rounded-md transition-all duration-300 hover:bg-gray-400 dark:hover:bg-gray-500'
+                className='inline-flex items-center justify-center gap-1 sm:gap-2 py-2 px-4 sm:py-[18px] sm:px-8 text-xs sm:text-sm bg-gray-300 dark:bg-gray-600 text-gray-800 dark:text-white font-FiraSans font-medium rounded-md transition-all duration-300 hover:bg-gray-400 dark:hover:bg-gray-500'
               >
                 {currentLanguage === 'VN' ? 'Tải Profile' : 'Download Profile'}
-                <FaDownload className='text-sm' />
+                <FaDownload className='text-xs sm:text-sm' />
               </a>
             </div>
           </div>
@@ -81,7 +80,7 @@ const Banner = () => {
           >
             {/* Video instead of static hero image. Place your file at public/videos/hero_right.mp4 or use an external URL. */}
             <video
-              className='w-full max-w-[700px] object-cover -mb-12 sm:-mt-8 2xl:-mt-16 rounded-lg'
+              className='w-full max-w-[700px] object-cover -mb-12 -mt-6 sm:-mt-8 2xl:-mt-16 rounded-lg'
               poster={'/images/Intro2.mp4'}
               autoPlay
               muted

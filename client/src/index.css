@@ -149,6 +149,7 @@ textarea {
 
 .dark footer {
   background-color: #111827 !important;
+  background-image: none !important;
 }
 
 .dark .bg-BodyBg-0,
@@ -165,7 +166,7 @@ textarea {
 .dark .bg-\[url\(\/images\/choose_bg\.jpg\)\],
 .dark .bg-\[url\(\/images\/testi_bg\.png\)\] {
   background-color: #111827 !important;
-  background-image: none !important;
+  background-blend-mode: darken !important;
 }
 
 .dark .bg-\[\#f5f8ed\] {
@@ -207,15 +208,13 @@ textarea {
   box-shadow: 0 0 20px rgba(255, 255, 255, 0.05) !important;
 }
 
-/* Background overlays for sections with bg images */
-/* Only apply to section backgrounds, not image containers */
-.dark .bg-\[url\(\'\/images\/breadcrumb_bg\.png\'\)\],
-.dark .bg-\[url\(\/images\/blog3_bg\.png\)\] {
+/* Background overlays for sections with bg images - ONLY for breadcrumb */
+/* Only apply to breadcrumb, not home page sections */
+.dark .bg-\[url\(\'\/images\/breadcrumb_bg\.png\'\)\] {
   position: relative;
 }
 
-.dark .bg-\[url\(\'\/images\/breadcrumb_bg\.png\'\)\]::before,
-.dark .bg-\[url\(\/images\/blog3_bg\.png\)\]::before {
+.dark .bg-\[url\(\'\/images\/breadcrumb_bg\.png\'\)\]::before {
   content: '';
   position: absolute;
   top: 0;
@@ -227,8 +226,7 @@ textarea {
   pointer-events: none;
 }
 
-.dark .bg-\[url\(\'\/images\/breadcrumb_bg\.png\'\)\] > *,
-.dark .bg-\[url\(\/images\/blog3_bg\.png\)\] > * {
+.dark .bg-\[url\(\'\/images\/breadcrumb_bg\.png\'\)\] > * {
   position: relative;
   z-index: 2;
 }
@@ -238,7 +236,51 @@ textarea {
 .dark .bg-\[url\(\/images\/team_bg\.png\)\],
 .dark .bg-\[url\(\/images\/testi_bg\.png\)\] {
   background-color: #111827 !important;
-  background-blend-mode: multiply;
+  background-blend-mode: darken;
+}
+
+/* Dark mode for inline background images in sections */
+.dark section[style*="blog3_bg"],
+.dark section[style*="choose_bg"],
+.dark section[style*="testi_bg"] {
+  background-color: #111827 !important;
+  background-blend-mode: darken !important;
+}
+
+/* Add dark overlay for better contrast in dark mode - only for choose section */
+.dark section[style*="choose_bg"] {
+  position: relative;
+}
+
+.dark section[style*="choose_bg"]::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(17, 24, 39, 0.5);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.dark section[style*="choose_bg"] .Container {
+  position: relative;
+  z-index: 10;
+}
+
+.dark .testimonial[style*="testi_bg"] {
+  background-color: #111827 !important;
+  background-image: none !important;
+}
+
+/* Appointment/Contact section - ensure background matches in dark mode */
+.dark section.bg-BodyBg4-0 {
+  background-color: #111827 !important;
+}
+
+.dark [style*="counter_bg"] {
+  background-color: #1f2937 !important;
 }
 
 
@@ -246,7 +288,7 @@ textarea {
 /*Common Tailwind CSS Start Here*/
 
 .Container {
-  @apply w-full sm:w-[540px] md:w-[720px] lg:w-[960px] xl:w-[1140px] 2xl:w-[1320px] px-2 md:px-3 lg:px-4 xl:px-5 mx-auto;
+  @apply w-full sm:w-[540px] md:w-[720px] lg:w-[960px] xl:w-[1140px] 2xl:w-[1320px] px-3 sm:px-4 md:px-4 lg:px-4 xl:px-5 mx-auto;
 }
 
 .primary-btn {
@@ -382,40 +424,7 @@ span.swiper-pagination-bullet.swiper-pagination-bullet-active::before {
   background: #0c59db !important;
 }
 
-.blog .swiper-pagination {
-  bottom: 0 !important;
-  top: inherit !important;
-  left: 50% !important;
-  transform: translatex(-50%) !important;
-  width: 100% !important;
-  display: flex !important;
-  justify-content: center !important;
-  align-items: center !important;
-  gap: 8px !important;
-  flex-direction: row !important;
-}
-
-.blog .swiper-pagination-bullet {
-  background: transparent !important;
-  opacity: 1 !important;
-  background: #b5d3d3 !important;
-  border: none !important;
-  border-radius: 50%;
-  height: 10px !important;
-  width: 10px !important;
-  position: relative;
-}
-
-.blog .swiper-pagination-bullet.swiper-pagination-bullet-active {
-  opacity: 1 !important;
-  height: 12px !important;
-  width: 12px !important;
-  background: #0c6e6d !important;
-}
-
-.blog span.swiper-pagination-bullet::before {
-  scale: 0;
-}
+/* Blog pagination - using .blog-swiper instead */
 
 .blog2 .swiper-pagination {
   bottom: 0 !important;
@@ -454,34 +463,7 @@ span.swiper-pagination-bullet.swiper-pagination-bullet-active::before {
 
 /* Testimonial */
 
-.testimonial .swiper-pagination {
-  top: inherit !important;
-  bottom: 0 !important;
-  left: 50% !important;
-  flex-direction: row !important;
-  justify-content: center;
-  gap: 2px !important;
-}
-
-.testimonial span.swiper-pagination-bullet {
-  width: 10px !important;
-  height: 10px !important;
-  border-radius: 50% !important;
-  opacity: 0.5 !important;
-  border: none !important;
-  background: #0c6e6d !important;
-}
-
-.testimonial span.swiper-pagination-bullet.swiper-pagination-bullet-active {
-  height: 12px !important;
-  width: 12px !important;
-  opacity: 1 !important;
-}
-
-.testimonial
-  span.swiper-pagination-bullet.swiper-pagination-bullet-active::before {
-  transform: scale(0);
-}
+/* Testimonial old styles - now using .testimonial-swiper */
 
 .project .swiper-pagination {
   bottom: 0 !important;
@@ -601,6 +583,75 @@ span.swiper-pagination-bullet.swiper-pagination-bullet-active::before {
 .testimonial-swiper .swiper-slide > div {
   width: 100%;
   display: flex;
+}
+
+/* Testimonial Swiper Pagination */
+.testimonial-swiper .swiper-pagination {
+  display: none !important;
+}
+
+.testimonial-swiper .swiper-pagination-bullet {
+  background: #cddff7 !important;
+  opacity: 0.6 !important;
+  border: none !important;
+  border-radius: 50%;
+  height: 12px !important;
+  width: 12px !important;
+  position: relative;
+  flex-shrink: 0 !important;
+  outline: none !important;
+  outline-width: 0 !important;
+  box-shadow: none !important;
+  ring: none !important;
+  transition: all 0.4s ease !important;
+  cursor: pointer !important;
+  pointer-events: auto !important;
+  z-index: 100 !important;
+}
+
+.testimonial-swiper .swiper-pagination-bullet::before,
+.testimonial-swiper .swiper-pagination-bullet::after {
+  display: none !important;
+}
+
+.testimonial-swiper .swiper-pagination-bullet:hover {
+  opacity: 0.8 !important;
+  box-shadow: none !important;
+}
+
+.testimonial-swiper .swiper-pagination-bullet.swiper-pagination-bullet-active {
+  opacity: 1 !important;
+  background: #0c6e6d !important;
+  box-shadow: none !important;
+}
+
+.testimonial-swiper .swiper-pagination-bullet.swiper-pagination-bullet-active::before,
+.testimonial-swiper .swiper-pagination-bullet.swiper-pagination-bullet-active::after {
+  display: none !important;
+}
+
+.testimonial-swiper .swiper-slide {
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  opacity: 0.7 !important;
+}
+
+.testimonial-swiper .swiper-slide.swiper-slide-active {
+  opacity: 1 !important;
+}
+
+/* Testimonial pagination wrapper - ensure proper centering */
+.testimonial-pagination {
+  width: 100% !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+}
+
+/* Hide testimonial pagination on desktop */
+@media only screen and (min-width: 1024px) {
+  .testimonial-pagination {
+    display: none !important;
+  }
 }
 
 /* Faq */
@@ -1030,4 +1081,282 @@ span.swiper-pagination-bullet.swiper-pagination-bullet-active::before {
 
 .admin-stagger > *:nth-child(n+6) {
   animation-delay: 0.3s;
+}
+
+/* Team Member Swiper */
+.team-swiper {
+  --swiper-pagination-bullet-width: 12px;
+  --swiper-pagination-bullet-height: 12px;
+  --swiper-pagination-bullet-inactive-color: #cddff7;
+  --swiper-pagination-bullet-inactive-opacity: 0.6;
+  --swiper-pagination-color: #0c6e6d;
+  --swiper-pagination-bullet-horizontal-gap: 8px;
+}
+
+.team-swiper .swiper-wrapper {
+  padding-bottom: 0 !important;
+}
+
+.team-swiper .swiper-pagination {
+  position: static !important;
+  width: 100% !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  gap: 8px !important;
+  flex-direction: row !important;
+  padding: 8px 0 0 0 !important;
+  margin: 0 !important;
+  bottom: auto !important;
+  top: auto !important;
+  left: auto !important;
+  right: auto !important;
+  transform: none !important;
+}
+
+.team-swiper .swiper-pagination-bullet {
+  background: #cddff7 !important;
+  opacity: 0.6 !important;
+  border: none !important;
+  border-radius: 50%;
+  height: 12px !important;
+  width: 12px !important;
+  position: relative;
+  flex-shrink: 0 !important;
+  outline: none !important;
+  box-shadow: none !important;
+  transition: all 0.4s ease !important;
+}
+
+.team-swiper .swiper-pagination-bullet::before,
+.team-swiper .swiper-pagination-bullet::after {
+  display: none !important;
+}
+
+.team-swiper .swiper-pagination-bullet:hover {
+  opacity: 0.8 !important;
+  box-shadow: none !important;
+}
+
+.team-swiper .swiper-pagination-bullet.swiper-pagination-bullet-active {
+  opacity: 1 !important;
+  background: #0c6e6d !important;
+  box-shadow: none !important;
+}
+
+.team-swiper .swiper-pagination-bullet.swiper-pagination-bullet-active::before,
+.team-swiper .swiper-pagination-bullet.swiper-pagination-bullet-active::after {
+  display: none !important;
+}
+
+.team-swiper {
+  overflow: visible !important;
+}
+
+.team-swiper .swiper-wrapper {
+  width: 100% !important;
+}
+
+.team-swiper .swiper-slide {
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  opacity: 0.7 !important;
+  width: 100% !important;
+  padding: 20px !important;
+}
+
+.team-swiper .swiper-slide.swiper-slide-active {
+  opacity: 1 !important;
+}
+
+.team-swiper img[alt] {
+  width: 160px !important;
+  height: 160px !important;
+}
+
+.team-swiper .group {
+  min-height: 380px !important;
+  width: 240px !important;
+}
+
+@media (min-width: 640px) {
+  .team-swiper img[alt] {
+    width: 180px !important;
+    height: 180px !important;
+  }
+
+  .team-swiper .group {
+    min-height: 420px !important;
+    width: 260px !important;
+  }
+}
+
+/* Service Swiper Pagination */
+.service-swiper .swiper-pagination {
+  position: static !important;
+  width: 100% !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  gap: 8px !important;
+  flex-direction: row !important;
+  padding: 8px 0 0 0 !important;
+  margin: 0 !important;
+  bottom: auto !important;
+  top: auto !important;
+  left: auto !important;
+  right: auto !important;
+  transform: none !important;
+}
+
+.service-swiper .swiper-pagination-bullet {
+  background: #cddff7 !important;
+  opacity: 0.6 !important;
+  border: none !important;
+  border-radius: 50%;
+  height: 12px !important;
+  width: 12px !important;
+  position: relative;
+  flex-shrink: 0 !important;
+  outline: none !important;
+  box-shadow: none !important;
+  transition: all 0.4s ease !important;
+}
+
+.service-swiper .swiper-pagination-bullet::before,
+.service-swiper .swiper-pagination-bullet::after {
+  display: none !important;
+}
+
+.service-swiper .swiper-pagination-bullet:hover {
+  opacity: 0.8 !important;
+  box-shadow: none !important;
+}
+
+.service-swiper .swiper-pagination-bullet.swiper-pagination-bullet-active {
+  opacity: 1 !important;
+  background: #0c6e6d !important;
+  box-shadow: none !important;
+}
+
+.service-swiper .swiper-pagination-bullet.swiper-pagination-bullet-active::before,
+.service-swiper .swiper-pagination-bullet.swiper-pagination-bullet-active::after {
+  display: none !important;
+}
+
+.service-swiper .swiper-slide {
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  opacity: 0.7 !important;
+}
+
+.service-swiper .swiper-slide.swiper-slide-active {
+  opacity: 1 !important;
+}
+
+/* Blog Swiper */
+.blog-swiper {
+  padding-bottom: 0 !important;
+}
+
+.blog-swiper .swiper-wrapper {
+  padding-bottom: 0 !important;
+  align-items: stretch !important;
+}
+
+.blog-swiper .swiper-slide {
+  height: auto !important;
+  align-items: stretch !important;
+  padding: 0 15px !important;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  opacity: 0.7 !important;
+}
+
+.blog-swiper .swiper-slide.swiper-slide-active {
+  opacity: 1 !important;
+}
+
+.blog-swiper .group {
+  display: flex !important;
+  flex-direction: column !important;
+  height: 100% !important;
+  min-height: 480px !important;
+}
+
+.blog-swiper .group > div:first-child {
+  height: 280px !important;
+  min-height: 280px !important;
+  flex-shrink: 0 !important;
+}
+
+.blog-swiper .group > div:last-child {
+  flex: 1 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: flex-start !important;
+}
+
+.blog-swiper .group img {
+  height: 100% !important;
+  width: 100% !important;
+  object-fit: cover !important;
+}
+
+/* Blog Swiper Pagination */
+.blog-swiper .swiper-pagination {
+  position: static !important;
+  width: auto !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  gap: 8px !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  padding: 15px 0 0 0 !important;
+  margin: 0 auto !important;
+  bottom: auto !important;
+  left: 0 !important;
+  right: 0 !important;
+  top: auto !important;
+  transform: none !important;
+  z-index: 101 !important;
+}
+
+.blog-swiper .swiper-pagination-bullet {
+  background: #cddff7 !important;
+  opacity: 0.6 !important;
+  border: none !important;
+  border-radius: 50%;
+  height: 12px !important;
+  width: 12px !important;
+  position: relative;
+  flex-shrink: 0 !important;
+  outline: none !important;
+  box-shadow: none !important;
+  transition: all 0.4s ease !important;
+  cursor: pointer !important;
+  pointer-events: auto !important;
+  z-index: 100 !important;
+}
+
+.blog-swiper .swiper-pagination-bullet::before,
+.blog-swiper .swiper-pagination-bullet::after {
+  display: none !important;
+}
+
+.blog-swiper .swiper-pagination-bullet:hover {
+  opacity: 0.8 !important;
+  box-shadow: none !important;
+}
+
+.blog-swiper .swiper-pagination-bullet.swiper-pagination-bullet-active {
+  opacity: 1 !important;
+  background: #0c6e6d !important;
+  box-shadow: none !important;
+}
+
+.blog-swiper .swiper-pagination-bullet.swiper-pagination-bullet-active::before,
+.blog-swiper .swiper-pagination-bullet.swiper-pagination-bullet-active::after {
+  display: none !important;
 }

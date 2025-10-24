@@ -79,7 +79,7 @@ const Appointment = () => {
     }
   };
   return (
-    <section className='pt-20 pb-20 relative bg-BodyBg4-0'>
+    <section className='pt-10 pb-10 sm:pt-20 sm:pb-20 relative bg-BodyBg4-0'>
       <div className='absolute -z-10 right-48 bottom-10 hidden 2xl:block animate-rotate'>
         <img
           src={serviceShape3}
@@ -121,12 +121,12 @@ const Appointment = () => {
               draggable='false'
               className='absolute top-0 right-6 animate-movebtn'
             />
-            <div className='relative z-20 bg-white dark:bg-gray-800 shadow-shades pt-11 mt-[100px] px-4 sm:px-6 md:px-[50px] lg:px-4 xl:px-10 2xl:px-[50px] rounded-md'>
+            <div className='relative z-20 bg-white dark:bg-gray-800 shadow-shades pt-8 sm:pt-11 mt-8 sm:mt-[100px] px-4 sm:px-6 md:px-[50px] lg:px-4 xl:px-10 2xl:px-[50px] rounded-md'>
               <div className='text-center'>
                 <h5 className='font-FiraSans font-medium text-sm sm:text-base text-PrimaryColor-0 uppercase mb-3'>
                   {t('contact.sectionTitle')}
                 </h5>
-                <h1 className='font-FiraSans font-semibold text-HeadingColor-0 inline-block text-[16px] leading-[26px] sm:text-[25px] sm:leading-[35px] md:text-[30px] md:leading-[40px] lg:text-[30px] lg:leading-[44px] xl:text-[32px] xl:leading-[44px] 2xl:text-[34px] 2xl:leading-[44px] relative pb-4'>
+                <h1 className='font-FiraSans font-semibold text-HeadingColor-0 inline-block text-[20px] leading-[30px] sm:text-[25px] sm:leading-[35px] md:text-[30px] md:leading-[40px] lg:text-[34px] lg:leading-[44px] xl:text-[40px] xl:leading-[50px] 2xl:text-[42px] 2xl:leading-[52px] relative pb-4'>
                   {t('contact.title')}
                   <img
                     src={border}
@@ -137,7 +137,7 @@ const Appointment = () => {
               </div>
               <form
                 onSubmit={handleSubmit}
-                className='flex flex-col gap-y-5 pt-11 pb-[60px]'
+                className='flex flex-col gap-y-5 pt-8 sm:pt-11 pb-8 sm:pb-[60px]'
               >
                 <div className='grid grid-cols-1 sm:grid-cols-2 gap-5'>
                   <div className='relative inline-block'>
@@ -149,7 +149,7 @@ const Appointment = () => {
                       onChange={handleInputChange}
                       placeholder={t('contact.namePlaceholder')}
                       required
-                      className='font-FiraSans text-HeadingColor-0 placeholder:text-TextColor-0 text-sm bg-transparent border border-Secondarycolor-0 border-opacity-20 rounded py-2 px-6 h-[54px] w-full focus:outline-PrimaryColor-0'
+                      className='font-FiraSans text-HeadingColor-0 placeholder:text-TextColor-0 text-sm bg-transparent border border-Secondarycolor-0 border-opacity-20 rounded py-2 px-6 h-12 sm:h-[54px] w-full focus:outline-PrimaryColor-0'
                     />
                     <FaUser
                       size={'14'}
@@ -165,7 +165,7 @@ const Appointment = () => {
                       onChange={handleInputChange}
                       placeholder={t('contact.emailPlaceholder')}
                       required
-                      className='font-FiraSans text-HeadingColor-0 placeholder:text-TextColor-0 text-sm bg-transparent border border-Secondarycolor-0 border-opacity-20 rounded py-2 px-6 h-[54px] w-full focus:outline-PrimaryColor-0'
+                      className='font-FiraSans text-HeadingColor-0 placeholder:text-TextColor-0 text-sm bg-transparent border border-Secondarycolor-0 border-opacity-20 rounded py-2 px-6 h-12 sm:h-[54px] w-full focus:outline-PrimaryColor-0'
                     />
                     <HiOutlineMailOpen
                       size={'16'}
@@ -183,7 +183,7 @@ const Appointment = () => {
                       onChange={handleInputChange}
                       placeholder={t('contact.addressPlaceholder')}
                       required
-                      className='font-FiraSans text-HeadingColor-0 placeholder:text-TextColor-0 text-sm bg-transparent border border-Secondarycolor-0 border-opacity-20 rounded py-2 px-6 h-[54px] w-full focus:outline-PrimaryColor-0'
+                      className='font-FiraSans text-HeadingColor-0 placeholder:text-TextColor-0 text-sm bg-transparent border border-Secondarycolor-0 border-opacity-20 rounded py-2 px-6 h-12 sm:h-[54px] w-full focus:outline-PrimaryColor-0'
                     />
                     <FaHouse
                       size={'14'}
@@ -199,7 +199,7 @@ const Appointment = () => {
                       onChange={handleInputChange}
                       placeholder={t('contact.phonePlaceholder')}
                       required
-                      className='font-FiraSans text-HeadingColor-0 placeholder:text-TextColor-0 text-sm bg-transparent border border-Secondarycolor-0 border-opacity-20 rounded py-2 px-6 h-[54px] w-full focus:outline-PrimaryColor-0'
+                      className='font-FiraSans text-HeadingColor-0 placeholder:text-TextColor-0 text-sm bg-transparent border border-Secondarycolor-0 border-opacity-20 rounded py-2 px-6 h-12 sm:h-[54px] w-full focus:outline-PrimaryColor-0'
                     />
                     <MdCall
                       size={'16'}
@@ -213,7 +213,7 @@ const Appointment = () => {
                   value={formData.message}
                   onChange={handleInputChange}
                   placeholder={t('contact.messagePlaceholder')}
-                  className='font-FiraSans text-HeadingColor-0 placeholder:text-TextColor-0 text-sm bg-transparent border border-Secondarycolor-0 border-opacity-20 rounded py-2 px-6 h-[120px] w-full focus:outline-PrimaryColor-0 resize-none'
+                  className='font-FiraSans text-HeadingColor-0 placeholder:text-TextColor-0 text-sm bg-transparent border border-Secondarycolor-0 border-opacity-20 rounded py-2 px-6 h-[100px] sm:h-[120px] w-full focus:outline-PrimaryColor-0 resize-none'
                 ></textarea>
                 <label
                   htmlFor='terms'
