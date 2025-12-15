@@ -1,15 +1,17 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { FaEnvelope, FaLock, FaEye, FaEyeSlash, FaGlobe } from 'react-icons/fa';
+import { FaEnvelope, FaLock, FaEye, FaEyeSlash, FaGlobe, FaMoon, FaSun } from 'react-icons/fa';
 import stlLogo from '/images/logo1.png';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { getTranslation } from '../../utils/translations';
-import { adminLogin } from '../../api/api';
+import { adminLogin, adminForgotSendOtp, adminForgotResetPassword } from '../../api/api';
+import { useAdminTheme } from '../../contexts/AdminThemeContext';
 
 const AdminLogin = () => {
   const navigate = useNavigate();
   const { currentLanguage, toggleLanguage } = useLanguage();
   const t = (key) => getTranslation(currentLanguage, key);
+  const { adminTheme, toggleAdminTheme } = useAdminTheme();
 
   // Translate Vietnamese error messages to English
   const translateErrorMessage = (message) => {
@@ -41,6 +43,32 @@ const AdminLogin = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
+  // Forgot password states
+  const [showForgot, setShowForgot] = useState(false);
+  const [fpStep, setFpStep] = useState('REQUEST'); // REQUEST -> RESET
+  const [fpEmail, setFpEmail] = useState('');
+  const [fpOtp, setFpOtp] = useState('');
+  const [fpNewPwd, setFpNewPwd] = useState('');
+  const [fpLoading, setFpLoading] = useState(false);
+  const [fpMessage, setFpMessage] = useState('');
+  const [rememberMe, setRememberMe] = useState(() => {
+    try {
+      return localStorage.getItem('adminRememberMe') === 'true';
+    } catch (_) {
+      return false;
+    }
+  });
+
+  useEffect(() => {
+    try {
+      if (localStorage.getItem('adminRememberMe') === 'true') {
+        const savedEmail = localStorage.getItem('adminRememberEmail') || '';
+        if (savedEmail) {
+          setFormData(prev => ({ ...prev, email: savedEmail }));
+        }
+      }
+    } catch (_) {}
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -64,6 +92,17 @@ const AdminLogin = () => {
         localStorage.setItem('adminToken', response.data.data.token);
         localStorage.setItem('adminEmail', response.data.data.admin.email);
 
+        // Remember email if opted in
+        try {
+          if (rememberMe) {
+            localStorage.setItem('adminRememberMe', 'true');
+            localStorage.setItem('adminRememberEmail', formData.email);
+          } else {
+            localStorage.setItem('adminRememberMe', 'false');
+            localStorage.removeItem('adminRememberEmail');
+          }
+        } catch (_) {}
+
         // Redirect to admin dashboard
         navigate('/admin/dashboard');
       } else {
@@ -86,9 +125,62 @@ const AdminLogin = () => {
     }
   };
 
+  const handleForgotRequest = async (e) => {
+    e.preventDefault();
+    setFpMessage('');
+    if (!fpEmail) {
+      setFpMessage(currentLanguage === 'VN' ? 'Vui lòng nhập email' : 'Please enter email');
+      return;
+    }
+    try {
+      setFpLoading(true);
+      const res = await adminForgotSendOtp(fpEmail);
+      if (res?.data?.success) {
+        setFpMessage(t('admin.otpSent'));
+        setFpStep('RESET');
+      } else {
+        setFpMessage(res?.data?.message || (currentLanguage === 'VN' ? 'Không thể gửi OTP' : 'Could not send OTP'));
+      }
+    } catch (err) {
+      setFpMessage(err.response?.data?.message || (currentLanguage === 'VN' ? 'Không thể gửi OTP' : 'Could not send OTP'));
+    } finally {
+      setFpLoading(false);
+    }
+  };
+
+  const handleForgotReset = async (e) => {
+    e.preventDefault();
+    setFpMessage('');
+    if (!fpEmail || !fpOtp || !fpNewPwd) {
+      setFpMessage(currentLanguage === 'VN' ? 'Vui lòng nhập đủ thông tin' : 'Please fill all fields');
+      return;
+    }
+    try {
+      setFpLoading(true);
+      const res = await adminForgotResetPassword(fpEmail, fpOtp, fpNewPwd);
+      if (res?.data?.success) {
+        setFpMessage(t('admin.resetSuccess'));
+        // Clear states and hide panel after short delay
+        setTimeout(() => {
+          setShowForgot(false);
+          setFpStep('REQUEST');
+          setFpEmail('');
+          setFpOtp('');
+          setFpNewPwd('');
+        }, 1200);
+      } else {
+        setFpMessage(res?.data?.message || t('admin.resetFailed'));
+      }
+    } catch (err) {
+      setFpMessage(err.response?.data?.message || t('admin.resetFailed'));
+    } finally {
+      setFpLoading(false);
+    }
+  };
+
   return (
     <div className='min-h-screen flex items-center justify-center bg-gradient-to-br from-green-400 via-blue-500 to-blue-600 dark:from-green-900 dark:via-blue-900 dark:to-blue-950 py-12 px-4 sm:px-6 lg:px-8'>
-      {/* Language Toggle Button */}
+      {/* Language & Theme Toggle */}
       <div className='absolute top-6 right-6 flex items-center gap-2'>
         <button
           onClick={toggleLanguage}
@@ -96,6 +188,14 @@ const AdminLogin = () => {
         >
           <FaGlobe size={16} />
           <span>{currentLanguage === 'VN' ? 'EN' : 'VN'}</span>
+        </button>
+        <button
+          onClick={toggleAdminTheme}
+          className='flex items-center gap-2 px-3 py-2 bg-white/20 hover:bg-white/30 text-white rounded-lg transition-colors shadow-lg backdrop-blur-sm font-medium'
+          title={adminTheme === 'dark' ? 'Light mode' : 'Dark mode'}
+        >
+          {adminTheme === 'dark' ? <FaSun size={14} /> : <FaMoon size={14} />}
+          <span className='text-sm'>{adminTheme === 'dark' ? 'Light' : 'Dark'}</span>
         </button>
       </div>
 
@@ -171,11 +271,25 @@ const AdminLogin = () => {
                   type='button'
                   onClick={() => setShowPassword(!showPassword)}
                   className='absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 hover:text-gray-600 dark:hover:text-gray-300'
+                  aria-label={showPassword ? (currentLanguage === 'VN' ? 'Ẩn mật khẩu' : 'Hide password') : (currentLanguage === 'VN' ? 'Hiện mật khẩu' : 'Show password')}
                 >
                   {showPassword ? <FaEyeSlash className='h-5 w-5' /> : <FaEye className='h-5 w-5' />}
                 </button>
               </div>
             </div>
+          </div>
+
+          {/* Remember Me */}
+          <div className='flex items-center justify-between'>
+            <label className='flex items-center text-sm text-gray-700 dark:text-gray-300'>
+              <input
+                type='checkbox'
+                className='rounded border-gray-300 dark:border-gray-600 text-indigo-600 focus:ring-indigo-500'
+                checked={rememberMe}
+                onChange={(e) => setRememberMe(e.target.checked)}
+              />
+              <span className='ml-2'>{t('admin.rememberMe')}</span>
+            </label>
           </div>
 
           {/* Submit Button */}
@@ -199,13 +313,101 @@ const AdminLogin = () => {
             </button>
           </div>
 
-          {/* Dev Credentials (Remove in production) */}
-          <div className='text-xs text-center text-gray-500 dark:text-gray-400 mt-4 p-3 bg-gray-50 dark:bg-gray-900 rounded'>
-            <p className='font-semibold mb-1'>{currentLanguage === 'VN' ? 'Thông tin đăng nhập (Development):' : 'Login Credentials (Development):'}</p>
-            <p>Email: minhhoangkhoa1221@gmail.com</p>
-            <p>Password: 123456789</p>
-          </div>
         </form>
+        {/* Forgot Password Toggle */}
+        <div className='mt-4 max-w-md w-full'>
+          <button
+            type='button'
+            className='text-white/90 underline hover:text-white text-sm'
+            onClick={() => { setShowForgot(true); setFpStep('REQUEST'); setFpEmail(''); setFpOtp(''); setFpNewPwd(''); setFpMessage(''); }}
+          >
+            {t('admin.forgotPassword')}
+          </button>
+        </div>
+
+        {/* Forgot Password Modal Overlay */}
+        {showForgot && (
+          <div className='fixed inset-0 z-[1000] flex items-center justify-center bg-black/50'>
+            <div className='w-[92%] max-w-md bg-white dark:bg-gray-800 p-6 rounded-lg shadow-2xl relative'>
+              <button
+                type='button'
+                className='absolute top-3 right-3 text-gray-500 hover:text-gray-700 dark:text-gray-300 dark:hover:text-white'
+                onClick={() => { setShowForgot(false); setFpMessage(''); }}
+                aria-label='Close'
+              >
+                ✕
+              </button>
+              {fpStep === 'REQUEST' ? (
+                <form onSubmit={handleForgotRequest} className='space-y-3'>
+                  <label className='block text-sm font-medium text-gray-700 dark:text-gray-300'>
+                    {t('admin.forgotEnterEmail')}
+                  </label>
+                  <input
+                    type='email'
+                    value={fpEmail}
+                    onChange={(e) => setFpEmail(e.target.value)}
+                    className='w-full px-3 py-2 rounded border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-700 text-gray-900 dark:text-white'
+                    placeholder='admin@example.com'
+                    autoComplete='email'
+                    required
+                  />
+                  {fpMessage && (
+                    <p className='text-sm text-gray-700 dark:text-gray-300'>{fpMessage}</p>
+                  )}
+                  <button
+                    type='submit'
+                    disabled={fpLoading}
+                    className='w-full py-2 px-3 rounded-md bg-indigo-600 hover:bg-indigo-700 text-white text-sm disabled:opacity-50'
+                  >
+                    {fpLoading ? (currentLanguage === 'VN' ? 'Đang gửi...' : 'Sending...') : t('admin.sendOtp')}
+                  </button>
+                </form>
+              ) : (
+                <form onSubmit={handleForgotReset} className='space-y-3'>
+                  <div>
+                    <label className='block text-sm font-medium text-gray-700 dark:text-gray-300'>
+                      {t('admin.enterOtp')}
+                    </label>
+                    <input
+                      type='text'
+                      value={fpOtp}
+                      onChange={(e) => setFpOtp(e.target.value)}
+                      className='w-full px-3 py-2 rounded border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-700 text-gray-900 dark:text-white'
+                      placeholder='123456'
+                      autoComplete='one-time-code'
+                      autoFocus
+                      required
+                    />
+                  </div>
+                  <div>
+                    <label className='block text-sm font-medium text-gray-700 dark:text-gray-300'>
+                      {t('admin.newPasswordLabel')}
+                    </label>
+                    <input
+                      type='password'
+                      value={fpNewPwd}
+                      onChange={(e) => setFpNewPwd(e.target.value)}
+                      className='w-full px-3 py-2 rounded border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-700 text-gray-900 dark:text-white'
+                      placeholder='••••••••'
+                      autoComplete='new-password'
+                      required
+                    />
+                  </div>
+                  {fpMessage && (
+                    <p className='text-sm text-gray-700 dark:text-gray-300'>{fpMessage}</p>
+                  )}
+                  <button
+                    type='submit'
+                    disabled={fpLoading}
+                    className='w-full py-2 px-3 rounded-md bg-green-600 hover:bg-green-700 text-white text-sm disabled:opacity-50'
+                  >
+                    {fpLoading ? t('admin.resetting') : t('admin.resetPassword')}
+                  </button>
+                </form>
+              )}
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

@@ -14,8 +14,10 @@ export const applyMiddlewares = (app: Application): void => {
     // Upload middleware
     app.use(acceptFormdata);                   // Handle multipart/form-data
 
-    // Logging middleware
-    app.use(requestLogger);                    // Log requests
+    // Logging middleware (can be disabled via env)
+    if (process.env.LOG_REQUESTS !== 'false') {
+        app.use(requestLogger);                // Log requests
+    }
 
     // Performance middleware
     app.use(checkQPS);                         // Count requests per second

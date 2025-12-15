@@ -21,7 +21,7 @@ const Banner = () => {
               className='absolute -top-20 right-14 animate-rotational'
             />
             <h6
-              className='font-FiraSans font-medium text-red-500 dark:text-red-400 mb-3'
+              className='font-FiraSans font-medium text-red-500 dark:text-red-400 mb-3 text-stroke-red-bold'
               data-aos='fade-up'
               data-aos-duration='600'
             >
@@ -33,7 +33,9 @@ const Banner = () => {
               data-aos-duration='800'
               data-aos-delay='100'
             >
-              {t('banner.companyName')}
+              <span className='inline-block text-stroke-blue-bold'>
+                {t('banner.companyName')}
+              </span>
               <img
                 src={border}
                 draggable='false'
@@ -41,7 +43,7 @@ const Banner = () => {
               />
             </h1>
             <p
-              className='font-FiraSans text-green-500 dark:text-green-400 font-semibold mb-[38px] mt-6 max-w-sm mx-auto lg:mx-0'
+              className='font-FiraSans text-lg lg:text-xl text-green-400 dark:text-green-400 font-semibold mb-[38px] mt-6 max-w-sm mx-auto lg:mx-0 text-stroke-green-bold'
               data-aos='fade-up'
               data-aos-duration='800'
               data-aos-delay='200'
@@ -81,14 +83,14 @@ const Banner = () => {
             {/* Video instead of static hero image. Place your file at public/videos/hero_right.mp4 or use an external URL. */}
             <video
               className='w-full max-w-[700px] object-cover -mb-12 -mt-6 sm:-mt-8 2xl:-mt-16 rounded-lg'
-              poster={'/images/Intro2.mp4'}
+              poster={'/images/Intro3.mp4'}
               autoPlay
               muted
               loop
               playsInline
               // controls // uncomment if you want playback controls for testing
             >
-              <source src={'/images/Intro2.mp4'} type='video/mp4' />
+              <source src={'/images/Intro3.mp4'} type='video/mp4' />
               {/* fallback to external URL example:
                 <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4" />
               */}

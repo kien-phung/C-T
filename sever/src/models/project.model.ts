@@ -6,6 +6,8 @@ interface IProjectDocument extends Document {
     description_en?: string;
     thumbnail?: string;
     client_name?: string;
+    category?: string; // 'hardware' | 'software'
+    status?: string; // 'draft' | 'published'
 }
 
 const schema: Schema<IProjectDocument> = new Schema(
@@ -15,6 +17,8 @@ const schema: Schema<IProjectDocument> = new Schema(
         description_en: String,
         thumbnail: String,
         client_name: String,
+        category: { type: String, default: 'hardware' },
+        status: { type: String, enum: ['draft', 'published'], default: 'published' },
     },
     {
         timestamps: true,

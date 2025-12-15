@@ -1,244 +1,114 @@
 import BreadCrumb from '../../../Shared/BreadCrumb/BreadCrumb';
 import { FaArrowRightLong } from 'react-icons/fa6';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Counter from './Counter/Counter';
 import { useLanguage } from '../../../contexts/LanguageContext';
 import { getTranslation } from '../../../utils/translations';
 import { motion, AnimatePresence } from 'framer-motion';
-
-const getProductsData = (language) => {
-  const products = {
-    VN: {
-      hardware: [
-        {
-          id: 1,
-          name: 'Thiết bị đọc Căn Cước Công Dân',
-          image: '/images/products/mayquetcccd.png',
-          price: '15.000.000 VNĐ',
-          features: [
-            'Thiết bị đọc chip trên thẻ CCCD',
-            'Hỗ trợ: Windows / Linux / Android',
-            'Nguồn điện: Cấp qua cổng USB',
-            'Có thể kết nối với các thiết bị khác thông qua USB',
-            'Mắt đọc: Hỗ trợ quét mã QR nhanh, chính xác',
-            'Tín hiệu nhận biết: Đèn báo trạng thái - có âm thanh',
-            'Chức năng chính: Đọc thông tin Căn cước, Họ và tên, Ảnh, vân tay'
-          ]
-        },
-        {
-          id: 2,
-          name: 'Máy giao dịch thanh toán tự động',
-          image: '/images/products/kiot1.png',
-          price: '100.000.000 VND',
-          features: [
-            'Vỏ máy',
-            '2 màn hình Dell 21 inch',
-            'Máy cảm biến mệnh giá tiền giấy VND',
-            'Đầu đọc thẻ NFC',
-            'Máy POS',
-            'Máy in'
-          ]
-        },
-        {
-          id: 3,
-          name: 'Máy giao dịch thanh toán tự động (32 inch)',
-          image: '/images/products/kiot2.png',
-          price: '80.000.000 VND',
-          features: [
-            'Vỏ máy',
-            'Màn hình 32 inch',
-            'Đầu đọc thẻ NFC',
-            'Máy POS',
-            'Máy in'
-          ]
-        },
-        {
-          id: 4,
-          name: 'Máy thu ngân',
-          image: '/images/products/maythungan.png',
-          price: '50.000.000 VND',
-          features: [
-            'Vỏ máy thu ngân',
-            'Máy cảm biến mệnh giá tiền giấy VND',
-            'Màn hình hiển thị LCD 320x240',
-            'Bàn phím số'
-          ]
-        },
-        {
-          id: 5,
-          name: 'Thiết bị nhận tiền mặt',
-          image: '/images/products/payout.png',
-          price: 'Liên hệ',
-          features: [
-            'Nhận mệnh giá từ 1.000VND-500.000VND',
-            'Hỗ trợ trả lại tiền thừa/không hỗ trợ trả lại tiền thừa',
-            'Sức chứa lên đến 1000 tờ'
-          ]
-        },
-        {
-          id: 6,
-          name: 'Thiết bị điểm danh',
-          image: '/images/products/diemdanh1.jpg',
-          price: 'Liên hệ',
-          features: [
-            'Màn hình hiển thị thông báo điểm danh',
-            'Thiết bị âm thanh',
-            'Đọc thẻ nhanh'
-          ]
-        },
-        {
-          id: 7,
-          name: 'Thiết bị cân điện tử',
-          image: '/images/products/candientu1.jpg',
-          price: 'Liên hệ',
-          features: [
-            'Giao diện điều khiển HMI (trên máy cân).',
-            'Phần cứng kết nối IOT',
-            'Nền tảng giám sát từ xa'
-          ]
-        }
-        
-      ],
-      software: [
-        {
-          id: 1,
-          name: 'Thiết Kế Phần Mềm',
-          image: '/images/products/soft.jpg',
-          price: 'Liên hệ',
-          features: [
-            'Các app giao dịch.',
-            'Các web giao dịch.',
-            'Các phần mềm bán vé cho các hãng vận tải hành khách.',
-            'Các phần mềm giao dịch thanh toán và quản lý tập chung cho các khu vui chơi giải trí.',
-          ]
-        },
-      ]
-    },
-    EN: {
-      hardware: [
-        {
-          id: 1,
-          name: 'Citizen ID Card Reader',
-          image: '/images/products/mayquetcccd.png',
-          price: '15,000,000 VND',
-          features: [
-            'CCCD chip reader device',
-            'Support: Windows / Linux / Android',
-            'Power supply: Via USB port',
-            'Can connect to other devices via USB',
-            'Scanner: Fast and accurate QR code scanning',
-            'Signal indicator: Status LED with sound',
-            'Main function: Read ID information, Name, Photo, Fingerprint'
-          ]
-        },
-        {
-          id: 2,
-          name: 'Automatic Payment Kiosk',
-          image: '/images/products/kiot1.png',
-          price: '100,000,000 VND',
-          features: [
-            'Kiosk enclosure',
-            '2 Dell 21-inch displays',
-            'VND bill acceptor',
-            'NFC card reader',
-            'POS machine',
-            'Printer'
-          ]
-        },
-        {
-          id: 3,
-          name: 'Automatic Payment Kiosk (32 inch)',
-          image: '/images/products/kiot2.png',
-          price: '80,000,000 VND',
-          features: [
-            'Kiosk enclosure',
-            '32-inch display',
-            'NFC card reader',
-            'POS machine',
-            'Printer'
-          ]
-        },
-        {
-          id: 4,
-          name: 'Cash Register Machine',
-          image: '/images/products/maythungan.png',
-          price: '50,000,000 VND',
-          features: [
-            'Cash register enclosure',
-            'VND bill acceptor',
-            'LCD display 320x240',
-            'Numeric keypad'
-          ]
-        },
-        {
-          id: 5,
-          name: 'Cash Payout Device',
-          image: '/images/products/payout.png',
-          price: 'Contact',
-          features: [
-            'Accept denominations from 1,000VND-500,000VND',
-            'With/without change return support',
-            'Capacity up to 1000 bills'
-          ]
-        },
-                {
-          id: 6,
-          name: 'Attendance Device',
-          image: '/images/products/diemdanh1.jpg',
-          price: 'Contact',
-          features: [
-            'Attendance Notification Display',
-            'Sound Device',
-            'Fast Card Reading'
-          ]
-        },
-        {
-          id: 7,
-          name: 'Remote Monitoring Electronic Scale System',
-          image: '/images/products/candientu1.jpg',
-          price: 'Contact',
-          features: [
-            'HMI control interface (on the weighing machine)',
-            'IoT connection hardware',
-            'Remote monitoring platform'
-          ]
-        }
-      ],
-      software: [
-        {
-          id: 1,
-          name: 'Software Development',
-          image: '/images/products/soft.jpg',
-          price: 'Contact',
-          features: [
-            'Transaction apps.',
-            'Transaction websites.',
-            'Ticketing software for passenger transport companies.',
-            'Payment transaction and centralized management software for entertainment areas.',
-          ]
-        },
-      ]
-    }
-  };
-  return products[language] || products.VN;
-};
+import { getProducts } from '../../../api/api';
+import { socket } from '../../../api/socket';
+import axiosClient from '../../../api/axiosClient';
+ 
+// Remove hardcoded dataset: now using API + realtime socket
 
 const ServiceDetails = () => {
   const [activeTab, setActiveTab] = useState('hardware');
   const { currentLanguage } = useLanguage();
   const t = (key) => getTranslation(currentLanguage, key);
-  const productsData = getProductsData(currentLanguage);
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  const resolveName = (p) => (
+    currentLanguage === 'EN'
+      ? (p?.name_en || p?.name_vn || '')
+      : (p?.name_vn || p?.name_en || '')
+  );
+
+  const resolveFeatures = (p) => {
+    // Prefer bilingual arrays when available
+    if (currentLanguage === 'EN') {
+      const en = Array.isArray(p?.features_en) ? p.features_en : [];
+      if (en.length > 0) return en;
+      // fallback to legacy single-language features
+      return Array.isArray(p?.features) ? p.features : [];
+    } else {
+      const vn = Array.isArray(p?.features_vn) ? p.features_vn : [];
+      if (vn.length > 0) return vn;
+      return Array.isArray(p?.features) ? p.features : [];
+    }
+  };
+
+  const fetchProducts = async () => {
+    try {
+      setLoading(true);
+      const res = await getProducts();
+      const items = res?.data?.data ?? res?.data?.products ?? [];
+      setProducts(items);
+    } catch (e) {
+      console.error('Fetch public products failed', e);
+    } finally { setLoading(false); }
+  };
+
+  // Price display: translate "Liên hệ" based on current language
+  const isContactLabel = (value) => {
+    const s = String(value || '').toLowerCase().normalize('NFD').replace(/\p{Diacritic}/gu, '').trim();
+    return s === 'lien he' || s === 'lienhe' || s === 'contact';
+  };
+  const displayPrice = (value) => {
+    if (!value || isContactLabel(value)) return t('nav.contact');
+    return value;
+  };
+
+  useEffect(() => {
+    fetchProducts();
+    // Optional polling (disabled by default via VITE_POLL_PRODUCTS=false)
+    const POLL_ENABLED = import.meta.env.VITE_POLL_PRODUCTS === 'true';
+    const POLL_INTERVAL = Number(import.meta.env.VITE_POLL_PRODUCTS_INTERVAL_MS || 0) || 15000;
+    let intervalId;
+    if (POLL_ENABLED) {
+      intervalId = setInterval(fetchProducts, POLL_INTERVAL);
+    }
+    return () => {
+      if (intervalId) clearInterval(intervalId);
+    };
+  }, []);
+
+  // Realtime updates via Socket.IO
+  useEffect(() => {
+    const onChange = (payload) => {
+      if (!payload) { fetchProducts(); return; }
+      if (payload.type === 'created' && payload.data) {
+        setProducts(prev => [payload.data, ...prev]);
+      } else if (payload.type === 'updated' && payload.data) {
+        const id = payload.data._id || payload.data.id;
+        setProducts(prev => prev.map(p => (p._id === id ? { ...p, ...payload.data } : p)));
+      } else if (payload.type === 'deleted') {
+        const id = payload.id;
+        setProducts(prev => prev.filter(p => p._id !== id));
+      } else {
+        fetchProducts();
+      }
+    };
+    socket.on('products.changed', onChange);
+    return () => {
+      socket.off('products.changed', onChange);
+    };
+  }, []);
+
+  // (Removed) Projects API integration; ServiceDetails focuses on product showcase only.
 
   // Pagination state
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 3; // 3 products per page
 
+  // Filter by active tab and published status
+  const filteredProducts = products.filter(p => (p?.category || 'hardware') === activeTab && p?.is_published !== false);
+
   // Calculate pagination for current tab
-  const currentProducts = productsData[activeTab];
-  const totalPages = Math.ceil(currentProducts.length / itemsPerPage);
+  const totalPages = Math.ceil(filteredProducts.length / itemsPerPage) || 1;
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const displayedProducts = currentProducts.slice(indexOfFirstItem, indexOfLastItem);
+  const displayedProducts = filteredProducts.slice(indexOfFirstItem, indexOfLastItem);
 
   // Handle page change
   const handlePageChange = (pageNumber, shouldScroll = false) => {
@@ -252,6 +122,64 @@ const ServiceDetails = () => {
   const handleTabChange = (tab) => {
     setActiveTab(tab);
     setCurrentPage(1);
+  };
+
+  // Auto download product PDF when clicking "View Details"
+  const handleViewDetails = async (product) => {
+    const urls = Array.isArray(product?.pdf_urls) && product.pdf_urls.length > 0
+      ? product.pdf_urls
+      : (product?.pdf_url ? [product.pdf_url] : []);
+    if (urls.length === 0) return; // no PDF configured
+
+    const baseName = resolveName(product).replace(/\s+/g, '_');
+
+    // Ensure we use absolute backend URL and strip trailing /api from base
+    const toAbsoluteUrl = (u) => {
+      if (!u) return u;
+      if (/^https?:\/\//i.test(u)) return u;
+      let apiBase = axiosClient?.defaults?.baseURL || '';
+      if (apiBase) {
+        apiBase = apiBase.replace(/\/$/, '');
+        apiBase = apiBase.replace(/\/api$/i, '');
+      }
+      const backendBase = apiBase || window.location.origin;
+      const left = backendBase.endsWith('/') ? backendBase.slice(0, -1) : backendBase;
+      const right = u.startsWith('/') ? u : `/${u}`;
+      return `${left}${right}`;
+    };
+
+    for (let i = 0; i < urls.length; i++) {
+      const url = toAbsoluteUrl(urls[i]);
+      const suggested = urls.length === 1 ? `${baseName}.pdf` : `${baseName}_${i+1}.pdf`;
+      try {
+        const response = await fetch(url, { mode: 'cors' });
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        const ct = response.headers.get('content-type') || '';
+        if (!/application\/pdf/i.test(ct)) {
+          // Not a PDF? fallback to opening URL directly
+          throw new Error(`Unexpected content-type: ${ct}`);
+        }
+        const blob = await response.blob();
+        const blobUrl = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = blobUrl;
+        a.download = suggested;
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        window.URL.revokeObjectURL(blobUrl);
+      } catch (e) {
+        // Fallback when CORS blocks fetch: open directly
+        const a = document.createElement('a');
+        a.href = url;
+        a.target = '_blank';
+        a.rel = 'noopener';
+        a.download = suggested;
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+      }
+    }
   };
 
   return (
@@ -268,7 +196,7 @@ const ServiceDetails = () => {
           {/* Header Section */}
           <div className='text-center mb-16'>
             <h1
-              className='font-FiraSans font-semibold text-4xl sm:text-5xl text-HeadingColor-0 mb-6'
+              className='font-FiraSans font-semibold text-4xl sm:text-5xl text-HeadingColor-0 dark:!text-white mb-6'
               data-aos='fade-up'
               data-aos-duration='800'
             >
@@ -331,9 +259,19 @@ const ServiceDetails = () => {
                   : 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3'
               }`}
             >
-              {displayedProducts.map((product, index) => (
+              {loading && (
+                <div className='col-span-3 text-center text-gray-600 dark:text-gray-300'>
+                  {t('admin.loading')}
+                </div>
+              )}
+              {!loading && displayedProducts.length === 0 && (
+                <div className='col-span-3 text-center text-gray-600 dark:text-gray-300'>
+                  {t('admin.noData')}
+                </div>
+              )}
+              {!loading && displayedProducts.map((product, index) => (
                 <div
-                  key={product.id}
+                  key={product._id || product.id || index}
                   className='bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 flex flex-col h-full'
                   data-aos='fade-up'
                   data-aos-duration='800'
@@ -342,7 +280,7 @@ const ServiceDetails = () => {
                 <div className='relative overflow-hidden bg-gray-100 dark:bg-gray-700 flex items-center justify-center'>
                   <img
                     src={product.image}
-                    alt={product.name}
+                    alt={resolveName(product)}
                     className='w-full h-64 object-contain p-4 transition-transform duration-300 hover:scale-105'
                     onError={(e) => {
                       e.target.src = '/images/placeholder-product.png';
@@ -350,11 +288,11 @@ const ServiceDetails = () => {
                   />
                 </div>
                 <div className='p-6 flex flex-col flex-grow'>
-                  <h3 className='font-FiraSans font-semibold text-xl text-HeadingColor-0 dark:text-white mb-4 min-h-[3rem] flex items-center'>
-                    {product.name}
+                  <h3 className='font-FiraSans font-semibold text-xl text-HeadingColor-0 dark:!text-white mb-4 min-h-[3rem] flex items-center'>
+                    {resolveName(product)}
                   </h3>
                   <ul className='space-y-2 mb-6 flex-grow'>
-                    {product.features.map((feature, index) => (
+                    {resolveFeatures(product).map((feature, index) => (
                       <li key={index} className='font-FiraSans text-TextColor2-0 dark:text-gray-300 text-sm flex items-start gap-2'>
                         <span className='text-PrimaryColor-0 dark:text-green-400 mt-1 flex-shrink-0'>•</span>
                         <span className='leading-relaxed'>{feature}</span>
@@ -363,9 +301,9 @@ const ServiceDetails = () => {
                   </ul>
                   <div className='flex items-center justify-between mt-auto pt-4 border-t border-gray-100 dark:border-gray-700'>
                     <div className='text-2xl font-FiraSans font-bold text-PrimaryColor-0 dark:text-green-400'>
-                      {product.price}
+                      {displayPrice(product.price)}
                     </div>
-                    <button className='bg-PrimaryColor-0 dark:bg-green-600 text-white px-6 py-2 rounded-lg font-FiraSans font-medium hover:bg-opacity-90 transition-all duration-300 whitespace-nowrap'>
+                    <button onClick={() => handleViewDetails(product)} className='bg-PrimaryColor-0 dark:bg-green-600 text-white px-6 py-2 rounded-lg font-FiraSans font-medium hover:bg-opacity-90 transition-all duration-300 whitespace-nowrap'>
                       {currentLanguage === 'VN' ? 'Xem chi tiết' : 'View Details'}
                     </button>
                   </div>
@@ -374,6 +312,8 @@ const ServiceDetails = () => {
               ))}
             </motion.div>
           </AnimatePresence>
+
+          {/* (Removed) Projects section; projects are shown on the Home page Portfolio section. */}
 
           {/* Pagination */}
           {totalPages > 1 && (

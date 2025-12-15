@@ -1288,6 +1288,32 @@ span.swiper-pagination-bullet.swiper-pagination-bullet-active::before {
   opacity: 1 !important;
 }
 
+/* Service/Portfolio Swiper Navigation */
+.service-swiper .swiper-button-next,
+.service-swiper .swiper-button-prev {
+  color: #0c6e6d !important;
+  width: 36px !important;
+  height: 36px !important;
+  background: #ffffffcc !important;
+  border-radius: 50% !important;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15) !important;
+  backdrop-filter: blur(2px) !important;
+  z-index: 10 !important;
+}
+
+.service-swiper .swiper-button-next::after,
+.service-swiper .swiper-button-prev::after {
+  font-size: 16px !important;
+}
+
+.service-swiper .swiper-button-prev { left: 12px !important; }
+.service-swiper .swiper-button-next { right: 12px !important; }
+
+.service-swiper .swiper-button-next,
+.service-swiper .swiper-button-prev {
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+}
 /* Blog Swiper */
 .blog-swiper {
   padding-bottom: 0 !important;
@@ -1392,4 +1418,94 @@ span.swiper-pagination-bullet.swiper-pagination-bullet-active::before {
 .blog-swiper .swiper-pagination-bullet.swiper-pagination-bullet-active::before,
 .blog-swiper .swiper-pagination-bullet.swiper-pagination-bullet-active::after {
   display: none !important;
+}
+
+/* Blog Swiper Desktop Navigation */
+.blog-swiper-desktop .swiper-button-next,
+.blog-swiper-desktop .swiper-button-prev {
+  color: #0c6e6d !important;
+  width: 36px !important;
+  height: 36px !important;
+  background: #ffffffcc !important;
+  border-radius: 50% !important;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15) !important;
+  backdrop-filter: blur(2px) !important;
+}
+
+.blog-swiper-desktop .swiper-button-next::after,
+.blog-swiper-desktop .swiper-button-prev::after {
+  font-size: 16px !important;
+}
+
+.blog-swiper-desktop .swiper-button-prev {
+  left: 12px !important;
+  z-index: 10 !important;
+}
+
+.blog-swiper-desktop .swiper-button-next {
+  right: 12px !important;
+  z-index: 10 !important;
+}
+
+.blog-swiper-desktop .swiper-button-next,
+.blog-swiper-desktop .swiper-button-prev {
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+}
+/* Overrides: place arrows outside and prevent clipping */
+.blog-swiper-desktop { overflow: visible !important; }
+.blog-swiper-desktop .swiper-button-prev { left: -24px !important; }
+.blog-swiper-desktop .swiper-button-next { right: -24px !important; }
+
+/* Portfolio overrides */
+.service-swiper { overflow: visible !important; }
+.service-swiper .swiper-button-prev { left: -24px !important; }
+.service-swiper .swiper-button-next { right: -24px !important; }
+
+/* Tablet: đưa nút vào trong một chút để không bị cắt */
+@media (max-width: 1023.98px) {
+  .service-swiper .swiper-button-prev { left: 8px !important; }
+  .service-swiper .swiper-button-next { right: 8px !important; }
+}
+
+/* Mobile: ẩn nút, dùng thao tác vuốt */
+@media (max-width: 767.98px) {
+  .service-swiper .swiper-button-next,
+  .service-swiper .swiper-button-prev { display: none !important; }
+}
+/* Limit multi-line text to 2 lines for uniform card heights */
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Text stroke utilities */
+.text-stroke-light {
+  -webkit-text-stroke: 0.75px rgba(0, 0, 0, 0.5);
+  text-stroke: 0.75px rgba(0, 0, 0, 0.5);
+}
+
+.text-stroke {
+  -webkit-text-stroke: 1px #000;
+  text-stroke: 1px #000;
+}
+
+/* Strong red stroke utility */
+.text-stroke-red-bold {
+  -webkit-text-stroke: 1.25px rgba(185, 28, 28, 0.95); /* Tailwind red-700 */
+  text-stroke: 1.25px rgba(185, 28, 28, 0.95);
+}
+
+/* Bold blue stroke utility to match blue heading text */
+.text-stroke-blue-bold {
+  -webkit-text-stroke: 1.25px rgba(96, 165, 250, 1); /* Tailwind blue-400: brighter */
+  text-stroke: 1.25px rgba(96, 165, 250, 1);
+}
+
+/* Bold green stroke utility to match green slogan text */
+.text-stroke-green-bold {
+  -webkit-text-stroke: 1.25px rgba(21, 128, 61, 1); /* Tailwind green-700: darker for clarity */
+  text-stroke: 1.25px rgba(21, 128, 61, 1);
 }

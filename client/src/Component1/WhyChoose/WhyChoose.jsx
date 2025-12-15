@@ -69,34 +69,46 @@ const WhyChoose = () => {
               {t('whyChoose.subtitle')}
             </p>
             <ul
-              className='grid grid-cols-1 gap-x-7 gap-y-5 sm:grid-cols-2 lg:grid-cols-2 mt-9 pb-10 justify-items-center lg:justify-items-start'
+              className='grid grid-cols-1 gap-x-7 gap-y-5 sm:grid-cols-2 lg:grid-cols-3 mt-9 pb-10 justify-items-center w-fit mx-auto'
               data-aos='fade-up'
               data-aos-duration='800'
               data-aos-delay='300'
             >
-              <li className='font-FiraSans text-HeadingColor-0 dark:text-white bg-white dark:bg-gray-800 py-5 px-8 w-full lg:w-auto rounded-md flex items-center justify-center lg:justify-start gap-2 shadow-cases'>
-                <span className='text-PrimaryColor-0 dark:text-green-400 text-2xl'>
+              <li className='font-FiraSans text-HeadingColor-0 dark:text-white bg-white dark:bg-gray-800 py-4 px-3 w-full h-full rounded-md flex items-center justify-center gap-2 shadow-cases text-center'>
+                <span className='text-PrimaryColor-0 dark:text-green-400 text-2xl flex-shrink-0'>
                   <IoIosCheckmarkCircleOutline />
                 </span>
                 {t('whyChoose.automaticTransaction')}
               </li>
-              <li className='font-FiraSans text-HeadingColor-0 dark:text-white bg-white dark:bg-gray-800 py-5 px-8 w-full lg:w-auto rounded-md flex items-center justify-center lg:justify-start gap-2 shadow-cases'>
-                <span className='text-PrimaryColor-0 dark:text-green-400 text-2xl'>
+              <li className='font-FiraSans text-HeadingColor-0 dark:text-white bg-white dark:bg-gray-800 py-4 px-3 w-full h-full rounded-md flex items-center justify-center gap-2 shadow-cases text-center'>
+                <span className='text-PrimaryColor-0 dark:text-green-400 text-2xl flex-shrink-0'>
                   <IoIosCheckmarkCircleOutline />
                 </span>
                 {t('whyChoose.comprehensiveSolution')}
               </li>
-              <li className='font-FiraSans text-HeadingColor-0 dark:text-white bg-white dark:bg-gray-800 py-5 px-8 w-full lg:w-auto rounded-md flex items-center justify-center lg:justify-start gap-2 shadow-cases'>
-                <span className='text-PrimaryColor-0 dark:text-green-400 text-2xl'>
+              <li className='font-FiraSans text-HeadingColor-0 dark:text-white bg-white dark:bg-gray-800 py-4 px-3 w-full h-full rounded-md flex items-center justify-center gap-2 shadow-cases text-center'>
+                <span className='text-PrimaryColor-0 dark:text-green-400 text-2xl flex-shrink-0'>
                   <IoIosCheckmarkCircleOutline />
                 </span>
                 {t('whyChoose.smartConnect')}
               </li>
-              <li className='font-FiraSans text-HeadingColor-0 dark:text-white bg-white dark:bg-gray-800 py-5 px-8 w-full lg:w-auto rounded-md flex items-center justify-center lg:justify-start gap-2 shadow-cases'>
-                <span className='text-PrimaryColor-0 dark:text-green-400 text-2xl'>
+              <li className='font-FiraSans text-HeadingColor-0 dark:text-white bg-white dark:bg-gray-800 py-4 px-3 w-full h-full rounded-md flex items-center justify-center gap-2 shadow-cases text-center col-span-1'>
+                <span className='text-PrimaryColor-0 dark:text-green-400 text-2xl flex-shrink-0'>
+                  <IoIosCheckmarkCircleOutline />
+                </span>
+                {t('whyChoose.iotBreakthrough')}
+              </li>
+              <li className='font-FiraSans text-HeadingColor-0 dark:text-white bg-white dark:bg-gray-800 py-4 px-3 w-full h-full rounded-md flex items-center justify-center gap-2 shadow-cases text-center col-span-1'>
+                <span className='text-PrimaryColor-0 dark:text-green-400 text-2xl flex-shrink-0'>
                   <IoIosCheckmarkCircleOutline />
                 </span>
                 {t('whyChoose.professionalTeam')}
+              </li>
+              <li className='font-FiraSans text-HeadingColor-0 dark:text-white bg-white dark:bg-gray-800 py-4 px-3 w-full h-full rounded-md flex items-center justify-center gap-2 shadow-cases text-center col-span-1'>
+                <span className='text-PrimaryColor-0 dark:text-green-400 text-2xl flex-shrink-0'>
+                  <IoIosCheckmarkCircleOutline />
+                </span>
+                {t('whyChoose.identitySolutions')}
               </li>
             </ul>
             <div className='inline-block relative z-50'>

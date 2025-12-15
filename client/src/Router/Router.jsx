@@ -13,7 +13,15 @@ import TeamInner from '../Pages/InnerPage/TeamInner/TeamInner'; // Đội Ngũ
 import AdminLogin from '../Pages/Admin/AdminLogin'; // Admin Login
 import AdminDashboard from '../Pages/Admin/AdminDashboard'; // Admin Dashboard
 import AdminContacts from '../Pages/Admin/AdminContacts'; // Admin Contacts
+import AdminUsers from '../Pages/Admin/AdminUsers'; // Admin Users
+import AdminBlogs from '../Pages/Admin/AdminBlogs'; // Admin Blogs
+import AdminProjects from '../Pages/Admin/AdminProjects'; // Admin Projects
+import AdminProducts from '../Pages/Admin/AdminProducts'; // Admin Products
+import AdminSolutions from '../Pages/Admin/AdminSolutions'; // Admin Solutions
+import AdminPolicies from '../Pages/Admin/AdminPolicies'; // Admin Policies
+import AdminCustomers from '../Pages/Admin/AdminCustomers'; // Admin Customers
 import ProtectedAdminRoute from './ProtectedAdminRoute'; // Protected Route
+import { AdminThemeProvider } from '../contexts/AdminThemeContext';
 
 const router = createBrowserRouter([
   {
@@ -27,6 +35,14 @@ const router = createBrowserRouter([
       },
       {
         path: '/service_details', // Sản Phẩm
+        element: <ServiceDetails />,
+      },
+      {
+        path: '/service_details/', // Alias with trailing slash
+        element: <ServiceDetails />,
+      },
+      {
+        path: '/service-details', // Alias with hyphen
         element: <ServiceDetails />,
       },
       {
@@ -74,22 +90,100 @@ const router = createBrowserRouter([
   },
   {
     path: '/admin/login',
-    element: <AdminLogin />,
+    element: (
+      <AdminThemeProvider>
+        <AdminLogin />
+      </AdminThemeProvider>
+    ),
   },
   {
     path: '/admin/dashboard',
     element: (
-      <ProtectedAdminRoute>
-        <AdminDashboard />
-      </ProtectedAdminRoute>
+      <AdminThemeProvider>
+        <ProtectedAdminRoute>
+          <AdminDashboard />
+        </ProtectedAdminRoute>
+      </AdminThemeProvider>
     ),
   },
   {
     path: '/admin/contacts',
     element: (
-      <ProtectedAdminRoute>
-        <AdminContacts />
-      </ProtectedAdminRoute>
+      <AdminThemeProvider>
+        <ProtectedAdminRoute>
+          <AdminContacts />
+        </ProtectedAdminRoute>
+      </AdminThemeProvider>
+    ),
+  },
+  {
+    path: '/admin/users',
+    element: (
+      <AdminThemeProvider>
+        <ProtectedAdminRoute>
+          <AdminUsers />
+        </ProtectedAdminRoute>
+      </AdminThemeProvider>
+    ),
+  },
+  {
+    path: '/admin/blogs',
+    element: (
+      <AdminThemeProvider>
+        <ProtectedAdminRoute>
+          <AdminBlogs />
+        </ProtectedAdminRoute>
+      </AdminThemeProvider>
+    ),
+  },
+  {
+    path: '/admin/projects',
+    element: (
+      <AdminThemeProvider>
+        <ProtectedAdminRoute>
+          <AdminProjects />
+        </ProtectedAdminRoute>
+      </AdminThemeProvider>
+    ),
+  },
+  {
+    path: '/admin/products',
+    element: (
+      <AdminThemeProvider>
+        <ProtectedAdminRoute>
+          <AdminProducts />
+        </ProtectedAdminRoute>
+      </AdminThemeProvider>
+    ),
+  },
+  {
+    path: '/admin/solutions',
+    element: (
+      <AdminThemeProvider>
+        <ProtectedAdminRoute>
+          <AdminSolutions />
+        </ProtectedAdminRoute>
+      </AdminThemeProvider>
+    ),
+  },
+  {
+    path: '/admin/policies',
+    element: (
+      <AdminThemeProvider>
+        <ProtectedAdminRoute>
+          <AdminPolicies />
+        </ProtectedAdminRoute>
+      </AdminThemeProvider>
+    ),
+  },
+  {
+    path: '/admin/customers',
+    element: (
+      <AdminThemeProvider>
+        <ProtectedAdminRoute>
+          <AdminCustomers />
+        </ProtectedAdminRoute>
+      </AdminThemeProvider>
     ),
   },
 ]);

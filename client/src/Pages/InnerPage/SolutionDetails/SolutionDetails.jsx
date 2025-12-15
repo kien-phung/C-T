@@ -1,9 +1,12 @@
 import { useParams, Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 import BreadCrumb from '../../../Shared/BreadCrumb/BreadCrumb';
 import { FaArrowRightLong } from 'react-icons/fa6';
 import { IoCheckmarkCircle } from 'react-icons/io5';
 import { useLanguage } from '../../../contexts/LanguageContext';
 import { getTranslation } from '../../../utils/translations';
+import { getPublicSolution } from '../../../api/api';
+import { socket } from '../../../api/socket';
 
 const getSolutionDetailsData = (language) => {
   const data = {
@@ -319,6 +322,84 @@ const getSolutionDetailsData = (language) => {
           'Quản lý tập trung',
           'ROI cao'
         ]
+      },
+      'thiet-bi-doc-cccd': {
+        id: 9,
+        title: 'Giải pháp thiết bị đọc CCCD',
+        subtitle: 'Sự lựa chọn thông minh tiết kiệm thời gian, chi phí và nhân lực',
+        image: '/images/solutions/cccd.jpg',
+        description: 'Thiết bị đọc CCCD hiện đại với công nghệ tiên tiến, giúp tự động hóa quy trình xác thực danh tính tại các địa điểm có lượng người đông như ngân hàng, bệnh viện, cơ quan nhà nước.',
+        userRoles: [
+          {
+            title: 'Khách hàng',
+            description: 'Tự thực hiện xác thực danh tính',
+            icon: '👤'
+          },
+          {
+            title: 'Nhân viên',
+            description: 'Giám sát và hỗ trợ khách hàng',
+            icon: '👨‍💼'
+          },
+          {
+            title: 'Quản lý',
+            description: 'Theo dõi báo cáo và thống kê',
+            icon: '📊'
+          }
+        ],
+        features: [
+          'Đọc thẻ CCCD chip tự động',
+          'Hiển thị thông tin rõ ràng trên màn hình',
+          'Xác thực danh tính nhanh chóng',
+          'Lưu trữ dữ liệu an toàn',
+          'Tích hợp camera chụp ảnh',
+          'Báo cáo thống kê chi tiết'
+        ],
+        benefits: [
+          'Tiết kiệm thời gian xử lý',
+          'Giảm chi phí nhân lực',
+          'Tăng độ chính xác thông tin',
+          'Cải thiện trải nghiệm khách hàng',
+          'Đảm bảo an ninh thông tin'
+        ]
+      },
+      'can-dinh-luong-nha-may': {
+        id: 10,
+        title: 'Giải pháp Cân định lượng dành cho nhà máy',
+        subtitle: 'Sự kết hợp hoàn hảo giữa tính toán chính xác và giám sát từ xa',
+        image: '/images/solutions/dien2.jpg',
+        description: 'Hệ thống cân định lượng cho nhà máy giúp tính toán chính xác theo công thức, giám sát từ xa thời gian thực và kiểm soát số liệu thực ở mọi nơi; ứng dụng rộng rãi trong công nghiệp, nông nghiệp, dịch vụ.',
+        userRoles: [
+          {
+            title: 'Vận hành',
+            description: 'Theo dõi số liệu và quy trình cân định lượng',
+            icon: '🏭'
+          },
+          {
+            title: 'Quản lý',
+            description: 'Xem báo cáo, kiểm soát sản lượng',
+            icon: '📈'
+          },
+          {
+            title: 'Kỹ thuật',
+            description: 'Cấu hình thiết bị, bảo trì hệ thống',
+            icon: '🛠️'
+          }
+        ],
+        features: [
+          'Tính toán chính xác theo công thức định lượng',
+          'Kết nối cảm biến cân, PLC và IoT',
+          'Giám sát từ xa thời gian thực',
+          'Lưu trữ và báo cáo số liệu',
+          'Cảnh báo sai số vượt ngưỡng',
+          'Tích hợp ERP/MES'
+        ],
+        benefits: [
+          'Giảm sai số, ổn định chất lượng',
+          'Tiết kiệm thời gian và chi phí',
+          'Tăng năng suất và tự động hóa',
+          'Minh bạch số liệu, quyết định nhanh',
+          'Dễ mở rộng và bảo trì'
+        ]
       }
     },
     EN: {
@@ -633,6 +714,84 @@ const getSolutionDetailsData = (language) => {
           'Centralized management',
           'High ROI'
         ]
+      },
+      'thiet-bi-doc-cccd': {
+        id: 9,
+        title: 'Citizen ID Card Reading Device Solution',
+        subtitle: 'Smart choice saving time, cost and manpower',
+        image: '/images/solutions/cccd.jpg',
+        description: 'Modern CCCD reader device with advanced technology, helping automate identity verification processes at crowded locations such as banks, hospitals, and government offices.',
+        userRoles: [
+          {
+            title: 'Customers',
+            description: 'Self-service identity verification',
+            icon: '👤'
+          },
+          {
+            title: 'Staff',
+            description: 'Monitor and assist customers',
+            icon: '👨‍💼'
+          },
+          {
+            title: 'Manager',
+            description: 'Track reports and statistics',
+            icon: '📊'
+          }
+        ],
+        features: [
+          'Automatic CCCD chip reading',
+          'Clear information display on screen',
+          'Fast identity verification',
+          'Secure data storage',
+          'Integrated photo camera',
+          'Detailed statistical reports'
+        ],
+        benefits: [
+          'Save processing time',
+          'Reduce labor costs',
+          'Increase information accuracy',
+          'Improve customer experience',
+          'Ensure information security'
+        ]
+      },
+      'can-dinh-luong-nha-may': {
+        id: 10,
+        title: 'Industrial Weighing Solution',
+        subtitle: 'Perfect blend of precise calculation and remote monitoring',
+        image: '/images/solutions/dien2.jpg',
+        description: 'Factory weighing system enables precise formula-based calculation, real-time remote monitoring, and control of actual metrics anywhere; applicable to industry, agriculture, and services.',
+        userRoles: [
+          {
+            title: 'Operators',
+            description: 'Monitor metrics and dosing processes',
+            icon: '🏭'
+          },
+          {
+            title: 'Managers',
+            description: 'View reports and control output',
+            icon: '📈'
+          },
+          {
+            title: 'Technicians',
+            description: 'Configure devices and maintain the system',
+            icon: '🛠️'
+          }
+        ],
+        features: [
+          'Precise formula-based dosing calculation',
+          'Sensor, PLC and IoT connectivity',
+          'Real-time remote monitoring',
+          'Data storage and reporting',
+          'Threshold deviation alerts',
+          'ERP/MES integration'
+        ],
+        benefits: [
+          'Reduce errors and stabilize quality',
+          'Save time and costs',
+          'Increase productivity and automation',
+          'Transparent data for quick decisions',
+          'Easy to scale and maintain'
+        ]
       }
     }
   };
@@ -644,9 +803,86 @@ const SolutionDetails = () => {
   const { currentLanguage } = useLanguage();
   const t = (key) => getTranslation(currentLanguage, key);
   const solutionsData = getSolutionDetailsData(currentLanguage);
-  const solution = solutionsData[slug];
+  const fallback = solutionsData[slug];
 
-  if (!solution) {
+  const [doc, setDoc] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  const resolveTitle = (d) => {
+    if (!d) return '';
+    return currentLanguage === 'VN' ? d.title_vn || d.title || '' : d.title_en || d.title || '';
+  };
+  const resolveDesc = (d) => {
+    if (!d) return '';
+    return currentLanguage === 'VN' ? d.description_vn || '' : d.description_en || '';
+  };
+
+  const fetchSolution = async () => {
+    setLoading(true);
+    try {
+      const res = await getPublicSolution(slug);
+      const data = res?.data;
+      // Chỉ hiển thị nếu solution đã publish hoặc không có cờ
+      if (data && (data.is_published === undefined || data.is_published)) {
+        setDoc(data);
+      } else {
+        setDoc(null);
+      }
+    } catch (e) {
+      setDoc(null);
+      console.error('Fetch public solution failed', e);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchSolution();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [slug]);
+
+  useEffect(() => {
+    const onChange = (payload) => {
+      // Refetch khi có thay đổi từ admin
+      if (!payload || !payload.slug || payload.slug === slug) {
+        fetchSolution();
+      }
+    };
+    socket.on('solutions.changed', onChange);
+    return () => {
+      socket.off('solutions.changed', onChange);
+    };
+  }, [slug]);
+
+  // Hợp nhất dữ liệu API với dữ liệu tĩnh để giữ UI phong phú
+  const merged = doc
+    ? {
+        title: resolveTitle(doc) || fallback?.title,
+        subtitle: fallback?.subtitle || '',
+        image: doc.image || fallback?.image,
+        description: resolveDesc(doc) || fallback?.description,
+        userRoles: fallback?.userRoles || [],
+        features: fallback?.features || [],
+        benefits: fallback?.benefits || [],
+      }
+    : fallback;
+
+  if (loading) {
+    return (
+      <div className='min-h-screen flex items-center justify-center'>
+        <div className='text-center'>
+          <h1 className='text-2xl font-FiraSans text-HeadingColor-0 dark:text-white mb-2'>
+            {currentLanguage === 'VN' ? 'Đang tải nội dung...' : 'Loading content...'}
+          </h1>
+          <p className='font-FiraSans text-TextColor2-0 dark:text-gray-300'>
+            {currentLanguage === 'VN' ? 'Vui lòng chờ trong giây lát' : 'Please wait a moment'}
+          </p>
+        </div>
+      </div>
+    );
+  }
+
+  if (!merged) {
     return (
       <div className='min-h-screen flex items-center justify-center'>
         <div className='text-center'>
@@ -667,10 +903,10 @@ const SolutionDetails = () => {
   return (
     <>
       <BreadCrumb
-        breadCrumbTitle={solution.title}
+        breadCrumbTitle={merged.title}
         breadCrumbIcon={<FaArrowRightLong />}
-        breadCrumbLink={solution.title}
-        bgImage={solution.image}
+        breadCrumbLink={merged.title}
+        bgImage={merged.image}
       />
 
       <section className='py-[120px] bg-BodyBg4-0 dark:bg-gray-900'>
@@ -682,111 +918,119 @@ const SolutionDetails = () => {
               data-aos='fade-up'
               data-aos-duration='800'
             >
-              {solution.title}
+              {merged.title}
             </h1>
-            <p
-              className='font-FiraSans text-xl text-PrimaryColor-0 dark:text-green-400 mb-6'
-              data-aos='fade-up'
-              data-aos-duration='800'
-              data-aos-delay='100'
-            >
-              {solution.subtitle}
-            </p>
+            {merged.subtitle && (
+              <p
+                className='font-FiraSans text-xl text-PrimaryColor-0 dark:text-green-400 mb-6'
+                data-aos='fade-up'
+                data-aos-duration='800'
+                data-aos-delay='100'
+              >
+                {merged.subtitle}
+              </p>
+            )}
             <p
               className='font-FiraSans text-TextColor2-0 dark:text-gray-300 text-lg max-w-4xl mx-auto'
               data-aos='fade-up'
               data-aos-duration='800'
               data-aos-delay='200'
             >
-              {solution.description}
+              {merged.description}
             </p>
           </div>
 
           {/* User Roles Section */}
-          <div className='mb-16'>
-            <h2
-              className='font-FiraSans font-semibold text-3xl text-HeadingColor-0 dark:text-white text-center mb-12'
-              data-aos='fade-up'
-              data-aos-duration='800'
-            >
-              {currentLanguage === 'VN' ? 'Đối tượng sử dụng' : 'User Roles'}
-            </h2>
-            <div className='grid grid-cols-1 md:grid-cols-3 gap-8'>
-              {solution.userRoles.map((role, index) => (
-                <div
-                  key={index}
-                  className='bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 text-center'
-                  data-aos='fade-up'
-                  data-aos-duration='800'
-                  data-aos-delay={300 + (index * 100)}
-                >
-                  <div className='text-6xl mb-4'>{role.icon}</div>
-                  <h3 className='font-FiraSans font-semibold text-xl text-HeadingColor-0 dark:text-white mb-3'>
-                    {role.title}
-                  </h3>
-                  <p className='font-FiraSans text-TextColor2-0 dark:text-gray-300'>
-                    {role.description}
-                  </p>
-                </div>
-              ))}
+          {merged.userRoles && merged.userRoles.length > 0 && (
+            <div className='mb-16'>
+              <h2
+                className='font-FiraSans font-semibold text-3xl text-HeadingColor-0 dark:text-white text-center mb-12'
+                data-aos='fade-up'
+                data-aos-duration='800'
+              >
+                {currentLanguage === 'VN' ? 'Đối tượng sử dụng' : 'User Roles'}
+              </h2>
+              <div className='grid grid-cols-1 md:grid-cols-3 gap-8'>
+                {merged.userRoles.map((role, index) => (
+                  <div
+                    key={index}
+                    className='bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 text-center'
+                    data-aos='fade-up'
+                    data-aos-duration='800'
+                    data-aos-delay={300 + (index * 100)}
+                  >
+                    <div className='text-6xl mb-4'>{role.icon}</div>
+                    <h3 className='font-FiraSans font-semibold text-xl text-HeadingColor-0 dark:text-white mb-3'>
+                      {role.title}
+                    </h3>
+                    <p className='font-FiraSans text-TextColor2-0 dark:text-gray-300'>
+                      {role.description}
+                    </p>
+                  </div>
+                ))}
+              </div>
             </div>
-          </div>
+          )}
 
           {/* Features Section */}
-          <div className='mb-16'>
-            <h2
-              className='font-FiraSans font-semibold text-3xl text-HeadingColor-0 dark:text-white text-center mb-12'
-              data-aos='fade-up'
-              data-aos-duration='800'
-            >
-              {currentLanguage === 'VN' ? 'Tính năng nổi bật' : 'Key Features'}
-            </h2>
-            <div
-              className='bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg'
-              data-aos='fade-up'
-              data-aos-duration='800'
-              data-aos-delay='200'
-            >
-              <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
-                {solution.features.map((feature, index) => (
-                  <div key={index} className='flex items-start gap-3'>
-                    <IoCheckmarkCircle className='text-PrimaryColor-0 dark:text-green-400 text-xl mt-1 flex-shrink-0' />
-                    <span className='font-FiraSans text-TextColor2-0 dark:text-gray-300'>
-                      {feature}
-                    </span>
-                  </div>
-                ))}
+          {merged.features && merged.features.length > 0 && (
+            <div className='mb-16'>
+              <h2
+                className='font-FiraSans font-semibold text-3xl text-HeadingColor-0 dark:text-white text-center mb-12'
+                data-aos='fade-up'
+                data-aos-duration='800'
+              >
+                {currentLanguage === 'VN' ? 'Tính năng nổi bật' : 'Key Features'}
+              </h2>
+              <div
+                className='bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg'
+                data-aos='fade-up'
+                data-aos-duration='800'
+                data-aos-delay='200'
+              >
+                <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
+                  {merged.features.map((feature, index) => (
+                    <div key={index} className='flex items-start gap-3'>
+                      <IoCheckmarkCircle className='text-PrimaryColor-0 dark:text-green-400 text-xl mt-1 flex-shrink-0' />
+                      <span className='font-FiraSans text-TextColor2-0 dark:text-gray-300'>
+                        {feature}
+                      </span>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
-          </div>
+          )}
 
           {/* Benefits Section */}
-          <div className='mb-16'>
-            <h2
-              className='font-FiraSans font-semibold text-3xl text-HeadingColor-0 dark:text-white text-center mb-12'
-              data-aos='fade-up'
-              data-aos-duration='800'
-            >
-              {currentLanguage === 'VN' ? 'Lợi ích' : 'Benefits'}
-            </h2>
-            <div
-              className='bg-gradient-to-br from-PrimaryColor-0 to-green-600 dark:from-green-700 dark:to-green-900 rounded-2xl p-8 shadow-lg'
-              data-aos='fade-up'
-              data-aos-duration='800'
-              data-aos-delay='200'
-            >
-              <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
-                {solution.benefits.map((benefit, index) => (
-                  <div key={index} className='flex items-start gap-3'>
-                    <IoCheckmarkCircle className='text-white text-xl mt-1 flex-shrink-0' />
-                    <span className='font-FiraSans text-white'>
-                      {benefit}
-                    </span>
-                  </div>
-                ))}
+          {merged.benefits && merged.benefits.length > 0 && (
+            <div className='mb-16'>
+              <h2
+                className='font-FiraSans font-semibold text-3xl text-HeadingColor-0 dark:text-white text-center mb-12'
+                data-aos='fade-up'
+                data-aos-duration='800'
+              >
+                {currentLanguage === 'VN' ? 'Lợi ích' : 'Benefits'}
+              </h2>
+              <div
+                className='bg-gradient-to-br from-PrimaryColor-0 to-green-600 dark:from-green-700 dark:to-green-900 rounded-2xl p-8 shadow-lg'
+                data-aos='fade-up'
+                data-aos-duration='800'
+                data-aos-delay='200'
+              >
+                <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
+                  {merged.benefits.map((benefit, index) => (
+                    <div key={index} className='flex items-start gap-3'>
+                      <IoCheckmarkCircle className='text-white text-xl mt-1 flex-shrink-0' />
+                      <span className='font-FiraSans text-white'>
+                        {benefit}
+                      </span>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
-          </div>
+          )}
 
           {/* CTA Section */}
           <div

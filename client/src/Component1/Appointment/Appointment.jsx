@@ -111,10 +111,10 @@ const Appointment = () => {
                   </span>
                 </div>
               <a
-                href="https://zalo.me/84912345678" // Sử dụng mailto: + địa chỉ email
+                href="https://zalo.me/84902593054"
                 className='font-FiraSans font-medium text-2xl text-white'
                 >
-                +84 908 229 309
+                +84 902 593 054
               </a>
               </div>
             </div>

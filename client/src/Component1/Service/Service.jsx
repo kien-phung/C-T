@@ -11,11 +11,14 @@ import serviceShape4 from '/images/tir.png';
 import border from '/images/hero_border.png';
 import ServiceCard from "./ServiceCard";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination } from "swiper/modules";
+import { Pagination, Navigation } from "swiper/modules";
 import { useLanguage } from '../../contexts/LanguageContext';
 import { getTranslation } from '../../utils/translations';
+import { useEffect, useState } from 'react';
+import { getPublicProjects } from '../../api/api';
 import "swiper/css";
 import "swiper/css/pagination";
+import "swiper/css/navigation";
 
 const getServiceData = (language) => {
   const services = {
@@ -84,7 +87,69 @@ const getServiceData = (language) => {
 const Service = () => {
   const { currentLanguage } = useLanguage();
   const t = (key) => getTranslation(currentLanguage, key);
-  const ServiceData = getServiceData(currentLanguage);
+  const [projects, setProjects] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    let isMounted = true;
+    const fetchProjects = async () => {
+      try {
+        const res = await getPublicProjects();
+        if (isMounted) {
+          const arr = Array.isArray(res.data?.data)
+            ? res.data.data
+            : (Array.isArray(res.data?.projects) ? res.data.projects : []);
+          setProjects(arr);
+        }
+      } catch (err) {
+        // silent fail, fallback to static content
+        console.error('Failed to load public projects:', err?.message || err);
+      } finally {
+        if (isMounted) setLoading(false);
+      }
+    };
+    fetchProjects();
+    return () => { isMounted = false; };
+  }, []);
+
+  const PLACEHOLDER_IMAGES = [serviceThumb, serviceThumb2, serviceThumb3];
+
+  const projectsData = projects.map((p, idx) => {
+    const desc = currentLanguage === 'EN' ? (p.description_en || '') : (p.description_vn || '');
+    const title = p.title || p.name || '';
+    // Chọn ảnh placeholder theo tiêu đề quen thuộc hoặc theo index để tránh trùng
+    const placeholderByTitle = (() => {
+      const t = title.toLowerCase();
+      if (t.includes('i-resort')) return serviceThumb;
+      if (t.includes('green house') || t.includes('cultural')) return serviceThumb2;
+      if (t.includes('kumho') || t.includes('samco')) return serviceThumb3;
+      return PLACEHOLDER_IMAGES[idx % PLACEHOLDER_IMAGES.length];
+    })();
+    return {
+      id: p._id || p.id,
+      // Không hiển thị nhãn category nữa
+      serviceSubTitle: '',
+      serviceTitle: title,
+      serviceDesc: desc || t('portfolio.automationSystem'),
+      contentShape,
+      serviceThumbShape: serviceThumbShape,
+      serviceThumb: p.thumbnail || placeholderByTitle,
+      thumbIcon,
+    };
+  });
+
+  let ServiceData = projectsData.length ? projectsData : getServiceData(currentLanguage).map(d => ({
+    ...d,
+    serviceSubTitle: '',
+  }));
+  const MIN_SLIDES = 3;
+  if (ServiceData.length < MIN_SLIDES) {
+    const fillers = getServiceData(currentLanguage)
+      .filter(f => !ServiceData.some(s => s.serviceTitle === f.serviceTitle))
+      .slice(0, MIN_SLIDES - ServiceData.length);
+    ServiceData = [...ServiceData, ...fillers];
+  }
+  // Removed old custom navigation refs; using Swiper default navigation
 
   const settings = {
     loop: false,
@@ -166,37 +231,24 @@ const Service = () => {
           data-aos-duration='1000'
           data-aos-delay='200'
         >
+          {/* Navigation arrows are enabled via Swiper Navigation module */}
           <Swiper
             {...settings}
             pagination={{
               clickable: true,
             }}
-            modules={[Pagination]}
+            navigation={true}
+            modules={[Pagination, Navigation]}
+            style={{ '--swiper-navigation-color': '#ffffff', '--swiper-navigation-size': '22px' }}
             className='service-swiper'
           >
-            {ServiceData.map(({
-              id,
-              serviceIcon,
-              serviceSubTitle,
-              serviceTitle,
-              serviceDesc,
-              btnContent,
-              contentShape,
-              serviceUrl,
-              btnIcon,
-              serviceThumbShape,
-              serviceThumb,
-              thumbIcon,
-            }) => (
+            {ServiceData.map(({ id, serviceIcon, serviceSubTitle, serviceTitle, serviceDesc, contentShape, serviceThumbShape, serviceThumb, thumbIcon }) => (
               <SwiperSlide key={id} className='pb-[70px]' style={{ height: 'auto', display: 'flex' }}>
                 <ServiceCard
                   serviceIcon={serviceIcon}
                   serviceSubTilte={serviceSubTitle}
                   serviceTitle={serviceTitle}
                   serviceDesc={serviceDesc}
-                  btnContent={btnContent}
-                  serviceUrl={serviceUrl}
-                  btnIcon={btnIcon}
                   contentShape={contentShape}
                   serviceThumbShape={serviceThumbShape}
                   serviceThumb={serviceThumb}

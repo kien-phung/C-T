@@ -3,231 +3,145 @@ import BreadCrumb from '../../../Shared/BreadCrumb/BreadCrumb';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../../../contexts/LanguageContext';
 import { getTranslation } from '../../../utils/translations';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { getPublicSolutions } from '../../../api/api';
+import { socket } from '../../../api/socket';
+// API-driven solutions
 
-const getSolutionsData = (language) => {
-  const data = {
-    VN: [
-      {
-        id: 1,
-        slug: 'khu-vui-choi-giai-tri',
-        title: 'Khu vui chơi giải trí',
-        description: 'Giải pháp dành cho khu vui chơi giải trí',
-        image: '/images/solutions/giaitri.jpg',
-        details: [
-          'Hệ thống thanh toán tự động',
-          'Quản lý vé vào cổng',
-          'Hệ thống giải trí thông minh',
-          'Quản lý khách hàng'
-        ]
-      },
-      {
-        id: 2,
-        slug: 'can-tin-hoc-duong',
-        title: 'Căn tin học đường',
-        description: 'Giải pháp dành cho các căn tin trong trường học',
-        image: '/images/solutions/cantin.jpg',
-        details: [
-          'Hệ thống thanh toán không tiềp xúc',
-          'Quản lý thực đơn',
-          'Báo cáo doanh thu tự động',
-          'Tích hợp thẻ học sinh'
-        ]
-      },
-      {
-        id: 3,
-        slug: 'thu-tien-tu-dong',
-        title: 'Thu tiền tự động',
-        description: 'Giải pháp thu tiền tự động dành cho các cửa hàng bán lẻ',
-        image: '/images/solutions/thutien.jpg',
-        details: [
-          'Máy thu tiền tự động',
-          'Nhận diện tiền giấy VND',
-          'Trả tiền thừa tự động',
-          'Bảo mật cao'
-        ]
-      },
-      {
-        id: 4,
-        slug: 'ben-xe-van-tai',
-        title: 'Bến xe, hãng vận tải hành khách',
-        description: 'Giải pháp dành cho các bến xe, hãng vận tải hành khách',
-        image: '/images/solutions/benxe.jpg',
-        details: [
-          'Hệ thống bán vé tự động',
-          'Quản lý lịch trình xe',
-          'Thanh toán điện tử',
-          'Báo cáo doanh thu'
-        ]
-      },
-      {
-        id: 5,
-        slug: 'website-ban-hang',
-        title: 'Website bán hàng',
-        description: 'Giải pháp dành cho các doanh nghiệp bán hàng online',
-        image: '/images/solutions/banhang.png',
-        details: [
-          'Thiết kế website chuyên nghiệp',
-          'Tích hợp thanh toán online',
-          'Quản lý đơn hàng',
-          'SEO và Marketing'
-        ]
-      },
-      {
-        id: 6,
-        slug: 'cong-tu-dong',
-        title: 'Cổng tự động',
-        description: 'Cung cấp giải pháp cổng tự động cho các khu vui chơi, tòa nhà,...',
-        image: '/images/solutions/tudong.jpg',
-        details: [
-          'Cổng barrier tự động',
-          'Nhận diện biển số xe',
-          'Hệ thống kiểm soát ra vào',
-          'Tích hợp camera an ninh'
-        ]
-      },
-      {
-        id: 7,
-        slug: 'camera-ai',
-        title: 'Camera Giám Sát Tích Hợp AI',
-        description: 'Giám sát chặt chẽ với công nghệ AI tiên tiến',
-        image: '/images/solutions/camera1.jpg',
-        details: [
-          'Hệ thống camera giám sát mạnh mẽ',
-          'Sử dụng công nghệ tiên tiến bậc nhất Đài Loan',
-          'Đưa ra kết quả chính xác trên từng khung hình',
-          'Vật thể và con người cũng có thể dễ dàng giám sát'
-        ]
-      },
-      {
-        id: 8,
-        slug: 'tiet-kiem-dien',
-        title: 'Hệ Thống Tiết Kiệm Năng Lượng Điện Tích Hợp AI',
-        description: 'Tiết kiếm năng lượng hiệu quả với công nghệ AI',
-        image: '/images/solutions/dien1.jpg',
-        details: [
-          'Dự đoán trước được mức điện tiêu thụ ở thời gian cao điểm',
-          'Giảm thiểu tối đa chi phí không cần thiết.',
-          'Xây dựng được hệ thống thông minh dành cho doanh nghiệp, nhà máy, cơ sở của bạn. ',
-          'Chi phí giảm đến con số 10-15%.'
-        ]
-      },
-    ],
-    EN: [
-      {
-        id: 1,
-        slug: 'khu-vui-choi-giai-tri',
-        title: 'Entertainment Area',
-        description: 'Solutions for entertainment venues',
-        image: '/images/solutions/giaitri.jpg',
-        details: [
-          'Automatic payment system',
-          'Gate entry management',
-          'Smart entertainment system',
-          'Customer management'
-        ]
-      },
-      {
-        id: 2,
-        slug: 'can-tin-hoc-duong',
-        title: 'School Canteen',
-        description: 'Solutions for school canteens',
-        image: '/images/solutions/cantin.jpg',
-        details: [
-          'Contactless payment system',
-          'Menu management',
-          'Automatic revenue reporting',
-          'Student card integration'
-        ]
-      },
-      {
-        id: 3,
-        slug: 'thu-tien-tu-dong',
-        title: 'Automatic Payment',
-        description: 'Automatic payment solutions for retail stores',
-        image: '/images/solutions/thutien.jpg',
-        details: [
-          'Automatic cash machine',
-          'VND bill recognition',
-          'Automatic change return',
-          'High security'
-        ]
-      },
-      {
-        id: 4,
-        slug: 'ben-xe-van-tai',
-        title: 'Bus Station & Passenger Transport',
-        description: 'Solutions for bus stations and passenger transport companies',
-        image: '/images/solutions/benxe.jpg',
-        details: [
-          'Automatic ticketing system',
-          'Bus schedule management',
-          'Electronic payment',
-          'Revenue reporting'
-        ]
-      },
-      {
-        id: 5,
-        slug: 'website-ban-hang',
-        title: 'E-commerce Website',
-        description: 'Solutions for online businesses',
-        image: '/images/solutions/banhang.png',
-        details: [
-          'Professional website design',
-          'Online payment integration',
-          'Order management',
-          'SEO and Marketing'
-        ]
-      },
-      {
-        id: 6,
-        slug: 'cong-tu-dong',
-        title: 'Automatic Gate',
-        description: 'Automatic gate solutions for entertainment areas, buildings, etc.',
-        image: '/images/solutions/tudong.jpg',
-        details: [
-          'Automatic barrier gate',
-          'License plate recognition',
-          'Access control system',
-          'Security camera integration'
-        ]
-      },
-      {
-        id: 7,
-        slug: 'camera-ai',
-        title: 'AI Integrated Surveillance Camera',
-        description: 'Close monitoring with advanced AI technology',
-        image: '/images/solutions/camera1.jpg',
-        details: [
-          'Powerful surveillance camera system',
-          'Using the most advanced technology in Taiwan',
-          'Gives accurate results on every frame',
-          'Objects and people can also be easily monitored.'
-        ]
-      },
-      {
-        id: 8,
-        slug: 'tiet-kiem-dien',
-        title: 'AI Integrated Electricity Saving System',
-        description: 'Save energy effectively with AI technology',
-        image: '/images/solutions/dien1.jpg',
-        details: [
-          'Predictable electricity consumption at peak times',
-          'Minimize unnecessary costs.',
-          'Build smart systems for your business, factory, and facility.',
-          'Cost reduction up to 10-15%.'
-        ]
-      },
-    ]
-  };
-  return data[language] || data.VN;
+// Fallback dữ liệu tĩnh (khôi phục hiển thị nếu API lỗi/trống)
+const getFallbackSolutions = (language) => {
+  const base = [
+    {
+      slug: 'khu-vui-choi-giai-tri',
+      image: '/images/solutions/giaitri.jpg',
+      title_vn: 'Khu vui chơi giải trí',
+      title_en: 'Amusement Park',
+      description_vn: 'Giải pháp thanh toán tự động cho khu vui chơi giải trí.',
+      description_en: 'Automated payment solution for amusement parks.',
+      is_published: true,
+    },
+    {
+      slug: 'can-tin-hoc-duong',
+      image: '/images/solutions/cantin.jpg',
+      title_vn: 'Căn tin học đường',
+      title_en: 'School Canteen',
+      description_vn: 'Thanh toán không tiếp xúc cho căn tin trường học.',
+      description_en: 'Contactless payment for school canteens.',
+      is_published: true,
+    },
+    {
+      slug: 'thu-tien-tu-dong',
+      image: '/images/solutions/thutien.jpg',
+      title_vn: 'Thu tiền tự động',
+      title_en: 'Automated Cashier',
+      description_vn: 'Máy thu tiền tự động cho cửa hàng bán lẻ.',
+      description_en: 'Automated cash handling for retail stores.',
+      is_published: true,
+    },
+    {
+      slug: 'ben-xe-van-tai',
+      image: '/images/solutions/benxe.jpg',
+      title_vn: 'Bến xe, hãng vận tải hành khách',
+      title_en: 'Bus Station & Transport',
+      description_vn: 'Hệ thống bán vé tự động và quản lý lịch trình cho bến xe.',
+      description_en: 'Automatic ticketing and schedule management for bus stations.',
+      is_published: true,
+    },
+    {
+      slug: 'website-ban-hang',
+      image: '/images/solutions/banhang.png',
+      title_vn: 'Website bán hàng',
+      title_en: 'E-commerce Website',
+      description_vn: 'Thiết kế website bán hàng chuyên nghiệp, tích hợp thanh toán online.',
+      description_en: 'Professional e-commerce website with online payment integration.',
+      is_published: true,
+    },
+    {
+      slug: 'cong-tu-dong',
+      image: '/images/solutions/tudong.jpg',
+      title_vn: 'Cổng tự động',
+      title_en: 'Automatic Gate',
+      description_vn: 'Kiểm soát ra vào với nhận diện biển số và barrier tự động.',
+      description_en: 'Access control with license plate recognition and auto barrier.',
+      is_published: true,
+    },
+    {
+      slug: 'camera-ai',
+      image: '/images/solutions/camera1.jpg',
+      title_vn: 'Camera Giám Sát Tích Hợp AI',
+      title_en: 'AI-powered Surveillance Camera',
+      description_vn: 'Giám sát thông minh, phát hiện hành vi bất thường, cảnh báo xâm nhập.',
+      description_en: 'Smart surveillance with AI behavior detection and intrusion alerts.',
+      is_published: true,
+    },
+    {
+      slug: 'tiet-kiem-dien',
+      image: '/images/solutions/dien1.jpg',
+      title_vn: 'Hệ Thống Tiết Kiệm Năng Lượng Điện Tích Hợp AI',
+      title_en: 'AI Energy Saving System',
+      description_vn: 'Dự đoán và tối ưu hóa tiêu thụ điện, tiết kiệm 10-15% chi phí.',
+      description_en: 'Predict and optimize power usage, save 10-15% costs.',
+      is_published: true,
+    },
+    {
+      slug: 'thiet-bi-doc-cccd',
+      image: '/images/solutions/cccd.jpg',
+      title_vn: 'Giải pháp thiết bị đọc CCCD',
+      title_en: 'ID Card Reader Solution',
+      description_vn: 'Thiết bị đọc CCCD tự động, xác thực nhanh và lưu trữ an toàn.',
+      description_en: 'Automated ID card reader with fast verification and secure storage.',
+      is_published: true,
+    },
+    {
+      slug: 'can-dinh-luong-nha-may',
+      image: '/images/solutions/dien2.jpg',
+      title_vn: 'Giải pháp Cân định lượng dành cho nhà máy',
+      title_en: 'Factory Dosing Scale Solution',
+      description_vn: 'Tính toán chính xác theo công thức, giám sát từ xa thời gian thực.',
+      description_en: 'Accurate formula-based dosing with real-time remote monitoring.',
+      is_published: true,
+    }
+  ];
+  return base;
 };
 
 const AboutInner = () => {
   const { currentLanguage } = useLanguage();
   const t = (key) => getTranslation(currentLanguage, key);
-  const solutions = getSolutionsData(currentLanguage);
+  const [solutions, setSolutions] = useState([]);
+
+  const resolveTitle = (s) => currentLanguage === 'EN' ? (s?.title_en || s?.title_vn || '') : (s?.title_vn || s?.title_en || '');
+  const resolveDesc = (s) => currentLanguage === 'EN' ? (s?.description_en || s?.description_vn || '') : (s?.description_vn || s?.description_en || '');
+
+  const fetchSolutions = async () => {
+    try {
+      const res = await getPublicSolutions();
+      const items = res?.data?.solutions || [];
+      // Only show published if flag exists; otherwise show all (backward compatible)
+      const filtered = items.filter(s => (typeof s.is_published === 'boolean' ? s.is_published : true));
+      if (filtered.length === 0) {
+        // Khôi phục hiển thị bằng dữ liệu tĩnh nếu API không có dữ liệu
+        setSolutions(getFallbackSolutions(currentLanguage));
+      } else {
+        setSolutions(filtered);
+      }
+    } catch (e) {
+      console.error('Load public solutions failed', e);
+      // API lỗi: dùng dữ liệu tĩnh để đảm bảo trang không trống
+      setSolutions(getFallbackSolutions(currentLanguage));
+    }
+  };
+
+  useEffect(() => {
+    fetchSolutions();
+  }, [currentLanguage]);
+
+  useEffect(() => {
+    const onChange = () => fetchSolutions();
+    socket.on('solutions.changed', onChange);
+    return () => socket.off('solutions.changed', onChange);
+  }, []);
 
   // Pagination state
   const [currentPage, setCurrentPage] = useState(1);
@@ -301,16 +215,18 @@ const AboutInner = () => {
             >
               {currentSolutions.map((solution, index) => (
                 <div
-                  key={solution.id}
-                  className='bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 group flex flex-col h-full'
+                  key={solution._id || solution.slug || index}
+                  className={`bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 group flex flex-col h-full ${
+                    currentPage === totalPages && currentSolutions.length === 1 ? 'lg:col-start-2' : ''
+                  }`}
                   data-aos='fade-up'
                   data-aos-duration='800'
                   data-aos-delay={300 + (index * 100)}
                 >
                 <div className='relative overflow-hidden bg-gray-100 dark:bg-gray-700' style={{minHeight: '256px'}}>
                   <img
-                    src={solution.image}
-                    alt={solution.title}
+                    src={solution.image || '/images/placeholder-solution.png'}
+                    alt={resolveTitle(solution)}
                     className='w-full h-64 object-cover transition-transform duration-300 group-hover:scale-105'
                     style={{display: 'block', opacity: 1, visibility: 'visible'}}
                     onError={(e) => {
@@ -323,19 +239,12 @@ const AboutInner = () => {
                 </div>
                 <div className='p-6 flex flex-col flex-grow'>
                   <h3 className='font-FiraSans font-semibold text-xl text-HeadingColor-0 dark:text-white mb-3'>
-                    {solution.title}
+                    {resolveTitle(solution)}
                   </h3>
                   <p className='font-FiraSans text-TextColor2-0 dark:text-gray-300 mb-4'>
-                    {solution.description}
+                    {resolveDesc(solution)}
                   </p>
-                  <ul className='space-y-2 mb-6 flex-grow'>
-                    {solution.details.map((detail, index) => (
-                      <li key={index} className='font-FiraSans text-TextColor2-0 dark:text-gray-300 text-sm flex items-start gap-2'>
-                        <span className='text-PrimaryColor-0 dark:text-green-400 mt-1 flex-shrink-0'>•</span>
-                        <span>{detail}</span>
-                      </li>
-                    ))}
-                  </ul>
+                  <div className='space-y-2 mb-6 flex-grow' />
                   <div className='mt-auto'>
                     <Link
                       to={`/solution/${solution.slug}`}

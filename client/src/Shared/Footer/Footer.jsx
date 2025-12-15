@@ -158,7 +158,7 @@ const Footer = () => {
               <h4 className='font-FiraSans text-2xl text-HeadingColor-0 dark:text-white font-medium'>
                 {t('footer.aboutUs')}
               </h4>
-              <p className='font-FiraSans text-TextColor2-0 dark:text-gray-300 text-[15px] mt-3 sm:mt-5 mb-6 sm:mb-8 max-w-none lg:max-w-[290px] w-full mx-auto lg:mx-0 text-justify lg:text-left'>
+              <p className='font-FiraSans text-TextColor2-0 dark:text-gray-300 text-[15px] mt-3 sm:mt-5 mb-6 sm:mb-8 max-w-none lg:max-w-[290px] w-full mx-auto lg:mx-0 text-justify leading-relaxed'>
                 {t('footer.aboutDescription')}
               </p>
               <form

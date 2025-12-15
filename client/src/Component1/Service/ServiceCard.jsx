@@ -1,13 +1,9 @@
 /* eslint-disable react/prop-types */
-import { Link } from 'react-router-dom';
 
 const ServiceCard = ({
   serviceSubTilte,
   serviceTitle,
   serviceDesc,
-  serviceUrl,
-  btnContent,
-  btnIcon,
   serviceThumbShape,
   serviceThumb,
   thumbIcon,
@@ -36,33 +32,26 @@ const ServiceCard = ({
         {/* bottom accent bar (hidden by default, shown on hover) */}
         <div className='absolute right-0 bottom-0 left-0 h-[5px] bg-[#ff9307] scale-x-0 origin-left transform transition-transform duration-500 group-hover:scale-x-100'></div>
       </div>
-      <div className='text-center relative flex-1 flex flex-col'>
+      <div className='text-center relative flex-1 flex flex-col min-h-[150px] sm:min-h-[190px] md:min-h-[210px] lg:min-h-[230px] xl:min-h-[250px]'>
         <img
           src={contentShape}
           draggable='false'
           className='hidden sm:block service-content-shape absolute top-8 right-5 scale-0 opacity-0 transition-all duration-500 group-hover:scale-100 group-hover:opacity-100'
         />
-        <h6 className='service-sub-title font-FiraSans text-[15px] text-white inline-block py-1 px-5 rounded overflow-hidden bg-PrimaryColor-0 uppercase mt-8 relative z-10 before:absolute before:right-0 before:top-0 before:h-full before:w-0 before:-z-10 before:bg-[#ff9307] before:transition-all before:duration-500 group-hover:before:w-full group-hover:before:left-0 mx-auto'>
-          {serviceSubTilte}
-        </h6>
+        {serviceSubTilte ? (
+          <h6 className='service-sub-title font-FiraSans text-[15px] text-white inline-block py-1 px-5 rounded overflow-hidden bg-PrimaryColor-0 uppercase mt-8 relative z-10 before:absolute before:right-0 before:top-0 before:h-full before:w-0 before:-z-10 before:bg-[#ff9307] before:transition-all before:duration-500 group-hover:before:w-full group-hover:before:left-0 mx-auto'>
+            {serviceSubTilte}
+          </h6>
+        ) : null}
         <br />
-        <Link to={serviceUrl} className='flex-1 flex flex-col justify-center'>
+        <div className='flex-1 flex flex-col justify-center'>
           <button className='font-FiraSans font-semibold text-xl pb-[10px] text-HeadingColor-0 mt-4'>
             {serviceTitle}
           </button>
           <p className='font-FiraSans text-TextColor2-0 pb-2 mt-2'>
             {serviceDesc}
           </p>
-        </Link>
-        <Link
-          to={serviceUrl}
-          className='inline-block self-center mb-4'
-        >
-          <button className='service-btn font-FiraSans font-semibold overflow-hidden flex gap-2 items-center text-[15px] pb-[10px] text-HeadingColor-0 mt-4 transition-all duration-500 group-hover:text-PrimaryColor-0 mb-1'>
-            <span>{btnContent}</span>
-            <span className='text-xl rotate-45'>{btnIcon}</span>
-          </button>
-        </Link>
+        </div>
         <img
           src={contentShape}
           draggable='false'

@@ -8,6 +8,10 @@ import { getTranslation } from '../../utils/translations';
 const About = () => {
   const { currentLanguage } = useLanguage();
   const t = (key) => getTranslation(currentLanguage, key);
+  
+  // Kiểm tra dark mode
+  const isDarkMode = document.documentElement.classList.contains('dark');
+  
   return (
     <section className='pb-20 pt-28 lg:pt-20 xl:pt-28 relative z-10 bg-BodyBg4-0'>
       <div className='Container'>
@@ -47,12 +51,24 @@ const About = () => {
                 </svg>
               </div>
               <div className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2'>
-                {/* center icon: replace with handshake icon at public/images/handshake.png */}
-                <img
-                  src={'/images/battay.jpg'}
-                  draggable='false'
-                  alt='handshake'
-                />
+                {/* Hiển thị hình ảnh khác nhau cho chế độ sáng và tối */}
+                {isDarkMode ? (
+                  <img
+                    src={currentLanguage === 'EN' ? '/images/handshake-dark.png' : '/images/battay2.png'}
+                    onError={(e)=>{ e.currentTarget.src = '/images/battay2.png'; }}
+                    draggable='false'
+                    alt={currentLanguage === 'EN' ? 'handshake - dark' : 'bắt tay - dark'}
+                    className='invert brightness-0'
+                  />
+                ) : (
+                  <img
+                    src={currentLanguage === 'EN' ? '/images/handshake.png' : '/images/battay.png'}
+                    onError={(e)=>{ e.currentTarget.src = '/images/battay.png'; }}
+                    draggable='false'
+                    alt={currentLanguage === 'EN' ? 'handshake - light' : 'bắt tay - light'}
+                    className='invert'
+                  />
+                )}
               </div>
             </div>
           </div>
@@ -78,7 +94,7 @@ const About = () => {
               />
             </h1>
             <p
-              className='font-FiraSans text-TextColor2-0 pt-6 md:text-left text-justify'
+              className='font-FiraSans text-TextColor2-0 pt-6 text-justify leading-relaxed max-w-3xl mx-auto'
               data-aos='fade-up'
               data-aos-duration='800'
               data-aos-delay='200'

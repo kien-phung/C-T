@@ -18,7 +18,11 @@ const fileFilter = (req: any, file: any, cb: any) => {
         'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
     ];
 
-    if (allowedFileTypes.includes(file.mimetype)) {
+    const isPdfByExt = String(file.originalname || '').toLowerCase().endsWith('.pdf');
+    const isAllowedMime = allowedFileTypes.includes(file.mimetype);
+
+    // Cho phép PDF nếu đuôi .pdf ngay cả khi mimetype bị trống hoặc không khớp
+    if (isAllowedMime || isPdfByExt) {
         cb(null, true);
     } else {
         cb(new Error('Định dạng file không được hỗ trợ!'), false);
@@ -30,7 +34,7 @@ export const upload = multer({
     storage: storage,
     fileFilter: fileFilter,
     limits: {
-        fileSize: 5 * 1024 * 1024 // Giới hạn 5MB
+        fileSize: 30 * 1024 * 1024 // Tăng giới hạn lên 30MB để phù hợp PDF
     }
 });
 

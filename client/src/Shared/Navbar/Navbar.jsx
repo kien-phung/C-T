@@ -308,12 +308,14 @@ const Navbar = () => {
                     bodyOverlayRef.current?.classList.remove('apply');
                   }}
                 >
-                  stl.solution.co@gmail.com
+                  <span className='font-FiraSans text-[15px] text-white border border-white/60 rounded-md px-3 py-[2px] bg-white/10'>
+                     ct.iot.innovation@gmail.com 
+                  </span>
                 </a>
               </li>
               <li>
                 <FaPhoneAlt />
-                <a href="tel:+84908229309">+84 908 229 309</a>
+                <a href="tel:+84902593054"> +84 902 593 054</a>
               </li>
             </ul>
           </div>
@@ -373,9 +375,9 @@ const Navbar = () => {
                 href='https://mail.google.com/mail/?view=cm&fs=1&to=stl.solution.co@gmail.com'
                 target='_blank'
                 rel='noopener noreferrer'
-                className='font-FiraSans text-[15px] text-white'
+                className='font-FiraSans text-[15px] text-white border border-white/60 rounded-md px-3 py-[2px] bg-white/10'
               >
-                stl.solution.co@gmail.com
+                 ct.iot.innovation@gmail.com
               </a>
             </div>
             <div className=' md:flex items-center gap-2 hidden'>
@@ -383,10 +385,10 @@ const Navbar = () => {
                 <GiPhone />
               </h6>
               <a
-                href="https://zalo.me/84912345678" // Sử dụng mailto: + địa chỉ email
+                href="https://zalo.me/84902593054"
                 className='font-FiraSans text-[15px] text-white transition-all duration-500 hover:text-white'
                 >
-                +84 908 229 309
+                +84 902 593 054
               </a>
             </div>
           </div>
@@ -564,6 +566,7 @@ const Navbar = () => {
                   href='https://mail.google.com/mail/?view=cm&fs=1&to=stl.solution.co@gmail.com'
                   target='_blank'
                   rel='noopener noreferrer'
+                  className='font-FiraSans text-[15px] text-white border border-white/60 rounded-md px-3 py-[2px] bg-white/10'
                 >
                   stl.solution.co@gmail.com
                 </a>

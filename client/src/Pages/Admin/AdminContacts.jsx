@@ -6,6 +6,10 @@ import {
   FaUsers,
   FaBlog,
   FaProjectDiagram,
+  FaShoppingCart,
+  FaCogs,
+  FaFileAlt,
+  FaHandshake,
   FaSignOutAlt,
   FaBars,
   FaTimes,
@@ -17,12 +21,14 @@ import {
 } from 'react-icons/fa';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { getTranslation } from '../../utils/translations';
+import { useAdminTheme } from '../../contexts/AdminThemeContext';
 import { getAdminContacts, deleteAdminContact, deleteAdminContacts } from '../../api/api';
 
 const AdminContacts = () => {
   const navigate = useNavigate();
   const { currentLanguage, toggleLanguage } = useLanguage();
   const t = (key) => getTranslation(currentLanguage, key);
+  const { adminTheme, toggleAdminTheme } = useAdminTheme();
 
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const [adminEmail, setAdminEmail] = useState('');
@@ -184,19 +190,39 @@ const AdminContacts = () => {
             {sidebarOpen && <span>{t('admin.contacts')}</span>}
           </Link>
 
-          <Link to='/admin/users' className='flex items-center gap-3 p-3 rounded-lg hover:bg-white/10 opacity-50 cursor-not-allowed'>
+          <Link to='/admin/users' className='flex items-center gap-3 p-3 rounded-lg hover:bg-white/20 transition-colors admin-btn-hover'>
             <FaUsers size={20} />
             {sidebarOpen && <span>{t('admin.users')}</span>}
           </Link>
 
-          <Link to='/admin/blogs' className='flex items-center gap-3 p-3 rounded-lg hover:bg-white/10 opacity-50 cursor-not-allowed'>
+          <Link to='/admin/blogs' className='flex items-center gap-3 p-3 rounded-lg hover:bg-white/20 transition-colors admin-btn-hover'>
             <FaBlog size={20} />
             {sidebarOpen && <span>{t('admin.blogs')}</span>}
           </Link>
 
-          <Link to='/admin/projects' className='flex items-center gap-3 p-3 rounded-lg hover:bg-white/10 opacity-50 cursor-not-allowed'>
+          <Link to='/admin/projects' className='flex items-center gap-3 p-3 rounded-lg hover:bg-white/20 transition-colors admin-btn-hover'>
             <FaProjectDiagram size={20} />
             {sidebarOpen && <span>{t('admin.projects')}</span>}
+          </Link>
+
+          <Link to='/admin/products' className='flex items-center gap-3 p-3 rounded-lg hover:bg-white/20 transition-colors admin-btn-hover'>
+            <FaShoppingCart size={20} />
+            {sidebarOpen && <span>{t('admin.products')}</span>}
+          </Link>
+
+          <Link to='/admin/solutions' className='flex items-center gap-3 p-3 rounded-lg hover:bg-white/20 transition-colors admin-btn-hover'>
+            <FaCogs size={20} />
+            {sidebarOpen && <span>{t('admin.solutions')}</span>}
+          </Link>
+
+          <Link to='/admin/policies' className='flex items-center gap-3 p-3 rounded-lg hover:bg-white/20 transition-colors admin-btn-hover'>
+            <FaFileAlt size={20} />
+            {sidebarOpen && <span>{t('admin.policies')}</span>}
+          </Link>
+
+          <Link to='/admin/customers' className='flex items-center gap-3 p-3 rounded-lg hover:bg-white/20 transition-colors admin-btn-hover'>
+            <FaHandshake size={20} />
+            {sidebarOpen && <span>{t('admin.customers')}</span>}
           </Link>
         </nav>
 
@@ -219,13 +245,22 @@ const AdminContacts = () => {
         <header className='bg-white dark:bg-gray-800 shadow-sm p-4'>
           <div className='flex items-center justify-between'>
             <h2 className='text-2xl font-bold text-gray-800 dark:text-white'>{t('admin.contacts')}</h2>
-            <button
-              onClick={toggleLanguage}
-              className='flex items-center gap-2 px-3 py-2 bg-gray-100 hover:bg-gray-200 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-800 dark:text-white rounded-lg transition-colors shadow-sm font-medium'
-            >
-              <FaGlobe size={14} />
-              <span className='text-sm'>{currentLanguage === 'VN' ? 'EN' : 'VN'}</span>
-            </button>
+            <div className='flex items-center gap-3'>
+              <button
+                onClick={toggleLanguage}
+                className='flex items-center gap-2 px-3 py-2 bg-gray-100 hover:bg-gray-200 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-800 dark:text-white rounded-lg transition-colors shadow-sm font-medium'
+              >
+                <FaGlobe size={14} />
+                <span className='text-sm'>{currentLanguage === 'VN' ? 'EN' : 'VN'}</span>
+              </button>
+              <button
+                onClick={toggleAdminTheme}
+                className='px-3 py-2 bg-gray-100 hover:bg-gray-200 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-800 dark:text-white rounded-lg transition-colors shadow-sm font-medium'
+                title={adminTheme === 'dark' ? 'Light mode' : 'Dark mode'}
+              >
+                {adminTheme === 'dark' ? '☀️' : '🌙'}
+              </button>
+            </div>
           </div>
         </header>
 
@@ -324,7 +359,7 @@ const AdminContacts = () => {
               <>
                 <div className='overflow-x-auto'>
                   <table className='min-w-full divide-y divide-gray-200 dark:divide-gray-700'>
-                    <thead className='bg-gray-50 dark:bg-gray-900'>
+                    <thead className='bg-gray-50 dark:bg-gray-900 sticky top-0 z-10 shadow-sm'>
                       <tr>
                         <th className='px-4 py-3 text-left'>
                           <input
@@ -346,7 +381,7 @@ const AdminContacts = () => {
                       {contacts.map((contact) => (
                         <tr
                           key={contact._id}
-                          className={`admin-table-row ${selectedIds.includes(contact._id) ? 'bg-blue-50 dark:bg-blue-900/30' : ''}`}
+                          className={`odd:bg-white even:bg-gray-50 dark:odd:bg-gray-800 dark:even:bg-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors ${selectedIds.includes(contact._id) ? 'bg-blue-50 dark:bg-blue-900/30' : ''}`}
                         >
                           <td className='px-4 py-4 whitespace-nowrap'>
                             <input

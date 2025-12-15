@@ -6,6 +6,8 @@ export interface IAdminDocument extends Document {
     full_name?: string;
     is_active: boolean;
     last_login?: Date;
+    otp_code?: string;
+    otp_expires?: Date;
     createdAt: Date;
     updatedAt: Date;
 }
@@ -33,6 +35,12 @@ const schema: Schema<IAdminDocument> = new Schema(
         },
         last_login: {
             type: Date
+        },
+        otp_code: {
+            type: String,
+        },
+        otp_expires: {
+            type: Date,
         }
     },
     {

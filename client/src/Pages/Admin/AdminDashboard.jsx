@@ -6,30 +6,38 @@ import {
   FaUsers,
   FaBlog,
   FaProjectDiagram,
+  FaShoppingCart,
+  FaCogs,
+  FaFileAlt,
+  FaHandshake,
   FaSignOutAlt,
   FaBars,
   FaTimes,
   FaChartLine,
-  FaGlobe
+  FaGlobe,
+  FaSync
 } from 'react-icons/fa';
 import { useLanguage } from '../../contexts/LanguageContext';
+import { useAdminTheme } from '../../contexts/AdminThemeContext';
 import { getTranslation } from '../../utils/translations';
-import { getAdminStats } from '../../api/api';
+import { getAdminStats, getAdminUsers, getAdminBlogs } from '../../api/api';
 
 const AdminDashboard = () => {
   const navigate = useNavigate();
   const { currentLanguage, toggleLanguage } = useLanguage();
   const t = (key) => getTranslation(currentLanguage, key);
+  const { adminTheme, toggleAdminTheme } = useAdminTheme();
 
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const [adminEmail, setAdminEmail] = useState('');
   const [stats, setStats] = useState({
     totalContacts: 0,
-    recentContacts: 0,
+    todayContacts: 0,
     totalUsers: 0,
     totalBlogs: 0
   });
   const [loading, setLoading] = useState(true);
+  const [lastUpdated, setLastUpdated] = useState(null);
 
   useEffect(() => {
     // Check if user is logged in
@@ -45,25 +53,57 @@ const AdminDashboard = () => {
 
     // Fetch dashboard stats
     fetchStats();
+
+    // Real-time polling every 5 seconds
+    const intervalId = setInterval(() => {
+      fetchStats();
+    }, 5000);
+
+    return () => clearInterval(intervalId);
   }, [navigate]);
 
   const fetchStats = async () => {
     try {
-      const response = await getAdminStats();
+      const [contactsRes, usersRes, blogsRes] = await Promise.all([
+        getAdminStats(),
+        // Request minimal data; totals come from pagination/meta
+        getAdminUsers({ page: 1, limit: 1 }),
+        getAdminBlogs({ page: 1, limit: 1 })
+      ]);
 
-      if (response.data.success) {
-        setStats({
-          totalContacts: response.data.data.total || 0,
-          recentContacts: response.data.data.recentCount || 0,
-          totalUsers: 0,
-          totalBlogs: 0
-        });
-      }
+      const contactsOk = contactsRes?.data?.success;
+      const totalContacts = contactsOk ? (contactsRes.data.data?.total ?? 0) : 0;
+      const todayContacts = contactsOk ? (contactsRes.data.data?.todayCount ?? 0) : 0;
+
+      // Users total from pagination.total
+      const usersTotal = usersRes?.data?.data?.pagination?.total
+        ?? usersRes?.data?.meta?.total
+        ?? usersRes?.data?.total
+        ?? 0;
+
+      // Blogs total from meta.total
+      const blogsTotal = blogsRes?.data?.meta?.total
+        ?? blogsRes?.data?.data?.pagination?.total
+        ?? blogsRes?.data?.total
+        ?? 0;
+
+      setStats({
+        totalContacts: Number(totalContacts) || 0,
+        todayContacts: Number(todayContacts) || 0,
+        totalUsers: Number(usersTotal) || 0,
+        totalBlogs: Number(blogsTotal) || 0
+      });
+      setLastUpdated(new Date());
     } catch (error) {
       console.error('Error fetching stats:', error);
     } finally {
       setLoading(false);
     }
+  };
+
+  const handleRefresh = async () => {
+    setLoading(true);
+    await fetchStats();
   };
 
   const handleLogout = () => {
@@ -107,7 +147,7 @@ const AdminDashboard = () => {
 
           <Link
             to='/admin/users'
-            className='flex items-center gap-3 p-3 rounded-lg hover:bg-white/10 opacity-50 cursor-not-allowed'
+            className='flex items-center gap-3 p-3 rounded-lg hover:bg-white/20 transition-colors admin-btn-hover'
           >
             <FaUsers size={20} />
             {sidebarOpen && <span>{t('admin.users')}</span>}
@@ -115,7 +155,7 @@ const AdminDashboard = () => {
 
           <Link
             to='/admin/blogs'
-            className='flex items-center gap-3 p-3 rounded-lg hover:bg-white/10 opacity-50 cursor-not-allowed'
+            className='flex items-center gap-3 p-3 rounded-lg hover:bg-white/20 transition-colors admin-btn-hover'
           >
             <FaBlog size={20} />
             {sidebarOpen && <span>{t('admin.blogs')}</span>}
@@ -123,10 +163,42 @@ const AdminDashboard = () => {
 
           <Link
             to='/admin/projects'
-            className='flex items-center gap-3 p-3 rounded-lg hover:bg-white/10 opacity-50 cursor-not-allowed'
+            className='flex items-center gap-3 p-3 rounded-lg hover:bg-white/20 transition-colors admin-btn-hover'
           >
             <FaProjectDiagram size={20} />
             {sidebarOpen && <span>{t('admin.projects')}</span>}
+          </Link>
+
+          <Link
+            to='/admin/products'
+            className='flex items-center gap-3 p-3 rounded-lg hover:bg-white/20 transition-colors admin-btn-hover'
+          >
+            <FaShoppingCart size={20} />
+            {sidebarOpen && <span>{t('admin.products')}</span>}
+          </Link>
+
+          <Link
+            to='/admin/solutions'
+            className='flex items-center gap-3 p-3 rounded-lg hover:bg-white/20 transition-colors admin-btn-hover'
+          >
+            <FaCogs size={20} />
+            {sidebarOpen && <span>{t('admin.solutions')}</span>}
+          </Link>
+
+          <Link
+            to='/admin/policies'
+            className='flex items-center gap-3 p-3 rounded-lg hover:bg-white/20 transition-colors admin-btn-hover'
+          >
+            <FaFileAlt size={20} />
+            {sidebarOpen && <span>{t('admin.policies')}</span>}
+          </Link>
+
+          <Link
+            to='/admin/customers'
+            className='flex items-center gap-3 p-3 rounded-lg hover:bg-white/20 transition-colors admin-btn-hover'
+          >
+            <FaHandshake size={20} />
+            {sidebarOpen && <span>{t('admin.customers')}</span>}
           </Link>
         </nav>
 
@@ -162,6 +234,22 @@ const AdminDashboard = () => {
                 <FaGlobe size={14} />
                 <span className='text-sm'>{currentLanguage === 'VN' ? 'EN' : 'VN'}</span>
               </button>
+              <button
+                onClick={toggleAdminTheme}
+                className='flex items-center gap-2 px-3 py-2 bg-gray-100 hover:bg-gray-200 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-800 dark:text-white rounded-lg transition-colors shadow-sm font-medium'
+                title={adminTheme === 'dark' ? 'Light mode' : 'Dark mode'}
+              >
+                {adminTheme === 'dark' ? '☀️' : '🌙'}
+                <span className='text-sm'>{adminTheme === 'dark' ? 'Light' : 'Dark'}</span>
+              </button>
+              <button
+                onClick={handleRefresh}
+                className='flex items-center gap-2 px-3 py-2 bg-gray-100 hover:bg-gray-200 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-800 dark:text-white rounded-lg transition-colors shadow-sm font-medium'
+                title={currentLanguage === 'VN' ? 'Làm mới' : 'Refresh'}
+              >
+                <FaSync className={loading ? 'animate-spin' : ''} size={14} />
+                <span className='text-sm'>{currentLanguage === 'VN' ? 'Làm mới' : 'Refresh'}</span>
+              </button>
               <span className='text-sm text-gray-600 dark:text-gray-400'>
                 {new Date().toLocaleDateString(currentLanguage === 'VN' ? 'vi-VN' : 'en-US', {
                   weekday: 'long',
@@ -170,6 +258,12 @@ const AdminDashboard = () => {
                   day: 'numeric'
                 })}
               </span>
+              {lastUpdated && (
+                <span className='text-xs text-gray-500 dark:text-gray-400'>
+                  {currentLanguage === 'VN' ? 'Cập nhật lúc' : 'Updated at'}{' '}
+                  {lastUpdated.toLocaleTimeString(currentLanguage === 'VN' ? 'vi-VN' : 'en-US')}
+                </span>
+              )}
             </div>
           </div>
         </header>
@@ -197,12 +291,12 @@ const AdminDashboard = () => {
                   </div>
                 </div>
 
-                {/* Recent Contacts */}
+                {/* Today Contacts */}
                 <div className='bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md admin-transition admin-btn-hover'>
                   <div className='flex items-center justify-between'>
                     <div>
-                      <p className='text-sm text-gray-600 dark:text-gray-400'>{t('admin.recentContacts')}</p>
-                      <p className='text-3xl font-bold text-gray-800 dark:text-white'>{stats.recentContacts}</p>
+                      <p className='text-sm text-gray-600 dark:text-gray-400'>{t('admin.today')}</p>
+                      <p className='text-3xl font-bold text-gray-800 dark:text-white'>{stats.todayContacts}</p>
                     </div>
                     <div className='p-3 bg-green-100 dark:bg-green-900 rounded-full animate-admin-pulse'>
                       <FaChartLine className='text-green-600 dark:text-green-300' size={24} />
@@ -258,17 +352,32 @@ const AdminDashboard = () => {
                     <p className='text-sm text-gray-600 dark:text-gray-400'>{t('admin.manageMessages')}</p>
                   </Link>
 
-                  <div className='p-4 bg-gray-50 dark:bg-gray-700 rounded-lg opacity-50 cursor-not-allowed admin-transition'>
-                    <FaUsers className='text-gray-400 mb-2' size={24} />
+                  <Link
+                    to='/admin/users'
+                    className='p-4 bg-green-50 dark:bg-green-900/30 rounded-lg hover:bg-green-100 dark:hover:bg-green-900/50 transition-colors admin-btn-hover'
+                  >
+                    <FaUsers className='text-green-600 dark:text-green-400 mb-2' size={24} />
                     <h4 className='font-semibold text-gray-800 dark:text-white'>{t('admin.manageUsers')}</h4>
-                    <p className='text-sm text-gray-600 dark:text-gray-400'>{t('admin.comingSoon')}</p>
-                  </div>
+                    <p className='text-sm text-gray-600 dark:text-gray-400'>{t('admin.users')}</p>
+                  </Link>
 
-                  <div className='p-4 bg-gray-50 dark:bg-gray-700 rounded-lg opacity-50 cursor-not-allowed admin-transition'>
-                    <FaBlog className='text-gray-400 mb-2' size={24} />
+                  <Link
+                    to='/admin/blogs'
+                    className='p-4 bg-purple-50 dark:bg-purple-900/30 rounded-lg hover:bg-purple-100 dark:hover:bg-purple-900/50 transition-colors admin-btn-hover'
+                  >
+                    <FaBlog className='text-purple-600 dark:text-purple-400 mb-2' size={24} />
                     <h4 className='font-semibold text-gray-800 dark:text-white'>{t('admin.writeNewBlog')}</h4>
-                    <p className='text-sm text-gray-600 dark:text-gray-400'>{t('admin.comingSoon')}</p>
-                  </div>
+                    <p className='text-sm text-gray-600 dark:text-gray-400'>{t('admin.blogs')}</p>
+                  </Link>
+
+                  <Link
+                    to='/admin/projects'
+                    className='p-4 bg-teal-50 dark:bg-teal-900/30 rounded-lg hover:bg-teal-100 dark:hover:bg-teal-900/50 transition-colors admin-btn-hover'
+                  >
+                    <FaProjectDiagram className='text-teal-600 dark:text-teal-400 mb-2' size={24} />
+                    <h4 className='font-semibold text-gray-800 dark:text-white'>{t('admin.projects')}</h4>
+                    <p className='text-sm text-gray-600 dark:text-gray-400'>{t('admin.createNewProject')}</p>
+                  </Link>
                 </div>
               </div>
             </>

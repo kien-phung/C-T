@@ -2,6 +2,9 @@ import { FaArrowRightLong } from 'react-icons/fa6';
 import BreadCrumb from '../../../Shared/BreadCrumb/BreadCrumb';
 import { useLanguage } from '../../../contexts/LanguageContext';
 import { getTranslation } from '../../../utils/translations';
+import { useEffect, useMemo, useState } from 'react';
+import { getPublicPolicies } from '../../../api/api';
+import { socket } from '../../../api/socket';
 
 const getPolicyData = (language) => {
   const policies = {
@@ -92,7 +95,72 @@ const getPolicyData = (language) => {
 const PolicyInner = () => {
   const { currentLanguage } = useLanguage();
   const t = (key) => getTranslation(currentLanguage, key);
-  const policyData = getPolicyData(currentLanguage);
+  const fallback = getPolicyData(currentLanguage);
+
+  const [items, setItems] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  const normalizePolicies = (data) => {
+    return (data || [])
+      .sort((a, b) => (a.display_order || 0) - (b.display_order || 0))
+      .map((p) => ({
+        slug: p.slug,
+        title: currentLanguage === 'EN' ? (p.title_en || p.title_vn) : (p.title_vn || p.title_en),
+        description: currentLanguage === 'EN' ? (p.description_en || p.description_vn) : (p.description_vn || p.description_en),
+        points: currentLanguage === 'EN' ? (p.points_en || p.points_vn || []) : (p.points_vn || p.points_en || []),
+      }));
+  };
+
+  const fetchPolicies = async () => {
+    setLoading(true);
+    try {
+      const res = await getPublicPolicies();
+      const data = res?.data?.policies || res?.data?.data || [];
+      const normalized = normalizePolicies(data);
+      if (normalized.length > 0) setItems(normalized);
+    } catch (e) {
+      // swallow
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchPolicies();
+  }, [currentLanguage]);
+
+  // Realtime updates via Socket.IO
+  useEffect(() => {
+    const onChange = (payload) => {
+      // For simplicity, refetch to ensure language-specific fields are applied
+      fetchPolicies();
+    };
+    socket.on('policies.changed', onChange);
+    return () => {
+      socket.off('policies.changed', onChange);
+    };
+  }, []);
+
+  const uiItems = useMemo(() => {
+    if (items && items.length > 0) return items;
+    // Fallback: convert static object to array in desired order
+    return [
+      { slug: 'warranty', title: fallback.warranty.title, description: fallback.warranty.description, points: fallback.warranty.points },
+      { slug: 'return', title: fallback.return.title, description: fallback.return.description, points: fallback.return.points },
+      { slug: 'shipping', title: fallback.shipping.title, description: fallback.shipping.description, points: fallback.shipping.points },
+      { slug: 'payment', title: fallback.payment.title, description: fallback.payment.description, points: fallback.payment.points },
+    ];
+  }, [items, fallback]);
+
+  // Pagination (max 4 policies per page)
+  const PAGE_SIZE = 4;
+  const [page, setPage] = useState(1);
+  const totalPages = Math.max(1, Math.ceil((uiItems?.length || 0) / PAGE_SIZE));
+  useEffect(() => {
+    // Reset or clamp page when items or language change
+    if (page > totalPages) setPage(1);
+  }, [uiItems, totalPages]);
+  const pageItems = (loading ? [] : uiItems).slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE);
 
   return (
     <>
@@ -110,7 +178,7 @@ const PolicyInner = () => {
               data-aos='fade-up'
               data-aos-duration='800'
             >
-              {policyData.pageTitle}
+              {fallback.pageTitle}
             </h1>
             <p
               className='font-FiraSans text-TextColor2-0 text-lg max-w-3xl mx-auto'
@@ -118,103 +186,73 @@ const PolicyInner = () => {
               data-aos-duration='800'
               data-aos-delay='100'
             >
-              {policyData.pageDescription}
+              {fallback.pageDescription}
             </p>
           </div>
 
           <div className='grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch'>
-            {/* Warranty Policy */}
-            <div
-              className='bg-white rounded-2xl p-8 shadow-lg flex flex-col h-full'
-              data-aos='fade-up'
-              data-aos-duration='800'
-              data-aos-delay='200'
-            >
-              <h3 className='font-FiraSans font-semibold text-2xl text-HeadingColor-0 mb-4'>
-                {policyData.warranty.title}
-              </h3>
-              <p className='font-FiraSans text-TextColor2-0 mb-4'>
-                {policyData.warranty.description}
-              </p>
-              <ul className='space-y-2 flex-grow'>
-                {policyData.warranty.points.map((point, index) => (
-                  <li key={index} className='font-FiraSans text-TextColor2-0 flex items-start gap-2'>
-                    <span className='text-PrimaryColor-0 mt-1 flex-shrink-0'>•</span>
-                    <span>{point}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Return Policy */}
-            <div
-              className='bg-white rounded-2xl p-8 shadow-lg flex flex-col h-full'
-              data-aos='fade-up'
-              data-aos-duration='800'
-              data-aos-delay='300'
-            >
-              <h3 className='font-FiraSans font-semibold text-2xl text-HeadingColor-0 mb-4'>
-                {policyData.return.title}
-              </h3>
-              <p className='font-FiraSans text-TextColor2-0 mb-4'>
-                {policyData.return.description}
-              </p>
-              <ul className='space-y-2 flex-grow'>
-                {policyData.return.points.map((point, index) => (
-                  <li key={index} className='font-FiraSans text-TextColor2-0 flex items-start gap-2'>
-                    <span className='text-PrimaryColor-0 mt-1 flex-shrink-0'>•</span>
-                    <span>{point}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Shipping Policy */}
-            <div
-              className='bg-white rounded-2xl p-8 shadow-lg flex flex-col h-full'
-              data-aos='fade-up'
-              data-aos-duration='800'
-              data-aos-delay='400'
-            >
-              <h3 className='font-FiraSans font-semibold text-2xl text-HeadingColor-0 mb-4'>
-                {policyData.shipping.title}
-              </h3>
-              <p className='font-FiraSans text-TextColor2-0 mb-4'>
-                {policyData.shipping.description}
-              </p>
-              <ul className='space-y-2 flex-grow'>
-                {policyData.shipping.points.map((point, index) => (
-                  <li key={index} className='font-FiraSans text-TextColor2-0 flex items-start gap-2'>
-                    <span className='text-PrimaryColor-0 mt-1 flex-shrink-0'>•</span>
-                    <span>{point}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Payment Policy */}
-            <div
-              className='bg-white rounded-2xl p-8 shadow-lg flex flex-col h-full'
-              data-aos='fade-up'
-              data-aos-duration='800'
-              data-aos-delay='500'
-            >
-              <h3 className='font-FiraSans font-semibold text-2xl text-HeadingColor-0 mb-4'>
-                {policyData.payment.title}
-              </h3>
-              <p className='font-FiraSans text-TextColor2-0 mb-4'>
-                {policyData.payment.description}
-              </p>
-              <ul className='space-y-2 flex-grow'>
-                {policyData.payment.points.map((point, index) => (
-                  <li key={index} className='font-FiraSans text-TextColor2-0 flex items-start gap-2'>
-                    <span className='text-PrimaryColor-0 mt-1 flex-shrink-0'>•</span>
-                    <span>{point}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
+            {pageItems.map((item, idx) => (
+              <div
+                key={item.slug || idx}
+                className='bg-white rounded-2xl p-8 shadow-lg flex flex-col h-full'
+                data-aos='fade-up'
+                data-aos-duration='800'
+                data-aos-delay={`${200 + idx*100}`}
+              >
+                <h3 className='font-FiraSans font-semibold text-2xl text-HeadingColor-0 mb-4'>
+                  {item.title}
+                </h3>
+                <p className='font-FiraSans text-TextColor2-0 mb-4'>
+                  {item.description}
+                </p>
+                <ul className='space-y-2 flex-grow'>
+                  {(item.points || []).map((point, index) => (
+                    <li key={index} className='font-FiraSans text-TextColor2-0 flex items-start gap-2'>
+                      <span className='text-PrimaryColor-0 mt-1 flex-shrink-0'>•</span>
+                      <span>{point}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
           </div>
+
+          {/* Pagination controls */}
+          {(!loading && totalPages > 1) && (
+            <div className='mt-8 flex items-center justify-center gap-2'>
+              <button
+                onClick={() => setPage((p) => Math.max(1, p - 1))}
+                disabled={page === 1}
+                className={`px-3 py-2 rounded-md border font-bold transition ${
+                  page === 1 ? 'opacity-50 cursor-not-allowed' : 'hover:bg-gray-100 dark:hover:bg-gray-700'
+                } bg-white text-gray-800 dark:bg-gray-800 dark:text-white dark:border-gray-700`}
+              >
+                {t('common.prev')}
+              </button>
+              {Array.from({ length: totalPages }, (_, i) => i + 1).map((n) => (
+                <button
+                  key={n}
+                  onClick={() => setPage(n)}
+                  className={`w-9 h-9 rounded-full border flex items-center justify-center font-bold transition ${
+                    n === page
+                      ? 'bg-PrimaryColor-0 text-white border-PrimaryColor-0 dark:bg-PrimaryColor-0 dark:text-white dark:border-PrimaryColor-0'
+                      : 'bg-white text-gray-800 hover:bg-gray-100 dark:bg-gray-800 dark:text-white dark:hover:bg-gray-700 dark:border-gray-700'
+                  }`}
+                >
+                  {n}
+                </button>
+              ))}
+              <button
+                onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
+                disabled={page === totalPages}
+                className={`px-3 py-2 rounded-md border font-bold transition ${
+                  page === totalPages ? 'opacity-50 cursor-not-allowed' : 'hover:bg-gray-100 dark:hover:bg-gray-700'
+                } bg-white text-gray-800 dark:bg-gray-800 dark:text-white dark:border-gray-700`}
+              >
+                {t('common.next')}
+              </button>
+            </div>
+          )}
         </div>
       </section>
     </>

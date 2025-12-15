@@ -22,7 +22,7 @@ const FloatingContact = () => {
 
       <div className={`floating-contact-menu ${isOpen ? 'open' : ''}`}>
         <a
-          href='https://zalo.me/84822191605'
+          href='https://zalo.me/84902593054'
           target='_blank'
           rel='noopener noreferrer'
           className='floating-contact-item zalo'

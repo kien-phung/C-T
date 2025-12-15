@@ -1,0 +1,28 @@
+{
+  "watch": [
+    "src/**/*.ts",
+    "src/**/*.js"
+  ],
+  "ignore": [
+    "node_modules/**",
+    "**/*.log",
+    "dist/**",
+    "build/**",
+    "../client/**",
+    ".vscode/**",
+    ".idea/**",
+    "**/*.tmp",
+    "**/*.swp",
+    "Thumbs.db",
+    ".env*",
+    "package-lock.json",
+    "tsconfig.json"
+  ],
+  "ext": "ts,js",
+  "delay": "800",
+  "legacyWatch": true,
+  "verbose": false,
+  "env": {
+    "NODE_ENV": "development"
+  }
+}

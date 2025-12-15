@@ -131,9 +131,9 @@ const Contact = () => {
                   <h6 className='font-FiraSans text-TextColor2-0'>
                     {t('contact.callUs')}
                   </h6>
-                  <a href='https://zalo.me/84822191605' target='_blank' rel='noopener noreferrer'>
+                  <a href='https://zalo.me/84902593054' target='_blank' rel='noopener noreferrer'>
                     <button className='font-FiraSans text-xl text-HeadingColor-0 font-medium mt-1'>
-                      0822191605
+                      +84 902 593 054
                     </button>
                   </a>
                 </div>
@@ -146,7 +146,7 @@ const Contact = () => {
                   <h6 className='font-FiraSans text-TextColor2-0'>{t('contact.emailUs')}</h6>
                   <a href='https://mail.google.com/mail/?view=cm&fs=1&to=stl.solution.co@gmail.com' target='_blank' rel='noopener noreferrer'>
                     <button className='font-FiraSans text-xl text-HeadingColor-0 font-medium mt-1'>
-                      stl.solution.co@gmail.com
+                      ct.iot.innovation@gmail.com
                     </button>
                   </a>
                 </div>
@@ -160,7 +160,7 @@ const Contact = () => {
                     {t('contact.ourAddress')}
                   </h6>
                   <p className='font-FiraSans text-xl text-HeadingColor-0 font-medium mt-1'>
-                    24/22 Đường số 23, phường Hiệp Bình Chánh <br /> TP.Thủ Đức, TP.HCM
+                    23 khu phố 52 phường Hiệp Bình <br /> TP.HCM
                   </p>
                 </div>
               </div>

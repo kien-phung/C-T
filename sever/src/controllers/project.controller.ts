@@ -3,7 +3,8 @@ import { RequestHandlerCustom } from "../utils/configs/custom.js";
 
 export const getAllProjects = RequestHandlerCustom(
   async (req, res) => {
-    const projects = await handleGetProjects();
+    const category = (req.query.category as string) || undefined;
+    const projects = await handleGetProjects({ category });
 
     res.status(200).json({
       message: "Get all projects successfully",

@@ -6,6 +6,8 @@ interface ISolutionDocument extends Document {
     title_en?: string;
     description_vn?: string;
     description_en?: string;
+    image?: string;
+    is_published?: boolean;
     display_order?: number;
 }
 
@@ -16,6 +18,8 @@ const schema: Schema<ISolutionDocument> = new Schema(
         title_en: String,
         description_vn: String,
         description_en: String,
+        image: String,
+        is_published: Boolean,
         display_order: Number,
     },
     {

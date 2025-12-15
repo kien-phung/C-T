@@ -110,12 +110,20 @@ export const getContactsStats = RequestHandlerCustom(async (req, res) => {
         createdAt: { $gte: sevenDaysAgo }
     });
 
+    // Get today contacts (from start of today)
+    const startOfToday = new Date();
+    startOfToday.setHours(0, 0, 0, 0);
+    const todayCount = await Contact.countDocuments({
+        createdAt: { $gte: startOfToday }
+    });
+
     res.status(200).json({
         success: true,
         data: {
             total,
             byType,
-            recentCount
+            recentCount,
+            todayCount
         }
     });
 });

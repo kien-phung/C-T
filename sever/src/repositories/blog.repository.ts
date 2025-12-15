@@ -4,8 +4,12 @@ import { HandlerCustom } from "../utils/configs/custom.js";
 export const handleGetBlogs = HandlerCustom(async (data: { limit?: number }) => {
     const query = Blog.find();
 
+    // Always return newest first
+    query.sort({ createdAt: -1 });
+
+    // Optionally limit number of returned blogs
     if (data.limit) {
-        query.sort({ createdAt: -1 }).limit(data.limit);
+        query.limit(data.limit);
     }
 
     const blogs = await query.exec();
