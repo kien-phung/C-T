@@ -252,9 +252,30 @@ The following technical challenges and approaches are reflected in the current s
 
 ## 12. My Contributions
 
-The author should complete this section based on their actual work. The repository currently has no task allocation document confirming ownership of individual features.
+### My Role — Frontend Development
 
-Describe the modules you implemented, the problems you resolved, and the corresponding commits or pull requests.
+- Built the public website and administration interface using React, JavaScript, and Tailwind CSS.
+- Developed pages for company information, products, solutions, news, customers, policies, and inquiries.
+- Created reusable components, responsive layouts, navigation, and protected administration routes with React Router.
+- Implemented Vietnamese/English language switching and light/dark themes using React Context.
+- Integrated backend APIs through Axios for authentication, content management, and form submissions.
+- Built login and password recovery interfaces, including token handling and authenticated requests.
+- Connected frontend screens to Socket.IO events to refresh content when data changes.
+- Added sliders, lightboxes, scrolling effects, and animations using Swiper, FsLightbox, AOS, GSAP, Lenis, and Framer Motion.
+- Built the PDF upload interface and connected it to the backend API.
+
+### Teammate's Role — Backend Development
+
+- Developed the backend using Node.js, Express, and TypeScript.
+- Designed MongoDB schemas and implemented data access with Mongoose.
+- Built APIs for products, solutions, projects, articles, customers, policies, users, inquiries, team members, and certificates.
+- Implemented JWT authentication, password hashing with bcrypt, and authentication and authorization middleware.
+- Developed email OTP flows for password recovery.
+- Integrated Nodemailer with Gmail SMTP for administrator notifications and customer confirmation emails.
+- Implemented upload handling with Multer and served uploaded PDF documents from the backend.
+- Added Socket.IO events to notify frontend clients about content changes.
+- Configured CORS, request parsing, error handling, logging, and MongoDB connection retries.
+- Created seed and migration scripts for initial content and bilingual product data.
 
 ## 13. Future Improvements
 
