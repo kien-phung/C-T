@@ -10,7 +10,7 @@ The codebase consists of a React frontend in `client/` and an Express backend in
 
 ## 2. Live Demo
 
-The domain configured in the project is [www.thanhtoanct.com](https://www.thanhtoanct.com). The website's availability has not been verified during this README update.
+The domain configured in the project is [www.thanhtoanct.com](https://thanhtoanct.com/). The website's availability has not been verified during this README update.
 
 The local development URL is `http://localhost:5173`. The administrator login page is available at `/admin/login`.
 
